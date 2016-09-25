@@ -49,17 +49,14 @@ if [[ $iatest > 0 ]]; then bind "set completion-ignore-case on"; fi
 if [[ $iatest > 0 ]]; then bind "set show-all-if-ambiguous On"; fi
 
 # Set the default editor
-export EDITOR=nano
-export VISUAL=nano
-alias pico='edit'
-alias spico='sedit'
+export EDITOR=vim
+export VISUAL=vim
 alias nano='edit'
 alias snano='sedit'
 
-# To have colors for ls and all grep commands such as grep, egrep and zgrep
+# To have colors for ls and all grep commands such as zs, egrep and zgrep
 export CLICOLOR=1
 export LS_COLORS='no=00:fi=00:di=00;34:ln=01;36:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arj=01;31:*.taz=01;31:*.lzh=01;31:*.zip=01;31:*.z=01;31:*.Z=01;31:*.gz=01;31:*.bz2=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.jpg=01;35:*.jpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.avi=01;35:*.fli=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.ogg=01;35:*.mp3=01;35:*.wav=01;35:*.xml=00;31:'
-alias grep='grep --color=auto'
 
 # Color for manpages in less makes manpages a little easier to read
 export LESS_TERMCAP_mb=$'\E[01;31m'
@@ -96,7 +93,7 @@ alias web='cd /var/www/html'
 alias alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo error)" "$(history|tail -n1|sed -e '\''s/^\s*[0-9]\+\s*//;s/[;&|]\s*alert$//'\'')"'
 
 # Edit this .bashrc file
-alias ebrc='edit ~/.bashrc'
+alias ebrc='edit ~/.bashrc && source ~/.bashrc'
 
 # Show help for this .bashrc file
 alias hlp='less ~/.bashrc_help'
@@ -213,26 +210,17 @@ alias sha1='openssl sha1'
 # Use the best version of pico installed
 edit ()
 {
-	if [ "$(type -t jpico)" = "file" ]; then
-		# Use JOE text editor http://joe-editor.sourceforge.net/
-		jpico -nonotice -linums -nobackups "$@"
-	elif [ "$(type -t nano)" = "file" ]; then
+	if [ "$(type -t nano)" = "file" ]; then
 		nano -c "$@"
-	elif [ "$(type -t pico)" = "file" ]; then
-		pico "$@"
 	else
 		vim "$@"
 	fi
 }
+
 sedit ()
 {
-	if [ "$(type -t jpico)" = "file" ]; then
-		# Use JOE text editor http://joe-editor.sourceforge.net/
-		sudo jpico -nonotice -linums -nobackups "$@"
-	elif [ "$(type -t nano)" = "file" ]; then
+	if [ "$(type -t nano)" = "file" ]; then
 		sudo nano -c "$@"
-	elif [ "$(type -t pico)" = "file" ]; then
-		sudo pico "$@"
 	else
 		sudo vim "$@"
 	fi
@@ -276,7 +264,7 @@ ftext ()
 }
 
 # Copy file with a progress bar
-cpp()
+cp_p()
 {
 	set -e
 	strace -q -ewrite cp -- "${1}" "${2}" 2>&1 \
@@ -339,16 +327,6 @@ up ()
 	cd $d
 }
 
-#Automatically do an ls after each cd
-# cd ()
-# {
-# 	if [ -n "$1" ]; then
-# 		builtin cd "$@" && ls
-# 	else
-# 		builtin cd ~ && ls
-# 	fi
-# }
-
 # Returns the last 2 fields of the working directory
 pwdtail ()
 {
@@ -361,28 +339,28 @@ distribution ()
 	local dtype
 	# Assume unknown
 	dtype="unknown"
-	
+
 	# First test against Fedora / RHEL / CentOS / generic Redhat derivative
 	if [ -r /etc/rc.d/init.d/functions ]; then
 		source /etc/rc.d/init.d/functions
 		[ zz`type -t passed 2>/dev/null` == "zzfunction" ] && dtype="redhat"
-	
+
 	# Then test against SUSE (must be after Redhat,
 	# I've seen rc.status on Ubuntu I think? TODO: Recheck that)
 	elif [ -r /etc/rc.status ]; then
 		source /etc/rc.status
 		[ zz`type -t rc_reset 2>/dev/null` == "zzfunction" ] && dtype="suse"
-	
+
 	# Then test against Debian, Ubuntu and friends
 	elif [ -r /lib/lsb/init-functions ]; then
 		source /lib/lsb/init-functions
 		[ zz`type -t log_begin_msg 2>/dev/null` == "zzfunction" ] && dtype="debian"
-	
+
 	# Then test against Gentoo
 	elif [ -r /etc/init.d/functions.sh ]; then
 		source /etc/init.d/functions.sh
 		[ zz`type -t ebegin 2>/dev/null` == "zzfunction" ] && dtype="gentoo"
-	
+
 	# For Mandriva we currently just test if /etc/mandriva-release exists
 	# and isn't empty (TODO: Find a better way :)
 	elif [ -s /etc/mandriva-release ]; then
