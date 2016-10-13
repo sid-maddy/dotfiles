@@ -671,4 +671,4 @@ function __setprompt
 }
 PROMPT_COMMAND='__setprompt'
 
-source ~/.my_aliases.sh
+source ~/.my_aliases

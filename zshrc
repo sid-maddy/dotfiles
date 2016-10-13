@@ -87,4 +87,4 @@ source $ZSH/oh-my-zsh.sh
 export DRI_PRIME=1
 export EDITOR=vim
 
-source ~/.my_aliases.sh
+source ~/.my_aliases
