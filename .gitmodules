@@ -5,7 +5,3 @@
 [submodule "vim_runtime"]
     path = vim_runtime
     url = https://github.com/le-idiot/vimrc
-
-[submodule "YouCompleteMe"]
-    path = vim_runtime/sources_non_forked/YouCompleteMe
-    url = https://github.com/Valloric/YouCompleteMe
