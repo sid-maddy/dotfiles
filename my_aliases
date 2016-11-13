@@ -1,5 +1,6 @@
 # Android SDK Path
 export PATH=$PATH:~/Softwares/android-sdk-linux/platform-tools:/usr/local/heroku/bin
+export MONGOLAB_URI="mongodb://$DBUSER:$DBPASSWORD@ds149557.mlab.com:49557/my-very-very-first-app"
 
 # base16-shell config
 export BASE16_SHELL=$HOME/.config/base16-shell/
