@@ -1,6 +1,6 @@
 # Paths
 export ANDROID_HOME=$HOME/Softwares/android-sdk-linux
-export PATH=$PATH:$ANDRIOD_HOME/platform-tools:/usr/local/heroku/bin
+export PATH=$ANDROID_HOME/platform-tools:/usr/local/heroku/bin:$HOME/.cabal/bin:$HOME/.local/bin:$PATH
 
 # base16-shell config
 export BASE16_SHELL=$HOME/.config/base16-shell/
