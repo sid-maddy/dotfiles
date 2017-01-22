@@ -2,6 +2,11 @@
 export ANDROID_HOME=$HOME/Softwares/android-sdk-linux
 export PATH=$ANDROID_HOME/platform-tools:/usr/local/heroku/bin:$HOME/.cabal/bin:$HOME/.local/bin:$PATH
 
+# needed for virtualenvwrapper
+export WORKON_HOME=$HOME/.virtualenvs
+export VIRTUALENVWRAPPER_PYTHON=/usr/bin/python3
+source /usr/bin/virtualenvwrapper.sh
+
 # base16-shell config
 export BASE16_SHELL=$HOME/.config/base16-shell/
 [ -n "$PS1" ] && [ -s $BASE16_SHELL/profile_helper.sh ] && eval "$($BASE16_SHELL/profile_helper.sh)"
@@ -9,3 +14,5 @@ export BASE16_SHELL=$HOME/.config/base16-shell/
 # nvn config
 export NVM_DIR=$HOME/.nvm
 [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm
+
+source .dropbox_credentials

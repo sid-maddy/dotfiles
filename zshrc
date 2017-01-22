@@ -51,7 +51,7 @@ HYPHEN_INSENSITIVE="true"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(autopep8 bower cabal catimg common-aliases composer dirhistory django dnf encode64 fasd git git-extras github gradle history jsontools mercurial meteor ng npm pass pep8 perms pip pylint python sublime sudo systemd urltools virtualenvwrapper web-search)
+plugins=(autopep8 bower catimg common-aliases dirhistory django dnf encode64 fasd git git-extras github gradle history jsontools mercurial meteor ng npm pass pep8 perms pip pylint python sublime sudo systemd urltools virtualenvwrapper web-search)
 
 source $ZSH/oh-my-zsh.sh
 
