@@ -1,0 +1,36 @@
+# first order of business
+export DRI_PRIME=0
+export EDITOR=vim
+
+# paths
+export ANDROID_HOME=$HOME/Softwares/android-sdk-linux
+export PATH=$ANDROID_HOME/platform-tools:/usr/local/heroku/bin:$HOME/.cabal/bin:$HOME/.local/bin:$PATH
+
+# needed for virtualenvwrapper
+export WORKON_HOME=$HOME/.virtualenvs
+export PROJECT_HOME=$HOME/Documents/python_programs
+export VIRTUALENVWRAPPER_PYTHON=/usr/bin/python3
+source /usr/bin/virtualenvwrapper.sh 
+
+# base16-shell config
+export BASE16_SHELL=$HOME/.config/base16-shell/
+[ -n "$PS1" ] && [ -s $BASE16_SHELL/profile_helper.sh ] && eval "$($BASE16_SHELL/profile_helper.sh)"
+
+# nvm config
+export NVM_DIR=$HOME/.nvm
+[ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"
+
+# api keys
+source $HOME/.api_keys
+
+# functions
+update_pip() {
+  outdated=$(pip list -o --user --format=columns | awk 'NR>2 {print $1}')
+  outdated=(${outdated//$'\n'/ })
+  read -A outdated_arr <<<$outdated
+  print $outdated_arr
+  for pkg in $outdated_arr; do
+    pip install --user -U $pkg
+  done
+  unset outdated
+}
