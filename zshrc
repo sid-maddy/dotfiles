@@ -15,7 +15,7 @@ POWERLEVEL9K_HOME_SUB_ICON=""
 POWERLEVEL9K_FOLDER_ICON=""
 
 POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(os_icon dir vcs)
-POWERLEVEL9K_MODE="awesome-fontconfig"
+#POWERLEVEL9K_MODE="awesome-fontconfig"
 POWERLEVEL9K_PROMPT_ON_NEWLINE=true
 POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(status virtualenv)
 POWERLEVEL9K_SHORTEN_DIR_LENGTH=2
@@ -64,7 +64,7 @@ HYPHEN_INSENSITIVE="true"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(autopep8 bower catimg common-aliases dirhistory django dnf encode64 fasd git git-extras github gradle history jsontools mercurial meteor ng npm pass pep8 perms pip pylint python sublime sudo systemd urltools virtualenvwrapper web-search)
+plugins=(autopep8 cargo catimg common-aliases dirhistory django dnf encode64 fasd git git-extras github gradle history jsontools mercurial meteor ng npm pass pep8 perms pip pylint python sublime sudo systemd urltools virtualenvwrapper web-search)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -96,5 +96,3 @@ source $ZSH/oh-my-zsh.sh
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
-
-source ~/.aliases
