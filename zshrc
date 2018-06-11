@@ -113,5 +113,5 @@ man() {
 # Upgrade all global outdated packages
 # TODO: Adapt function to update a venv's requirements.txt
 pip_upgrade() {
-    pip list -o --user --format=freeze | awk -F= '{print $1}' | xargs -rn1 pip install -U --user
+    pip list -o --user --format=freeze | awk -F= '{print $1}' | xargs -rn1 pip install -U --user --process-dependency-links
 }
