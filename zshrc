@@ -97,6 +97,14 @@ alias vim=vimx
 
 # Functions
 
+# Decrypt a PDF file
+decrypt_pdf() {
+    local pass
+    echo -n "Password: "
+    read -s pass
+    qpdf --decrypt --password=$pass $1 $2
+}
+
 # Make `man' colourful
 man() {
     env LESS_TERMCAP_mb=$(printf "\e[1;31m") \
