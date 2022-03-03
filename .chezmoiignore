@@ -1,0 +1,10 @@
+# Age
+key.txt.age
+
+# Zsh
+## Zsh Word Compiled
+**/*.zwc
+
+# Misc.
+README.md
+install.sh

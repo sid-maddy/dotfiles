@@ -1,0 +1,19 @@
+{
+  "dependencies": {
+    "coc-angular": ">=13.2.4",
+    "coc-css": ">=1.3.0",
+    "coc-eslint": ">=1.5.7",
+    "coc-go": ">=1.1.0",
+    "coc-html": ">=1.6.1",
+    "coc-json": ">=1.4.1",
+    "coc-lua": ">=1.0.1",
+    "coc-marketplace": ">=1.9.0",
+    "coc-prettier": ">=1.1.24",
+    "coc-pyright": ">=1.1.223",
+    "coc-sql": ">=0.9.0",
+    "coc-stylua": ">=0.0.4",
+    "coc-toml": ">=1.2.5",
+    "coc-tsserver": ">=1.9.13",
+    "coc-yaml": ">=1.7.4"
+  }
+}

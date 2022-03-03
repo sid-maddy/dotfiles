@@ -1,0 +1,25 @@
+{{ define "archive" }}
+  type = "archive"
+  stripComponents = 1
+  refreshPeriod = "24h"
+{{ end }}
+
+[".oh-my-zsh"]
+  {{ template "archive" }}
+  url = "https://github.com/ohmyzsh/ohmyzsh/archive/master.tar.gz"
+  exact = false
+
+[".oh-my-zsh/custom/plugins/zsh-autosuggestions"]
+  {{ template "archive" }}
+  url = "https://github.com/zsh-users/zsh-autosuggestions/archive/master.tar.gz"
+  exact = true
+
+[".oh-my-zsh/custom/plugins/zsh-syntax-highlighting"]
+  {{ template "archive" }}
+  url = "https://github.com/zsh-users/zsh-syntax-highlighting/archive/master.tar.gz"
+  exact = true
+
+[".oh-my-zsh/custom/themes/powerlevel10k"]
+  {{ template "archive" }}
+  url = "https://github.com/romkatv/powerlevel10k/archive/master.tar.gz"
+  exact = true

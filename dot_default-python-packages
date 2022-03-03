@@ -1,0 +1,7 @@
+pip
+setuptools
+wheel
+pipx
+isort
+rope
+neovim

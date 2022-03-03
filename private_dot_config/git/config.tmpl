@@ -1,0 +1,57 @@
+[user]
+	name = {{ .name }}
+	email = {{ .email }}
+	signingkey = {{ .git.user.signingkey }}
+	useConfigOnly = true
+
+[color]
+	ui = true
+
+[commit]
+	gpgsign = true
+
+[core]
+	pager = delta
+
+[diff]
+	colorMoved = default
+	tool = nvim -d
+
+[delta]
+	line-numbers = true
+	line-numbers-left-format = {nm:>4}⋮
+	line-numbers-right-format = {np:>4}│
+	minus-style = "syntax #340001"
+	navigate = true
+	plus-style = "syntax #012800"
+	syntax-theme = base16
+
+[fetch]
+	prune = true
+	pruneTags = true
+
+[init]
+	defaultBranch = main
+
+[interactive]
+	diffFilter = delta --color-only
+
+[merge]
+	conflictstyle = diff3
+	tool = nvim -d
+
+[mergetool]
+	keepBackup = false
+
+[pull]
+	rebase = false
+	ff = on
+{{ if .machine.personal }}
+[sendemail]
+	smtpServer = smtp-mail.outlook.com
+	smtpUser = {{ .email }}
+	smtpEncryption = starttls
+	smtpServerPort = 587
+{{ end }}
+[tag]
+	forceSignAnnotated = true

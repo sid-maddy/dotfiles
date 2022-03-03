@@ -1,0 +1,11 @@
+@slidev/cli
+commitizen
+corepack
+cz-conventional-changelog
+fx
+jsvu
+lodash
+neovim
+npm-check
+npm@latest
+prettier

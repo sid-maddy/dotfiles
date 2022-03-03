@@ -1,0 +1,6 @@
+# NPM
+audit=false
+fund=false
+
+# PNPM
+shamefully-hoist=true

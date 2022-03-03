@@ -1,0 +1,129 @@
+window:
+  # Spread additional padding evenly around the terminal content.
+  dynamic_padding: true
+
+  # Window decorations
+  #
+  # Values for `decorations`:
+  #     - full: Borders and title bar
+  #     - none: Neither borders nor title bar
+  #
+  # Values for `decorations` (macOS only):
+  #     - transparent: Title bar, transparent background and title bar buttons
+  #     - buttonless: Title bar, transparent background and no title bar buttons
+  decorations: none
+
+  # Startup Mode (changes require restart)
+  #
+  # Values for `startup_mode`:
+  #   - Windowed
+  #   - Maximized
+  #   - Fullscreen
+  #
+  # Values for `startup_mode` (macOS only):
+  #   - SimpleFullscreen
+  startup_mode: Maximized
+
+  # Allow terminal applications to change Alacritty's window title.
+  dynamic_title: true
+
+# Font configuration
+font:
+  # Normal (roman) font face
+  normal:
+    # Font family
+    #
+    # Default:
+    #   - (macOS) Menlo
+    #   - (Linux/BSD) monospace
+    #   - (Windows) Consolas
+    family: "MesloLGS NF"
+
+  # Bold font face
+  bold:
+    # Font family
+    #
+    # If the bold family is not specified, it will fall back to the
+    # value specified for the normal font.
+    family: "MesloLGS NF"
+
+  # Italic font face
+  italic:
+    # Font family
+    #
+    # If the italic family is not specified, it will fall back to the
+    # value specified for the normal font.
+    family: "MesloLGS NF"
+
+  # Bold italic font face
+  bold_italic:
+    # Font family
+    #
+    # If the bold italic family is not specified, it will fall back to the
+    # value specified for the normal font.
+    family: "MesloLGS NF"
+
+  # Point size
+  size: 12.0
+
+  # Thin stroke font rendering (macOS only)
+  #
+  # Thin strokes are suitable for retina displays, but for non-retina screens
+  # it is recommended to set `use_thin_strokes` to `false`.
+  use_thin_strokes: false
+
+# If `true`, bold text is drawn using the bright color variants.
+draw_bold_text_with_bright_colors: true
+
+# Colors (Ayu Dark)
+colors:
+  # Default colors
+  primary:
+    background: '#0A0E14'
+    foreground: '#B3B1AD'
+
+  # Normal colors
+  normal:
+    black: '#01060E'
+    red: '#EA6C73'
+    green: '#91B362'
+    yellow: '#F9AF4F'
+    blue: '#53BDFA'
+    magenta: '#FAE994'
+    cyan: '#90E1C6'
+    white: '#C7C7C7'
+
+  # Bright colors
+  bright:
+    black: '#686868'
+    red: '#F07178'
+    green: '#C2D94C'
+    yellow: '#FFB454'
+    blue: '#59C2FF'
+    magenta: '#FFEE99'
+    cyan: '#95E6CB'
+    white: '#FFFFFF'
+
+selection:
+  # When set to `true`, selected text will be copied to the primary clipboard.
+  save_to_clipboard: true
+
+# Shell
+#
+# You can set `shell.program` to the path of your favorite shell, e.g.
+# `/bin/fish`. Entries in `shell.args` are passed unmodified as arguments to the
+# shell.
+#
+# Default:
+#   - (macOS) /bin/bash --login
+#   - (Linux/BSD) user login shell
+#   - (Windows) powershell
+shell:
+  program: /usr/bin/zsh
+  args:
+   - -c
+   - tmux
+
+mouse:
+  # If this is `true`, the cursor is temporarily hidden when typing.
+  hide_when_typing: true

@@ -1,0 +1,27 @@
+tap "homebrew/bundle"
+tap "homebrew/core"
+
+brew "age"
+brew "asdf"
+brew "awscli"
+brew "bat"
+brew "broot"
+brew "chezmoi"
+brew "git-delta"
+brew "glab"
+brew "just"
+brew "mongosh"
+brew "podman"
+brew "prettyping"
+brew "shellcheck"
+brew "shfmt"
+brew "xsv"
+{{ if .machine.macos }}
+# macOS-specific
+tap "homebrew/cask"
+
+brew "coreutils"
+
+cask "firefox"
+cask "iterm2"
+{{ end -}}

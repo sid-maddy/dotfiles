@@ -1,0 +1,12 @@
+{
+  "javascript.validate.enable": false,
+  "languageserver": {
+    "nim": {
+      "command": "nimlsp",
+      "filetypes": ["nim"]
+    }
+  },
+  "python.formatting.provider": "black",
+  "python.linting.flake8Enabled": true,
+  "tsserver.disableAutomaticTypeAcquisition": true
+}
