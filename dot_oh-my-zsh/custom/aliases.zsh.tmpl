@@ -3,7 +3,10 @@
 alias cat='bat -pp'
 alias lesser='bat -p'
 alias ping='prettyping --nolegend'
-
+{{ if .machine.macos }}
+# Docker
+alias docker="nerdctl.lima"
+{{ end }}
 # Git
 alias gbv='git branch -vv'
 alias 'gf!'='git fetch -f'

@@ -64,7 +64,7 @@ font:
     family: "MesloLGS NF"
 
   # Point size
-  size: 12.0
+  size: 10
 
   # Thin stroke font rendering (macOS only)
   #
@@ -121,8 +121,8 @@ selection:
 shell:
   program: /usr/bin/zsh
   args:
-   - -c
-   - tmux
+    - -c
+    - tmux new -As alacritty
 
 mouse:
   # If this is `true`, the cursor is temporarily hidden when typing.
