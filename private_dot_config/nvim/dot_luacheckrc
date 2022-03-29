@@ -1,0 +1,12 @@
+-- vim: ft=lua
+stds.nvim = {
+    read_globals = { "jit" },
+}
+std = "max+nvim"
+
+read_globals = {
+    "vim",
+}
+globals = {
+    "vim.g",
+}

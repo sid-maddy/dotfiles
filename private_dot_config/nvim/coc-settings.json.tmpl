@@ -1,12 +1,16 @@
 {
+  "Lua.telemetry.enable": false,
   "javascript.validate.enable": false,
   "languageserver": {
     "nim": {
       "command": "nimlsp",
-      "filetypes": ["nim"]
+      "filetypes": [
+        "nim"
+      ]
     }
   },
   "python.formatting.provider": "black",
   "python.linting.flake8Enabled": true,
+  "stylua.styluaPath": "{{ .chezmoi.homeDir }}/.asdf/shims/stylua",
   "tsserver.disableAutomaticTypeAcquisition": true
 }
