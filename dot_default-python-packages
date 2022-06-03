@@ -2,6 +2,7 @@ pip
 setuptools
 wheel
 pipx
+black[colorama,uvloop]
 isort
 rope
 neovim

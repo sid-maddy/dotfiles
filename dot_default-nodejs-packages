@@ -1,7 +1,9 @@
 @slidev/cli
+bash-language-server
 commitizen
 corepack
 cz-conventional-changelog
+dockerfile-language-server-nodejs
 fx
 jsvu
 lodash
@@ -9,3 +11,7 @@ neovim
 npm-check
 npm@latest
 prettier
+pyright
+typescript
+typescript-language-server
+yaml-language-server
