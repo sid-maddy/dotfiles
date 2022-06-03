@@ -15,10 +15,15 @@ export TZ="Asia/Kolkata"
 
 export EDITOR="nvim"
 export VISUAL="nvim"
-
+{{ if and .machine.macos .machine.work }}
+export JAVA_HOME="$(/opt/homebrew/bin/asdf where graalvm)"
+{{ end }}
 export path=(
   # "$HOME/.config/rofi/bin"
   {{ if .machine.macos -}}
+  {{     if .machine.work -}}
+  "$HOME/Library/Application Support/Coursier/bin"
+  {{     end -}}
   "/opt/homebrew/bin"
   "/opt/homebrew/opt/curl/bin"
   "/opt/homebrew/sbin"

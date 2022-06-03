@@ -1,4 +1,4 @@
-#!/usr/bin/env sh
+#!/usr/bin/env zsh
 if [ ! -f "${HOME}/key.txt" ]; then
   age --decrypt --output "${HOME}/key.txt" "{{ .chezmoi.sourceDir }}/key.txt.age"
   chmod 600 "${HOME}/key.txt"

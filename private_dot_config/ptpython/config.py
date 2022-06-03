@@ -192,6 +192,7 @@ def configure(repl):
     repl.title = "My custom prompt."
     """
 
+
 # Custom colorscheme for the UI. See `ptpython/layout.py` and
 # `ptpython/style.py` for all possible tokens.
 _custom_ui_colorscheme = {
