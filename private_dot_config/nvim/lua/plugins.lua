@@ -180,12 +180,14 @@ return require("packer").startup({
                             vim.lsp.buf.references()
                         end)
                         vimp.nnoremap(opts, "<Leader>f", function()
-                            vim.lsp.buf.format({
+                            -- v0.8+
+                            --[[ vim.lsp.buf.format({
                                 async = true,
                                 filter = function(client)
                                     return client.name ~= "tsserver"
                                 end,
-                            })
+                            }) ]]
+                            vim.lsp.buf.formatting()
                         end)
                         vimp.vnoremap(opts, "<Leader>f", function()
                             vim.lsp.buf.range_formatting()
@@ -214,6 +216,7 @@ return require("packer").startup({
                             },
                         },
                     },
+                    terraformls = {},
                     tsserver = {},
                     yamlls = {},
                 }
