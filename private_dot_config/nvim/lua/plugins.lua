@@ -33,7 +33,6 @@ return require("packer").startup({
             "nvim-treesitter/nvim-treesitter",
             run = ":TSUpdate",
             config = function()
-                -- TODO: Add ensure_installed
                 require("nvim-treesitter.configs").setup({
                     ensure_installed = {
                         "bash",
@@ -52,14 +51,21 @@ return require("packer").startup({
                         "json",
                         "json5",
                         "jsonc",
+                        "latex",
                         "lua",
                         "make",
                         "markdown",
+                        "markdown_inline",
                         "norg",
+                        "org",
                         "python",
                         "query",
                         "regex",
                         "rst",
+                        "rust",
+                        "scala",
+                        "sql",
+                        "todotxt",
                         "toml",
                         "typescript",
                         "vim",
@@ -107,9 +113,20 @@ return require("packer").startup({
         -- lua & third party sources
         use({ "ms-jpq/coq.thirdparty", branch = "3p" })
 
+        -- Debug Adapter Protocol (DAP)
+        -- TODO: Configure nvim-dap
+        use("mfussenegger/nvim-dap")
+
+        use({
+            "simrat39/rust-tools.nvim",
+            after = "coq_nvim",
+            requires = "neovim/nvim-lspconfig",
+        })
+
         -- LSP
         use({
             "neovim/nvim-lspconfig",
+            after = "rust-tools.nvim",
             requires = { "svermeulen/vimpeccable", "ms-jpq/coq_nvim" },
             config = function()
                 local vimp = require("vimp")
@@ -117,6 +134,7 @@ return require("packer").startup({
                 local coq = require("coq")
 
                 local efm = require("plugins.efm")
+                local rust_tools = require("rust-tools")
 
                 -- Mappings.
                 -- See `:help vim.diagnostic.*` for documentation on any of the below functions
@@ -220,29 +238,23 @@ return require("packer").startup({
                     tsserver = {},
                     yamlls = {},
                 }
+                local config = { on_attach = on_attach }
                 for lsp, lsp_config in pairs(servers) do
-                    local config = {
-                        on_attach = on_attach,
-                        flags = {
-                            -- This will be the default in neovim 0.7+
-                            debounce_text_changes = 150,
-                        },
-                    }
-                    config = vim.tbl_deep_extend("force", config, lsp_config)
-                    lspconfig[lsp].setup(coq.lsp_ensure_capabilities(config))
+                    local server_config = vim.tbl_deep_extend("force", config, lsp_config)
+                    lspconfig[lsp].setup(coq.lsp_ensure_capabilities(server_config))
                 end
+
+                rust_tools.setup({ server = coq.lsp_ensure_capabilities(config) })
             end,
         })
-
-        -- Debug Adapter Protocol (DAP)
-        -- TODO: Configure nvim-dap
-        use("mfussenegger/nvim-dap")
 
         use({
             "scalameta/nvim-metals",
             after = "coq_nvim",
             requires = "nvim-lua/plenary.nvim",
             config = function()
+                local coq = require("coq")
+
                 METALS_CONFIG = require("metals").bare_config()
                 METALS_CONFIG.init_options = {
                     statusBarProvider = "show-message",
@@ -423,22 +435,27 @@ return require("packer").startup({
         -- TODO: Check if this is still needed
         use("p00f/nvim-ts-rainbow")
 
+        -- Discord Rich Presence
+        use("andweeb/presence.nvim")
+
         -- Git
         use("tpope/vim-fugitive")
-        use({ "sindrets/diffview.nvim", requires = "nvim-lua/plenary.nvim" })
-        use({
-            "TimUntersberger/neogit",
-            requires = { "nvim-lua/plenary.nvim", "sindrets/diffview.nvim" },
-            config = function()
-                require("neogit").setup({
-                    use_magit_keybindings = true,
-                    integrations = { diffview = true },
-                })
-            end,
-        })
+        -- use({
+        --     "TimUntersberger/neogit",
+        --     requires = { "nvim-lua/plenary.nvim", "sindrets/diffview.nvim" },
+        --     config = function()
+        --         require("neogit").setup({
+        --             use_magit_keybindings = true,
+        --             integrations = { diffview = true },
+        --         })
+        --     end,
+        -- })
 
         -- Chezmoi support
         use("alker0/chezmoi.vim")
+
+        -- Jinja support
+        use("HiPhish/jinja.vim")
 
         -- Hy support
         use({
@@ -450,16 +467,16 @@ return require("packer").startup({
         })
 
         -- Org mode
-        -- TODO: Configure neorg
         use({
             "nvim-neorg/neorg",
+            tag = "0.0.12",
             requires = { "nvim-lua/plenary.nvim", "nvim-neorg/neorg-telescope" },
             config = function()
                 require("neorg").setup({
                     load = {
                         ["core.defaults"] = {},
                         ["core.export"] = {},
-                        ["core.gtd.base"] = { config = { workspace = "tasks" } },
+                        ["core.gtd.base"] = { config = { workspace = "work_tasks" } },
                         ["core.integrations.telescope"] = {},
                         -- No support for coq.nvim
                         -- ["core.norg.completion"] = {},
@@ -467,7 +484,8 @@ return require("packer").startup({
                             config = {
                                 workspaces = {
                                     docs = "~/Documents",
-                                    tasks = "~/Documents/work/tasks",
+                                    work_docs = "~/Documents/work/docs",
+                                    work_tasks = "~/Documents/work/tasks",
                                 },
                             },
                         },

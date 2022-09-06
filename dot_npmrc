@@ -1,6 +1,11 @@
-# NPM
-audit=false
-fund=false
-
-# PNPM
-shamefully-hoist=true
+audit = false
+auto-install-peers = true
+cafile = ~/.local/share/ca-bundle.crt
+fund = false
+init-author-email = siddhesh.mhadnak@outlook.com
+init-author-name = Siddhesh Mhadnak
+init-license = MIT
+lockfile-version = 3
+sign-git-commit = true
+sign-git-tag = true
+update-notifier = false

@@ -29,6 +29,7 @@ option.termguicolors = true
 option.timeoutlen = 300
 option.updatetime = 300
 option.winminheight = 0
+option.wrap = false
 option.writebackup = false
 
 -- Easy writing

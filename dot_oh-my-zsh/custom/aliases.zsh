@@ -3,14 +3,11 @@
 alias cat='bat -pp'
 alias lesser='bat -p'
 alias ping='prettyping --nolegend'
-{{ if .machine.macos }}
-# Docker
-alias docker="nerdctl.lima"
-{{ end }}
+
 # Git
 alias gbv='git branch -vv'
-alias 'gf!'='git fetch -f'
-alias 'gl!'='git pull -f'
+alias gf='git fetch -f'
+alias gl='git pull -f'
 alias gmm='git merge $(git_main_branch)'
 
 # Kubectl
@@ -22,6 +19,9 @@ alias kghpaa='kubectl get hpa --all-namespaces'
 alias kghpaw='kghpa --watch'
 
 # NeoVim
-alias vi="nvim"
-alias vim="nvim"
-alias vimdiff="nvim -d"
+alias vi='nvim'
+alias vim='nvim'
+alias vimdiff='nvim -d'
+
+# Poetry
+alias prun='poetry run'

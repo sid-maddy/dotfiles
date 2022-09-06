@@ -1,14 +1,12 @@
-golang 1.18.3
-kubectl 1.23.8 1.24.2
+golang 1.19.1
+kubectl 1.22.13
 luaJIT 2.1.0-beta3--3.4.0
-nodejs 18.4.0
-python 3.10.5
-stylua 0.13.1
-{{ if .machine.personal -}}
-rust 1.61.0
-{{ end -}}
-{{ if and .machine.macos  .machine.work -}}
-graalvm 22.1.0-java11
+nodejs 18.9.0
+python 3.10.7
+rust 1.63.0
+stylua 0.14.3
+{{ if and .machine.macos .machine.work -}}
+graalvm 22.2.0-java11
 maven 3.8.6
 scala 2.13.8
 {{ end -}}
