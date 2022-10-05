@@ -56,7 +56,7 @@ return require("packer").startup({
                         "make",
                         "markdown",
                         "markdown_inline",
-                        "norg",
+                        -- "norg",
                         "org",
                         "python",
                         "query",
@@ -198,14 +198,12 @@ return require("packer").startup({
                             vim.lsp.buf.references()
                         end)
                         vimp.nnoremap(opts, "<Leader>f", function()
-                            -- v0.8+
-                            --[[ vim.lsp.buf.format({
+                            vim.lsp.buf.format({
                                 async = true,
                                 filter = function(client)
                                     return client.name ~= "tsserver"
                                 end,
-                            }) ]]
-                            vim.lsp.buf.formatting()
+                            })
                         end)
                         vimp.vnoremap(opts, "<Leader>f", function()
                             vim.lsp.buf.range_formatting()
@@ -234,6 +232,7 @@ return require("packer").startup({
                             },
                         },
                     },
+                    taplo = {},
                     terraformls = {},
                     tsserver = {},
                     yamlls = {},
@@ -436,7 +435,7 @@ return require("packer").startup({
         use("p00f/nvim-ts-rainbow")
 
         -- Discord Rich Presence
-        use("andweeb/presence.nvim")
+        -- use("andweeb/presence.nvim")
 
         -- Git
         use("tpope/vim-fugitive")
@@ -453,6 +452,9 @@ return require("packer").startup({
 
         -- Chezmoi support
         use("alker0/chezmoi.vim")
+
+        -- Earthly support
+        use("earthly/earthly.vim")
 
         -- Jinja support
         use("HiPhish/jinja.vim")

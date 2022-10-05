@@ -8,13 +8,14 @@ local vimp = require("vimp")
 -- TODO: Split these into annotated groups.
 option.backup = false
 option.clipboard = option.clipboard + "unnamedplus"
-option.cmdheight = 2
+option.cmdheight = 0
 option.confirm = true
 option.cursorline = true
 option.expandtab = true
 option.fillchars = option.fillchars + { eob = " " }
 -- option.foldmethod = "indent"
 option.ignorecase = true
+option.laststatus = 3
 option.mouse = "a"
 option.swapfile = false
 option.number = true

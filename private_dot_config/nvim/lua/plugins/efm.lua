@@ -55,6 +55,7 @@ local languages = {
     },
     html = { prettier },
     javascript = { prettier, eslint },
+    javascriptreact = { prettier, eslint },
     json = { prettier },
     json5 = { prettier },
     jsonc = { prettier },
@@ -105,6 +106,7 @@ local languages = {
         shellcheck("sh"),
     },
     typescript = { prettier, eslint },
+    typescriptreact = { prettier, eslint },
     yaml = { prettier },
 }
 

@@ -25,3 +25,4 @@ alias vimdiff='nvim -d'
 
 # Poetry
 alias prun='poetry run'
+alias ped="poetry run ${EDITOR}"
