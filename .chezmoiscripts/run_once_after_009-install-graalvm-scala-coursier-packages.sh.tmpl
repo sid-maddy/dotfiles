@@ -1,0 +1,10 @@
+{{- $toolVersions := includeTemplate (joinPath .chezmoi.sourceDir "dot_tool-versions.tmpl") -}}
+{{ if and (contains "graalvm" $toolVersions) (contains "scala" $toolVersions) -}}
+#!/usr/bin/env zsh
+set -u
+
+# ~/.tool-versions graalvm version: {{ output "asdf" "current" "graalvm" | trim }}
+# ~/.tool-versions scala version: {{ output "asdf" "current" "scala" | trim }}
+# ~/.default-coursier-packages hash: {{ include "dot_default-coursier-packages" | sha256sum }}
+<~/.default-coursier-packages xargs -r cs install
+{{ end -}}

@@ -1,0 +1,6 @@
+#!/usr/bin/env zsh
+set -u
+
+# ~/.tool-versions rust version: {{ output "asdf" "current" "rust" | trim }}
+# ~/.default-cargo-packages hash: {{ include "dot_default-cargo-packages" | sha256sum }}
+<~/.default-cargo-packages xargs -r cargo install

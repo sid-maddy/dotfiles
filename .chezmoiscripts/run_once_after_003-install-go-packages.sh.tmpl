@@ -1,0 +1,6 @@
+#!/usr/bin/env zsh
+set -u
+
+# ~/.tool-versions golang version: {{ output "asdf" "current" "golang" | trim }}
+# ~/.default-golang-pkgs hash: {{ include "dot_default-golang-pkgs" | sha256sum }}
+xargs -rxn1 <~/.default-golang-pkgs go install -v -ldflags '-s -w'

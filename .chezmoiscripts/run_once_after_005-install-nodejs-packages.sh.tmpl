@@ -1,0 +1,8 @@
+#!/usr/bin/env zsh
+set -u
+
+# ~/.tool-versions nodejs version: {{ output "asdf" "current" "nodejs" | trim }}
+# ~/.default-npm-packages hash: {{ include "dot_default-npm-packages" | sha256sum }}
+# ~/.default-pnpm-packages hash: {{ include "dot_default-pnpm-packages" | sha256sum }}
+<~/.default-npm-packages xargs -r npm install -g
+<~/.default-pnpm-packages xargs -r pnpm add -g

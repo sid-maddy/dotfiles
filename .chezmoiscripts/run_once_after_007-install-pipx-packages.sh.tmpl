@@ -1,0 +1,5 @@
+#!/usr/bin/env zsh
+set -u
+
+# ~/.default-pipx-packages hash: {{ include "dot_default-pipx-packages" | sha256sum }}
+<~/.default-pipx-packages xargs -rxn1 python -bbOOum pipx install -f

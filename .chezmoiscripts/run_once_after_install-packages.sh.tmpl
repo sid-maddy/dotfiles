@@ -1,7 +1,0 @@
-#!/usr/bin/env zsh
-set -euo pipefail
-# .Brewfile hash: {{ include "dot_Brewfile.tmpl" | sha256sum }}
-brew bundle -v --global --no-lock
-# .tool-versions hash: {{ include "dot_tool-versions.tmpl" | sha256sum }}
-awk '{ print $1 }' ~/.tool-versions | xargs -rx -n1 asdf plugin-add || true
-asdf install

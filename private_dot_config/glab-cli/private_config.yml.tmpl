@@ -24,8 +24,8 @@ hosts:
   gitlab.com:
     # What protocol to use to access the API endpoint. Supported values: http, https
     api_protocol: https
-
-    # Configure host for API endpoint, defaults to the host itself
-    api_host: gitlab.com
-
     git_protocol: ssh
+{{- $credentialsPath := joinPath .chezmoi.homeDir ".config/glab-cli/credentials.yml" }}
+{{- if stat $credentialsPath }}
+{{-   include $credentialsPath | trim | nindent 4 }}
+{{- end }}

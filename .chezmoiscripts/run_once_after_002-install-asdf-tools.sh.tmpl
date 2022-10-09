@@ -1,0 +1,11 @@
+#!/usr/bin/env zsh
+set -u
+
+# ~/.tool-versions hash: {{ include "dot_tool-versions.tmpl" | sha256sum }}
+awk '{ print $1 }' ~/.tool-versions | xargs -rxn1 asdf plugin-add
+{{ if .machine.macos -}}
+arch -x86_64 asdf install graalvm
+{{ end -}}
+asdf install
+
+# TODO: Prune versions not in ~/.tool-versions

@@ -1,0 +1,13 @@
+autopep8~=1.7.0
+commitizen~=2.35.0
+copier~=6.2.0
+flake8~=5.0.4
+iredis~=1.12.1
+mycli~=1.26.1
+pdm~=2.1.5
+pgcli~=3.5.0
+pip-tools~=6.9.0
+pipenv~=2022.10.4
+poetry~=1.2.1
+pyupgrade~=3.0.0
+safety~=2.3.1
