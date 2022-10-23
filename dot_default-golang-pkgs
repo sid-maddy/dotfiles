@@ -1,2 +1,5 @@
 golang.org/x/tools/gopls@latest
 github.com/spf13/cobra-cli@latest
+github.com/jsonnet-bundler/jsonnet-bundler/cmd/jb@latest
+github.com/grafana/jsonnet-language-server@latest
+github.com/grafana/tanka/cmd/tk@latest

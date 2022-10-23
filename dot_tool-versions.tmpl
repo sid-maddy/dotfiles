@@ -1,12 +1,13 @@
+deno 1.26.2
 golang 1.19.2
 kubectl 1.22.15
 luaJIT 2.1.0-beta3--3.4.0
-nodejs 18.10.0
-python 3.10.7
+nodejs 19.0.0
+python 3.10.8
 rust 1.64.0
 stylua 0.15.1
-{{ if and .machine.macos .machine.work -}}
+{{- if and .machine.macos .machine.work }}
 graalvm 22.2.0-java11
 maven 3.8.6
-scala 2.13.9
-{{ end -}}
+scala 2.13.10
+{{- end }}

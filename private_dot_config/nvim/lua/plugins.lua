@@ -115,12 +115,17 @@ return require("packer").startup({
 
         -- Debug Adapter Protocol (DAP)
         -- TODO: Configure nvim-dap
-        use("mfussenegger/nvim-dap")
+        -- use("mfussenegger/nvim-dap")
 
         use({
             "simrat39/rust-tools.nvim",
             after = "coq_nvim",
             requires = "neovim/nvim-lspconfig",
+            config = function()
+                local rust_tools = require("rust-tools")
+                rust_tools.setup({})
+                rust_tools.inlay_hints.enable()
+            end,
         })
 
         -- LSP
@@ -213,12 +218,12 @@ return require("packer").startup({
 
                 -- Use a loop to conveniently call 'setup' on multiple servers and
                 -- map buffer local keybindings when the language server attaches
-                -- TODO: Add more servers and their config
                 local servers = {
                     bashls = {},
                     dockerls = {},
                     efm = efm,
                     gopls = {},
+                    jsonnet_ls = {},
                     pyright = {},
                     sumneko_lua = {
                         settings = {
