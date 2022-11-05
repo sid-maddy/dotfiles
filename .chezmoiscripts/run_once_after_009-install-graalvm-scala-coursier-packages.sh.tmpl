@@ -1,4 +1,4 @@
-{{- $toolVersions := includeTemplate (joinPath .chezmoi.sourceDir "dot_tool-versions.tmpl") -}}
+{{- $toolVersions := includeTemplate (joinPath .chezmoi.sourceDir "dot_tool-versions.tmpl") . -}}
 {{ if and (contains "graalvm" $toolVersions) (contains "scala" $toolVersions) -}}
 #!/usr/bin/env zsh
 set -u

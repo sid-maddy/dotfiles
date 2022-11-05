@@ -3,4 +3,4 @@ set -u
 
 # ~/.tool-versions python version: {{ output "asdf" "current" "python" | trim }}
 # ~/.default-python-packages hash: {{ include "dot_default-python-packages" | sha256sum }}
-python -bbOOum pip install -r ~/.default-python-packages
+python -bbOOum pip install --use-pep517 --check-build-dependencies -Ur ~/.default-python-packages

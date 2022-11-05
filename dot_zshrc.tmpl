@@ -79,12 +79,15 @@ plugins=(
   npm
   pdm
   poetry
-  {{ if .machine.macos -}}
+  {{- if .machine.work }}
+  pritunl-client
+  {{- end }}
+  {{- if .machine.macos }}
   macos
-  {{ else -}}
+  {{- else }}
   systemd
   ubuntu
-  {{ end -}}
+  {{- end }}
   zoxide
   zsh-autosuggestions
   zsh-syntax-highlighting

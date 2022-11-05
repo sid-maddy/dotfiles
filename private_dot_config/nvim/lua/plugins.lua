@@ -220,6 +220,7 @@ return require("packer").startup({
                 -- map buffer local keybindings when the language server attaches
                 local servers = {
                     bashls = {},
+                    denols = {},
                     dockerls = {},
                     efm = efm,
                     gopls = {},
@@ -461,8 +462,13 @@ return require("packer").startup({
         -- Earthly support
         use("earthly/earthly.vim")
 
-        -- Jinja support
-        use("HiPhish/jinja.vim")
+        -- Go support
+        use({
+            "fatih/vim-go",
+            config = function()
+                vim.g.go_metalinter_enabled = { "all" }
+            end,
+        })
 
         -- Hy support
         use({
@@ -472,6 +478,9 @@ return require("packer").startup({
                 vim.g.hy_conceal_fancy = 1
             end,
         })
+
+        -- Jinja support
+        use("HiPhish/jinja.vim")
 
         -- Org mode
         use({
