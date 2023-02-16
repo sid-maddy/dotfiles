@@ -1,7 +1,9 @@
 @slidev/cli
+@typescript-eslint/parser
 bash-language-server
 corepack
 dockerfile-language-server-nodejs
+eslint
 fx
 jsvu
 lodash
@@ -12,4 +14,5 @@ prettier
 pyright
 typescript
 typescript-language-server
+vue-eslint-parser
 yaml-language-server

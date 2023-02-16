@@ -220,13 +220,16 @@ return require("packer").startup({
                 -- map buffer local keybindings when the language server attaches
                 local servers = {
                     bashls = {},
-                    denols = {},
+                    denols = {
+                        root_dir = lspconfig.util.root_pattern("deno.json", "deno.jsonc"),
+                    },
                     dockerls = {},
                     efm = efm,
                     gopls = {},
                     jsonnet_ls = {},
                     pyright = {},
-                    sumneko_lua = {
+                    ruff_lsp = {},
+                    lua_ls = {
                         settings = {
                             Lua = {
                                 runtime = { version = "LuaJIT" },
@@ -240,7 +243,9 @@ return require("packer").startup({
                     },
                     taplo = {},
                     terraformls = {},
-                    tsserver = {},
+                    tsserver = {
+                        root_dir = lspconfig.util.root_pattern("package.json"),
+                    },
                     yamlls = {},
                 }
                 local config = { on_attach = on_attach }
@@ -249,7 +254,16 @@ return require("packer").startup({
                     lspconfig[lsp].setup(coq.lsp_ensure_capabilities(server_config))
                 end
 
-                rust_tools.setup({ server = coq.lsp_ensure_capabilities(config) })
+                rust_tools.setup({
+                    server = coq.lsp_ensure_capabilities(vim.tbl_deep_extend("force", config, {
+                        settings = {
+                            ["rust-analyzer"] = {
+                                checkOnSave = { command = "clippy" },
+                                inlayHints = { locationLinks = false },
+                            },
+                        },
+                    })),
+                })
             end,
         })
 

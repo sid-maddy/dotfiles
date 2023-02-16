@@ -1,1 +1,5 @@
+cargo-edit
+cargo-generate
+cargo-outdated
+
 taplo-cli --features lsp

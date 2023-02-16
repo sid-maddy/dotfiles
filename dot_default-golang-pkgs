@@ -1,6 +1,13 @@
 golang.org/x/tools/gopls@latest
 github.com/spf13/cobra-cli@latest
+github.com/grafana/dashboard-linter@latest
 github.com/goreleaser/goreleaser@latest
 github.com/jsonnet-bundler/jsonnet-bundler/cmd/jb@latest
+github.com/google/go-jsonnet/cmd/jsonnet@latest
+github.com/google/go-jsonnet/cmd/jsonnetfmt@latest
+github.com/google/go-jsonnet/cmd/jsonnet-deps@latest
+github.com/google/go-jsonnet/cmd/jsonnet-lint@latest
 github.com/grafana/jsonnet-language-server@latest
+github.com/monitoring-mixins/mixtool/cmd/mixtool@master
 github.com/grafana/tanka/cmd/tk@latest
+go.k6.io/xk6/cmd/xk6@latest

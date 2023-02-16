@@ -30,10 +30,14 @@ export PNPM_HOME="${HOME}/.local/share/pnpm"
 
 export path=(
   # "${HOME}/.config/rofi/bin"
+  "${HOME}/.jsvu"
+  "${HOME}/.krew/bin"
+  "${PNPM_HOME}"
+  "${HOME}/.local/bin"
   {{ if .machine.macos -}}
-  {{     if .machine.work -}}
+  {{  if .machine.work -}}
   "${HOME}/Library/Application Support/Coursier/bin"
-  {{     end -}}
+  {{  end -}}
   "/opt/homebrew/bin"
   "/opt/homebrew/opt/curl/bin"
   "/opt/homebrew/sbin"
@@ -41,13 +45,9 @@ export path=(
   "/home/linuxbrew/.linuxbrew/bin"
   "/home/linuxbrew/.linuxbrew/sbin"
   {{ end -}}
-  "${HOME}/.jsvu"
-  "${HOME}/.krew/bin"
-  "${PNPM_HOME}"
-  "${HOME}/.local/bin"
   $path
-)
-export fpath=("$(brew --prefix)/share/zsh/site-functions" $fpath)
+);
+export fpath=("${HOME}/.zfunc" "$(brew --prefix)/share/zsh/site-functions" $fpath);
 
 {{ if .machine.macos -}}
 # Compilation flags

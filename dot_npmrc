@@ -9,3 +9,6 @@ lockfile-version = 3
 sign-git-commit = true
 sign-git-tag = true
 update-notifier = false
+
+# PNPM
+shamefully-hoist = true

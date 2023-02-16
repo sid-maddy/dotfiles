@@ -10,6 +10,8 @@ alias gf='git fetch -f'
 alias gl='git pull -f'
 alias gmm='git merge $(git_main_branch)'
 
+alias gt='gitui'
+
 # Kubectl
 alias kdelhpa='kubectl delete hpa'
 alias kdhpa='kubectl describe hpa'
@@ -25,4 +27,9 @@ alias vimdiff='nvim -d'
 
 # Poetry
 alias prun='poetry run'
-alias ped="poetry run ${EDITOR}"
+alias pred="poetry run ${EDITOR}"
+alias prt='poetry run task'
+
+{{ if .machine.macos -}}
+alias x='TERM=xterm-256color'
+{{ end -}}
