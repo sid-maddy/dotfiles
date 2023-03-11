@@ -284,6 +284,7 @@ return require("packer").startup({
                     -- bloopVersion = "1.4.13-76-34e8105f",
                     excludedPackages = { "akka.actor.typed.javadsl", "com.github.swagger.akka.javadsl" },
                     showImplicitArguments = true,
+                    useGlobalExecutable = true,
                 }
 
                 METALS_CONFIG.capabilities = coq.lsp_ensure_capabilities(vim.lsp.protocol.make_client_capabilities())

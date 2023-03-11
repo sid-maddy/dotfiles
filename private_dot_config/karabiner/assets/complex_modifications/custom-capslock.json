@@ -1,0 +1,19 @@
+{
+  "title": "Change Caps Lock to Ctrl (if held) and ESC (otherwise)",
+  "rules": [
+    {
+      "description": "Post ESC if Caps Lock is tapped, Ctrl if held.",
+      "manipulators": [
+        {
+          "type": "basic",
+          "from": {
+            "key_code": "left_control",
+            "modifiers": { "optional": ["any"] }
+          },
+          "to": [{ "key_code": "left_control", "lazy": true }],
+          "to_if_alone": [{ "key_code": "escape" }]
+        }
+      ]
+    }
+  ]
+}

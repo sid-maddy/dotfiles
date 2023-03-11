@@ -30,6 +30,9 @@
 	prune = true
 	pruneTags = true
 
+[gpg]
+	program = {{ output "which" "gpg" | trim }}
+
 [init]
 	defaultBranch = main
 
@@ -46,12 +49,14 @@
 [pull]
 	rebase = false
 	ff = on
-{{ if .machine.personal }}
+
+{{ if .machine.personal -}}
 [sendemail]
 	smtpServer = smtp-mail.outlook.com
 	smtpUser = {{ .email }}
 	smtpEncryption = starttls
 	smtpServerPort = 587
-{{ end }}
+{{ end -}}
+
 [tag]
 	forceSignAnnotated = true
