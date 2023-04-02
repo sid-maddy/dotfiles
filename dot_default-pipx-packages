@@ -1,6 +1,7 @@
 ansible
 autopep8
 commitizen
+cookiecutter
 copier
 flake8
 iredis

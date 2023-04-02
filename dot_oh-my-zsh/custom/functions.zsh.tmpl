@@ -20,7 +20,7 @@ vpn() {
             # echo >&2 "Profile Name: ${profile_name}";
 
             local profiles;
-            profiles="$(pritunl-client list -j | jq -c '[.[] | {id: .Id} + (.Name | capture("\\((?<name>.*)\\)"))]')";
+            profiles="$(pritunl-client list -j | jq -c '[.[] | {id: .id} + (.name | capture("\\((?<name>.*)\\)"))]')";
             local profile_id;
             profile_id="$(echo "${profiles}" | jq -cr "[.[] | select(.name == \"${profile_name}\")] | first | .id")";
             # echo >&2 "Profile ID: ${profile_id}";

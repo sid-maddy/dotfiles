@@ -1,5 +1,6 @@
+cargo-binstall
 cargo-edit
 cargo-generate
 cargo-outdated
 
-taplo-cli --features lsp
+taplo-cli
