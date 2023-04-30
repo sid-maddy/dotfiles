@@ -411,6 +411,14 @@ return require("packer").startup({
         })
         --]]
 
+        -- Pretty foldtext
+        use({
+            "anuvyklack/pretty-fold.nvim",
+            config = function()
+                require("pretty-fold").setup()
+            end,
+        })
+
         -- Indent guides
         -- TODO: Configure indent-blankline
         use({
@@ -456,7 +464,7 @@ return require("packer").startup({
         use("p00f/nvim-ts-rainbow")
 
         -- Discord Rich Presence
-        -- use("andweeb/presence.nvim")
+        use("andweeb/presence.nvim")
 
         -- Git
         use("tpope/vim-fugitive")

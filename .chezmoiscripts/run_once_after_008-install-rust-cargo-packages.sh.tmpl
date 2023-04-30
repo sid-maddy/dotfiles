@@ -1,7 +1,7 @@
 #!/usr/bin/env zsh
-set -u
+set -u;
 
 # ~/.tool-versions rust version: {{ output "asdf" "current" "rust" | trim }}
 # ~/.default-cargo-packages hash: {{ include "dot_default-cargo-packages" | sha256sum }}
-test "$(command -v cargo-binstall)" || cargo install --locked cargo-binstall
-<~/.default-cargo-packages xargs -rL1 cargo binstall --locked
+cargo install --locked cargo-binstall;
+xargs -r cargo binstall -y --locked <~/.default-cargo-packages;

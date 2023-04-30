@@ -5,12 +5,14 @@ cookiecutter
 copier
 flake8
 iredis
+memray
 mycli
 pdm
 pgcli
 pip-tools
 pipenv
 poetry
+pre-commit
 promformat
 pyupgrade
 ruff-lsp

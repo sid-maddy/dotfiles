@@ -6,5 +6,5 @@ set -u;
 # ~/.tool-versions java version: {{ output "asdf" "current" "java" | trim }}
 # ~/.tool-versions scala version: {{ output "asdf" "current" "scala" | trim }}
 # ~/.default-coursier-packages hash: {{ include "dot_default-coursier-packages" | sha256sum }}
-<~/.default-coursier-packages xargs -r cs install;
+xargs -r cs install <~/.default-coursier-packages;
 {{ end -}}

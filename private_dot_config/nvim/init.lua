@@ -13,7 +13,6 @@ option.confirm = true
 option.cursorline = true
 option.expandtab = true
 option.fillchars = option.fillchars + { eob = " " }
--- option.foldmethod = "indent"
 option.ignorecase = true
 option.laststatus = 3
 option.mouse = "a"

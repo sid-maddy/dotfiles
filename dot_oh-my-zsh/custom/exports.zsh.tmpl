@@ -19,6 +19,9 @@ export HOMEBREW_UPDATE_TO_TAG=1
 # Google Cloud
 export USE_GKE_GCLOUD_AUTH_PLUGIN=True
 
+# k9s
+export K9SCONFIG="${HOME}/.config/k9s"
+
 {{ if .machine.work -}}
 # Private Go modules
 export GOPRIVATE='gitlab.com/fynd*'
