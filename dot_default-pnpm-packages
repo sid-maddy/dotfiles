@@ -4,12 +4,10 @@ bash-language-server
 corepack
 dockerfile-language-server-nodejs
 eslint
-fx
 jsvu
-lodash
 neovim
 npm-check
-pnpm@latest
+pnpm
 prettier
 pyright
 typescript

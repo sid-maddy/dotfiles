@@ -4,4 +4,5 @@ set -u;
 # ~/.tool-versions rust version: {{ output "asdf" "current" "rust" | trim }}
 # ~/.default-cargo-packages hash: {{ include "dot_default-cargo-packages" | sha256sum }}
 cargo install --locked cargo-binstall;
-xargs -r cargo binstall -y --locked <~/.default-cargo-packages;
+xargs -r cargo binstall -y --locked <~/.default-cargo-binary-packages;
+xargs -r cargo install --locked <~/.default-cargo-packages;

@@ -348,6 +348,9 @@ return require("packer").startup({
                 vimp.nnoremap(opts, "<Leader>fb", function()
                     telescope_builtin.buffers()
                 end)
+                vimp.nnoremap(opts, "<Leader>ft", function()
+                    telescope_builtin.treesitter()
+                end)
                 vimp.nnoremap(opts, "<Leader>fm", function()
                     return "Jump to bookmarks"
                 end)
