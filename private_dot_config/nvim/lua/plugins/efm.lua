@@ -66,7 +66,6 @@ local languages = {
             formatStdin = true,
             rootMarkers = { "stylua.toml", ".stylua.toml" },
         },
-        --[[
         {
             prefix = "luacheck",
             lintCommand = "luacheck --codes --no-color --quiet -",
@@ -74,30 +73,12 @@ local languages = {
             lintFormats = { "%.%#:%l:%c: (%t%n) %m" },
             rootMarkers = { ".luacheckrc" },
         },
-        --]]
     },
     markdown = { prettier },
     python = {
         {
-            formatCommand = "isort --filename ${INPUT} --quiet --stdout -",
-            formatStdin = true,
-        },
-        {
             formatCommand = "black --no-color --quiet --stdin-filename ${INPUT} -",
             formatStdin = true,
-        },
-        --[[
-		{
-			formatCommand = "autopep8 -",
-			formatStdin = true,
-		},
-        ---]]
-        {
-            prefix = "flake8",
-            lintCommand = "flake8 --stdin-display-name ${INPUT} -",
-            lintStdin = true,
-            lintFormats = { "%f:%l:%c: %m" },
-            rootMarkers = { "setup.cfg", "tox.ini", ".flake8" },
         },
     },
     scss = { prettier },

@@ -1,12 +1,5 @@
 #!/usr/bin/env zsh
-set -u;
+set -u
 
 # ~/.Brewfile hash: {{ include "dot_Brewfile.tmpl" | sha256sum }}
-brew bundle -v --global --no-lock;
-
-{{ if .machine.macos -}}
-zathura_prefix="$(brew --prefix zathura)";
-mkdir -p "${zathura_prefix}/lib/zathura";
-ln -sf "$(brew --prefix zathura-pdf-mupdf)/libpdf-mupdf.dylib" "${zathura_prefix}/lib/zathura/libpdf-mupdf.dylib";
-unset zathura_prefix;
-{{ end -}}
+brew bundle -v --global --no-lock

@@ -81,9 +81,6 @@ plugins=(
   npm
   pdm
   poetry
-  {{- if .machine.work }}
-  pritunl-client
-  {{- end }}
   {{- if .machine.macos }}
   macos
   {{- else }}

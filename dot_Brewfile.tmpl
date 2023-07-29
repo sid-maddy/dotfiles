@@ -12,8 +12,11 @@ brew "awscli"
 brew "bat"
 brew "bottom"
 brew "cdktf"
-brew "chafa" # for image rendering with fx
+brew "charm"
+brew "charmcraft"
+brew "charm-tools"
 brew "chezmoi"
+brew "dive"
 brew "duf"
 brew "dust"
 brew "earthly"
@@ -31,6 +34,7 @@ brew "hadolint"
 brew "helm"
 brew "ipcalc"
 brew "jq"
+brew "juju"
 brew "just"
 brew "k6"
 brew "derailed/k9s/k9s"
@@ -46,7 +50,6 @@ brew "prettyping"
 brew "procs"
 brew "qpdf"
 brew "ripgrep"
-brew "rust-analyzer"
 brew "shellcheck"
 brew "shfmt"
 brew "sk"
@@ -62,12 +65,10 @@ brew "xh"
 brew "yq"
 brew "zoxide"
 
-{{- if .machine.macos }}
+{{ if .machine.macos -}}
 # macOS-specific
 tap "homebrew/cask"
-tap "homebrew/cask-versions"
 tap "homebrew/services"
-tap "zegervdv/zathura"
 
 brew "bash"
 brew "colima"
@@ -90,27 +91,28 @@ brew "pinentry-mac"
 brew "postgresql@14"
 brew "rename"
 brew "tmux"
+brew "universal-ctags"
 brew "watch"
-brew "zathura", args: ["HEAD"]
-brew "zathura-pdf-poppler"
 brew "zsh"
 
 cask "alacritty"
 cask "basictex"
 cask "bitwarden"
-cask "homebrew/cask-versions/discord-ptb"
+cask "discord"
+cask "eloston-chromium"
 cask "emacs"
 cask "firefox"
+cask "flameshot"
 cask "google-cloud-sdk"
 cask "iterm2"
 cask "jetbrains-toolbox"
 cask "karabiner-elements"
 cask "languagetool"
 cask "notion"
+cask "powershell"
 cask "vscodium"
 
-# mas "Tailscale", id: 1475387142
-{{-    if .machine.work }}
+{{    if .machine.work -}}
 tap "coursier/formulas"
 
 brew "coursier"
@@ -120,6 +122,7 @@ brew "openjdk" # Required by coursier
 cask "amazon-chime"
 cask "citrix-workspace"
 cask "figma"
+cask "google-drive"
 cask "microsoft-auto-update"
 cask "microsoft-outlook"
 cask "microsoft-teams"
@@ -128,5 +131,5 @@ cask "postman"
 cask "quip"
 cask "redisinsight"
 cask "slack"
-{{-    end }}
-{{- end }}
+{{    end -}}
+{{ end -}}

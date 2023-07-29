@@ -1,6 +1,6 @@
 #!/usr/bin/env zsh
-set -u;
+set -u
 
 # ~/.tool-versions python version: {{ output "asdf" "current" "python" | trim }}
 # ~/.default-python-packages hash: {{ include "dot_default-python-packages" | sha256sum }}
-python -bbOOum pip install --check-build-dependencies --compile --upgrade-strategy eager --use-pep517 -Ur ~/.default-python-packages;
+python -bbOOum pip install --check-build-dependencies --compile --upgrade-strategy eager --use-pep517 -Ur ~/.default-python-packages

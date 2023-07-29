@@ -1,12 +1,12 @@
 #!/usr/bin/env zsh
-set -u;
+set -u
 
 # ~/.tool-versions hash: {{ include "dot_tool-versions.tmpl" | sha256sum }}
-awk '{ print $1 }' ~/.tool-versions | xargs -rxn1 asdf plugin-add;
+awk '{ print $1 }' ~/.tool-versions | xargs -rxn1 asdf plugin-add
 
 # Install Python with optimizations
-PYTHON_CONFIGURE_OPTS='--enable-optimizations --with-lto' PYTHON_CFLAGS='-march=native -mtune=native' asdf install python;
+PYTHON_CONFIGURE_OPTS='--enable-optimizations --with-lto' PYTHON_CFLAGS='-march=native -mtune=native' asdf install python
 
-asdf install;
+asdf install
 
 # TODO: Prune versions not in ~/.tool-versions

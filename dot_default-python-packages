@@ -7,4 +7,3 @@ ipython
 ptpython[ptipython,all]
 isort
 rope
-neovim

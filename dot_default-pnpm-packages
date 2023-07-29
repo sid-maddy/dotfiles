@@ -4,12 +4,13 @@ bash-language-server
 corepack
 dockerfile-language-server-nodejs
 eslint
+har-to-k6
 jsvu
-neovim
 npm-check
 pnpm
 prettier
 pyright
+renovate
 typescript
 typescript-language-server
 vue-eslint-parser

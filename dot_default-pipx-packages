@@ -16,5 +16,9 @@ pre-commit
 promformat
 pyupgrade
 ruff-lsp
+safepull
 safety
 scalene
+yamlfix
+yamllint
+--include-deps yls-yara

@@ -13,11 +13,13 @@ alias gmm='git merge $(git_main_branch)'
 alias gt='gitui'
 
 # Kubectl
+alias kcf='kubectl create --save-config -f'
+
 alias kdelhpa='kubectl delete hpa'
 alias kdhpa='kubectl describe hpa'
 alias kehpa='kubectl edit hpa'
 alias kghpa='kubectl get hpa'
-alias kghpaa='kubectl get hpa --all-namespaces'
+alias kghpaa='kghpa --all-namespaces'
 alias kghpaw='kghpa --watch'
 
 # NeoVim
@@ -28,6 +30,7 @@ alias vimdiff='nvim -d'
 # Poetry
 alias prun='poetry run'
 alias pred="poetry run ${EDITOR}"
+alias pot='poetry task'
 alias prt='poetry run task'
 
 {{ if .machine.macos -}}
