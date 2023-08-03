@@ -66,37 +66,35 @@ require("lazy").setup({
     {
         "nvim-lualine/lualine.nvim",
         dependencies = { "Shatur/neovim-ayu", "nvim-tree/nvim-web-devicons" },
-        opts = function()
-            return {
-                options = {
-                    icons_enabled = true,
-                    theme = "ayu",
-                    component_separators = "|",
-                    section_separators = { left = "", right = "" },
+        opts = {
+            options = {
+                icons_enabled = true,
+                theme = "ayu",
+                component_separators = "|",
+                section_separators = { left = "", right = "" },
+            },
+            sections = {
+                lualine_a = {
+                    { "mode", separator = { left = "" }, right_padding = 2 },
                 },
-                sections = {
-                    lualine_a = {
-                        { "mode", separator = { left = "" }, right_padding = 2 },
-                    },
-                    lualine_b = { "filename", "branch" },
-                    lualine_c = { "fileformat" },
-                    lualine_x = {},
-                    lualine_y = { "filetype", "progress" },
-                    lualine_z = {
-                        { "location", separator = { right = "" }, left_padding = 2 },
-                    },
+                lualine_b = { "filename", "branch" },
+                lualine_c = { "fileformat" },
+                lualine_x = {},
+                lualine_y = { "filetype", "progress" },
+                lualine_z = {
+                    { "location", separator = { right = "" }, left_padding = 2 },
                 },
-                inactive_sections = {
-                    lualine_a = { "filename" },
-                    lualine_b = {},
-                    lualine_c = {},
-                    lualine_x = {},
-                    lualine_y = {},
-                    lualine_z = { "location" },
-                },
-                extensions = { "fugitive", "lazy", "trouble" },
-            }
-        end,
+            },
+            inactive_sections = {
+                lualine_a = { "filename" },
+                lualine_b = {},
+                lualine_c = {},
+                lualine_x = {},
+                lualine_y = {},
+                lualine_z = { "location" },
+            },
+            extensions = { "fugitive", "lazy", "trouble" },
+        },
     },
 
     -- Start page
@@ -490,7 +488,7 @@ require("lazy").setup({
     -- Play nice with other editors
     {
         "editorconfig/editorconfig-vim",
-        config = function()
+        init = function()
             vim.g.EditorConfig_exclude_patterns = { "fugitive://.*", "scp://.*" }
         end,
     },
@@ -498,25 +496,41 @@ require("lazy").setup({
     -- Commenting
     {
         "numToStr/Comment.nvim",
-        config = true,
+        opts = {},
     },
     {
         "danymat/neogen",
         dependencies = "nvim-treesitter/nvim-treesitter",
-        config = true,
+        opts = {},
     },
 
     -- Git
     "tpope/vim-fugitive",
     {
         "lewis6991/gitsigns.nvim",
-        config = true,
+        opts = {},
+    },
+
+    {
+        "https://codeberg.org/esensar/nvim-dev-container",
+        dependencies = { "nvim-treesitter/nvim-treesitter" },
+        opts = {
+            attach_mounts = {
+                always = true,
+                neovim_config = {
+                    enabled = true,
+                    options = { "readonly" },
+                },
+                neovim_data = { enabled = true },
+                neovim_state = { enabled = true },
+            },
+        },
     },
 
     -- Focus… on the active split
     {
         "nvim-focus/focus.nvim",
-        config = true,
+        opts = {},
     },
 
     -- Focus… on the active code
@@ -545,7 +559,7 @@ require("lazy").setup({
     {
         "fatih/vim-go",
         ft = { "go", "gomod", "gosum", "gowork" },
-        config = function()
+        init = function()
             vim.g.go_metalinter_enabled = { "all" }
         end,
     },
@@ -560,7 +574,7 @@ require("lazy").setup({
     {
         "hylang/vim-hy",
         ft = "hy",
-        config = function()
+        init = function()
             vim.g.hy_enable_conceal = 1
             vim.g.hy_conceal_fancy = 1
         end,
@@ -661,4 +675,7 @@ require("lazy").setup({
             ]])
         end,
     },
-}, {})
+}, {
+    dev = { path = "~/Documents/github/nvim" },
+    install = { colorscheme = { "ayu" } },
+})

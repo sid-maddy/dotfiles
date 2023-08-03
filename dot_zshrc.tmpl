@@ -17,7 +17,7 @@ export EDITOR="nvim";
 export VISUAL="nvim";
 
 {{ if and .machine.macos .machine.work -}}
-export JAVA_HOME="$(/opt/homebrew/bin/asdf where java)";
+. ~/.asdf/plugins/java/set-java-home.zsh
 {{- end }}
 
 # pnpm
