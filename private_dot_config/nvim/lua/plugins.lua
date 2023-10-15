@@ -126,14 +126,18 @@ require("lazy").setup({
         build = ":TSUpdate",
         opts = {
             ensure_installed = {
+                "astro",
                 "bash",
                 "c",
                 "comment",
                 "cpp",
                 "css",
+                "csv",
                 "cue",
                 "dart",
+                "diff",
                 "dockerfile",
+                "ebnf",
                 "fennel",
                 "git_config",
                 "git_rebase",
@@ -159,6 +163,8 @@ require("lazy").setup({
                 "jsonc",
                 "jsonnet",
                 "kdl",
+                "kotlin",
+                "lalrpop",
                 "latex",
                 "lua",
                 "luadoc",
@@ -168,24 +174,34 @@ require("lazy").setup({
                 "mermaid",
                 "nix",
                 "org",
+                "po",
                 "prisma",
+                "promql",
                 "proto",
                 "pug",
+                "pymanifest",
                 "python",
                 "query",
                 "racket",
                 "regex",
+                "requirements",
+                "ron",
                 "rst",
                 "ruby",
                 "rust",
                 "scala",
                 "scss",
                 "sql",
+                "ssh_config",
+                "starlark",
                 "svelte",
                 "teal",
                 "terraform",
+                "textproto",
+                "thrift",
                 "todotxt",
                 "toml",
+                "tsv",
                 "tsx",
                 "typescript",
                 "vim",
@@ -193,7 +209,7 @@ require("lazy").setup({
                 "vue",
                 "yaml",
             },
-            auto_install = false,
+            auto_install = true,
             highlight = { enable = true },
             incremental_selection = { enable = true },
             indent = { enable = true },
@@ -376,6 +392,7 @@ require("lazy").setup({
             -- Use a loop to conveniently call 'setup' on multiple servers and
             -- map buffer local keybindings when the language server attaches
             local servers = {
+                astro = {},
                 bashls = {},
                 denols = {
                     root_dir = lspconfig.util.root_pattern("deno.json", "deno.jsonc"),
@@ -438,8 +455,12 @@ require("lazy").setup({
                 defaults = { theme = "ivy" },
 
                 -- Extensions
-                -- Frecency
-                db_safe_mode = false,
+                extensions = {
+                    -- Frecency
+                    frecency = {
+                        db_safe_mode = false,
+                    },
+                },
             })
 
             local opts = { "override", "silent" }
@@ -465,7 +486,7 @@ require("lazy").setup({
     },
     {
         "nvim-telescope/telescope-frecency.nvim",
-        dependencies = { "nvim-telescope/telescope.nvim", "kkharji/sqlite.lua" },
+        dependencies = { "nvim-telescope/telescope.nvim" },
         config = function()
             require("telescope").load_extension("frecency")
         end,

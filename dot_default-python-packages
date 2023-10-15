@@ -2,7 +2,7 @@ pip
 setuptools
 wheel
 pipx
-black[colorama,uvloop]
+black[colorama]
 ipython
 ptpython[ptipython,all]
 isort

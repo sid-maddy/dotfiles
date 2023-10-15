@@ -16,9 +16,8 @@ pre-commit
 promformat
 pyupgrade
 ruff-lsp
-safepull
 safety
-scalene
+virtualenv
 watchgha
 yamlfix
 yamllint

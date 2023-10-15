@@ -1,30 +1,18 @@
 [user]
 	name = {{ .name }}
 	email = {{ .email }}
-	signingkey = {{ .git.user.signingkey }}
+	signingKey = {{ .git.user.signingKey }}
 	useConfigOnly = true
 
 [color]
 	ui = true
 
 [commit]
-	gpgsign = true
-
-[core]
-	pager = delta
+	gpgSign = true
 
 [diff]
-	colorMoved = default
-	tool = nvimdiff
-
-[delta]
-	line-numbers = true
-	line-numbers-left-format = {nm:>4}⋮
-	line-numbers-right-format = {np:>4}│
-	minus-style = "syntax #340001"
-	navigate = true
-	plus-style = "syntax #012800"
-	syntax-theme = base16
+	colorMoved = true
+	external = difft
 
 [fetch]
 	prune = true
@@ -36,11 +24,7 @@
 [init]
 	defaultBranch = main
 
-[interactive]
-	diffFilter = delta --color-only
-
 [merge]
-	conflictstyle = diff3
 	tool = nvimdiff
 
 [mergetool]
@@ -60,3 +44,4 @@
 
 [tag]
 	forceSignAnnotated = true
+	gpgSign = true

@@ -1,3 +1,9 @@
+cargo-edit
+cargo-generate
+cargo-outdated
+cargo-valgrind
+
+dprint
+
 joshuto --git https://github.com/kamiyaa/joshuto.git
-macchina --git https://github.com/Macchina-CLI/macchina.git
 taplo-cli --features lsp

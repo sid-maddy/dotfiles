@@ -1,10 +1,8 @@
 #!/usr/bin/env zsh
-set -u
+set -e
+# set -x
 
-# ~/.tool-versions rust version: {{ output "asdf" "current" "rust" | trim }}
-# ~/.default-cargo-binary-packages hash: {{ include "dot_default-cargo-binary-packages" | sha256sum }}
+# global rust version hash: {{ output "rtx" "ls" "-gp" "rust" | sha256sum }}
 # ~/.default-cargo-packages hash: {{ include "dot_default-cargo-packages" | sha256sum }}
 rustup component add rust-analyzer
-cargo install --locked cargo-binstall
-xargs -r cargo binstall -y --locked <~/.default-cargo-binary-packages
-xargs -rL1 cargo install --locked <~/.default-cargo-packages
+xargs -rL1 cargo install <~/.default-cargo-packages

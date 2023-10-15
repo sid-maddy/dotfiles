@@ -6,20 +6,15 @@
 
 [".oh-my-zsh"]
   {{ template "archive" }}
-  url = "https://github.com/ohmyzsh/ohmyzsh/archive/master.tar.gz"
+  url = "https://codeload.github.com/ohmyzsh/ohmyzsh/tar.gz/refs/heads/master"
   exact = false
 
 [".oh-my-zsh/custom/plugins/zsh-autosuggestions"]
   {{ template "archive" }}
-  url = "https://github.com/zsh-users/zsh-autosuggestions/archive/master.tar.gz"
+  url = "https://codeload.github.com/zsh-users/zsh-autosuggestions/tar.gz/refs/heads/master"
   exact = true
 
 [".oh-my-zsh/custom/plugins/zsh-syntax-highlighting"]
   {{ template "archive" }}
-  url = "https://github.com/zsh-users/zsh-syntax-highlighting/archive/master.tar.gz"
-  exact = true
-
-[".oh-my-zsh/custom/themes/powerlevel10k"]
-  {{ template "archive" }}
-  url = "https://github.com/romkatv/powerlevel10k/archive/master.tar.gz"
+  url = "https://codeload.github.com/zsh-users/zsh-syntax-highlighting/tar.gz/refs/heads/master"
   exact = true

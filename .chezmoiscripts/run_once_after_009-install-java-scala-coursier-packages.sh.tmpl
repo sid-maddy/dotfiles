@@ -1,10 +1,10 @@
-{{- $toolVersions := includeTemplate (joinPath .chezmoi.sourceDir "dot_tool-versions.tmpl") . -}}
-{{ if and (contains "java" $toolVersions) (contains "scala" $toolVersions) -}}
+{{- $toolVersions := (fromToml (includeTemplate (joinPath .chezmoi.sourceDir "private_dot_config/rtx/config.toml.tmpl" ) .)).tools -}}
+{{ if and $toolVersions.java $toolVersions.scala -}}
 #!/usr/bin/env zsh
-set -u
+# set -x
 
-# ~/.tool-versions java version: {{ output "asdf" "current" "java" | trim }}
-# ~/.tool-versions scala version: {{ output "asdf" "current" "scala" | trim }}
+# global java version hash: {{ output "rtx" "ls" "-gp" "java" | sha256sum }}
+# global scala version hash: {{ output "rtx" "ls" "-gp" "scala" | sha256sum }}
 # ~/.default-coursier-packages hash: {{ include "dot_default-coursier-packages" | sha256sum }}
 xargs -r cs install <~/.default-coursier-packages
 {{ end -}}

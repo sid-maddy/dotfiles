@@ -1,8 +1,10 @@
 #!/usr/bin/env zsh
-set -u
+set -e
+# set -x
 
-# ~/.tool-versions python version: {{ output "asdf" "current" "python" | trim }}
+# global python version hash: {{ output "rtx" "ls" "-gp" "python" | sha256sum }}
 # ~/.default-pipx-packages hash: {{ include "dot_default-pipx-packages" | sha256sum }}
 # ~/.default-pipx-injections hash: {{ include "dot_default-pipx-injections" | sha256sum }}
-xargs -rL1 python -bbOOum pipx install -f --pip-args='--check-build-dependencies --compile --upgrade-strategy eager --use-pep517' <~/.default-pipx-packages
+xargs -rL1 python -bbOOum pipx install --pip-args='--check-build-dependencies --compile --upgrade-strategy eager --use-pep517' <~/.default-pipx-packages
 xargs -rL1 python -bbOOum pipx inject --pip-args='--check-build-dependencies --compile --upgrade-strategy eager --use-pep517' <~/.default-pipx-injections
+python -bbOOum pipx upgrade-all --include-injected

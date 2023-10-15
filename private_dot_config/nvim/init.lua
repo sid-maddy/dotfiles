@@ -35,6 +35,9 @@ option.writebackup = false
 -- Easy writing
 vimp.noremap("<Leader>w", ":w<CR>")
 
+-- Easy closing
+vimp.noremap("<Leader>x", ":bd<CR>")
+
 -- Easy clearing of search highlights
 vimp.noremap("<Leader><CR>", function()
     option.hlsearch = false

@@ -27,3 +27,14 @@ least() {
     command=$(printf ' %q' "$@")
     (trap '' SIGINT; eval "${command}") | eval "${PAGER} -b -1 +F"
 }
+
+{{ if .machine.work -}}
+clickhouse-client() {
+    docker run -it --rm \
+        --add-host clickhouse-server:host-gateway \
+        --entrypoint clickhouse-client \
+        --env TERM \
+        --volume "${HOME}/.clickhouse-client-history":/root/.clickhouse-client-history \
+        clickhouse/clickhouse-server:23.8 --host clickhouse-server "$@"
+}
+{{ end -}}

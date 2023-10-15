@@ -19,33 +19,13 @@ local prettier = {
     formatStdin = true,
 }
 
-local function shellcheck(shell)
-    local prefix = "shellcheck"
-    return {
-        prefix = prefix,
-        lintCommand = ("%s --check-sourced --color=never --enable=all --external-sources --shell=%s --format=gcc -"):format(
-            prefix,
-            shell
-        ),
-        lintStdin = true,
-        lintFormats = {
-            "-:%l:%c: %trror: %m",
-            "-:%l:%c: %tarning: %m",
-            "-:%l:%c: %tote: %m",
-        },
-    }
-end
-
 local shfmt = {
     formatCommand = "shfmt -s -i 4 -bn -ci -",
     formatStdin = true,
 }
 
 local languages = {
-    bash = {
-        shfmt,
-        shellcheck("bash"),
-    },
+    bash = { shfmt },
     css = { prettier },
     dockerfile = {
         {
@@ -82,10 +62,7 @@ local languages = {
         },
     },
     scss = { prettier },
-    sh = {
-        shfmt,
-        shellcheck("sh"),
-    },
+    sh = { shfmt },
     typescript = { prettier, eslint },
     typescriptreact = { prettier, eslint },
     yaml = { prettier },

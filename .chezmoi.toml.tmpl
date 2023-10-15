@@ -1,12 +1,12 @@
 {{- $email := "" -}}
-{{- $gitUserSigningKey := "" -}}
 {{- if hasKey . "email" -}}
 {{-   $email = .email -}}
 {{- else -}}
 {{-   $email = promptString "email" -}}
 {{- end -}}
-{{- if hasKey . "git.user.signingkey" -}}
-{{-   $gitUserSigningKey = .git.user.signingkey -}}
+{{- $gitUserSigningKey := "" -}}
+{{- if hasKey . "git.user.signingKey" -}}
+{{-   $gitUserSigningKey = .git.user.signingKey -}}
 {{- else -}}
 {{-   $gitUserSigningKey = promptString "[git] user.signingKey" -}}
 {{- end -}}
@@ -33,11 +33,10 @@ work = {{ $work }}
 macos = {{ $macOS }}
 
 [data.git]
-user.signingkey = {{ $gitUserSigningKey | quote }}
+user.signingKey = {{ $gitUserSigningKey | quote }}
 
 [diff]
 exclude = ["externals", "scripts"]
-pager = "delta"
 
 [merge]
 command = "nvim"

@@ -1,13 +1,12 @@
+@astrojs/language-server
 @slidev/cli
 @typescript-eslint/parser
 bash-language-server
-corepack
 dockerfile-language-server-nodejs
 eslint
 har-to-k6
 jsvu
 npm-check
-pnpm
 prettier
 pyright
 renovate

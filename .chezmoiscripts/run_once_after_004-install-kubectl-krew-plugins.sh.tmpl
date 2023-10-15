@@ -1,7 +1,7 @@
 #!/usr/bin/env zsh
-set -u
+# set -x
 
 # ~/.default-krew-plugins hash: {{ include "dot_default-krew-plugins" | sha256sum }}
 kubectl krew update
 kubectl krew install --no-update-index <~/.default-krew-plugins
-kubectl krew upgrade --no-update-index <~/.default-krew-plugins
+kubectl krew upgrade --no-update-index

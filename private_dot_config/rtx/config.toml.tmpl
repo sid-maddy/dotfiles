@@ -1,0 +1,24 @@
+[settings]
+asdf_compat = false
+experimental = true
+trusted_config_paths = ['~/.config/rtx']
+
+[plugins]
+racket = 'https://github.com/sid-maddy/asdf-python'
+
+[tools]
+bun = 'latest'
+deno = 'latest'
+golang = 'latest'
+kubectl = ['prefix:1.28', 'prefix:1.27', 'prefix:1.26', 'prefix:1.25']
+nodejs = ['latest', 'lts']
+python = ['prefix:3.12', 'prefix:3.11']
+# racket = 'latest'
+ruby = 'latest'
+rust = 'latest'
+stylua = 'latest'
+{{ if .machine.work -}}
+java = ['prefix:graalvm-community-21', 'prefix:graalvm-community-17']
+maven = 'latest'
+scala = 'latest'
+{{ end -}}
