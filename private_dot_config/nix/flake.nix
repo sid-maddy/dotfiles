@@ -51,6 +51,7 @@
 
         ## Encryption
         age
+        sops
 
         ## Process monitoring
         bottom

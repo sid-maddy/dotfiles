@@ -16,28 +16,28 @@
 
 {{- $macOS := eq .chezmoi.os "darwin" -}}
 
-encryption = "age"
-sourceDir = {{ joinPath .chezmoi.homeDir ".dotfiles" | quote }}
+encryption = 'age'
+sourceDir  = {{ joinPath .chezmoi.homeDir ".dotfiles" | quote }}
 
 [age]
-identity = "~/key.txt"
-recipient = "age14x4ptx2a6tmudhx4t89r9xzxjkqmcaf36q8rkvh9mqwetl0sc9sqrqqe6k"
+identity  = '~/key.txt'
+recipient = 'age14x4ptx2a6tmudhx4t89r9xzxjkqmcaf36q8rkvh9mqwetl0sc9sqrqqe6k'
 
 [data]
-name = "Siddhesh Mhadnak"
+name  = 'Siddhesh Mhadnak'
 email = {{ $email | quote }}
 
 [data.machine]
 personal = {{ $personal }}
-work = {{ $work }}
-macos = {{ $macOS }}
+work     = {{ $work }}
+macos    = {{ $macOS }}
 
 [data.git]
 user.signingKey = {{ $gitUserSigningKey | quote }}
 
 [diff]
-exclude = ["externals", "scripts"]
+exclude = ['externals', 'scripts']
 
 [merge]
-command = "nvim"
-args = ["-d"]
+command = 'nvim'
+args    = ['-d']

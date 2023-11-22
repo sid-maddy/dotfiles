@@ -31,10 +31,16 @@ least() {
 {{ if .machine.work -}}
 clickhouse-client() {
     docker run -it --rm \
-        --add-host clickhouse-server:host-gateway \
         --entrypoint clickhouse-client \
         --env TERM \
         --volume "${HOME}/.clickhouse-client-history":/root/.clickhouse-client-history \
-        clickhouse/clickhouse-server:23.8 --host clickhouse-server "$@"
+        clickhouse/clickhouse-server:23.8 --host host.docker.internal "$@"
+}
+
+ado_repos() {
+    az devops project list --query 'value[].id' \
+        | jq -r '.[]' \
+        | xargs -rxn1 az repos list --query '[].{name: name, sshUrl: sshUrl, webUrl: webUrl}' -p \
+        | jq -r '.[] | "\(.name): \(.webUrl) (remote: \(.sshUrl))"'
 }
 {{ end -}}

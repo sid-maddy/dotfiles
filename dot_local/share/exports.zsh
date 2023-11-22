@@ -22,9 +22,4 @@ export USE_GKE_GCLOUD_AUTH_PLUGIN=True
 # k9s
 export K9SCONFIG="${HOME}/.config/k9s"
 
-{{ if .machine.work -}}
-# Private Go modules
-export GOPRIVATE='gitlab.com/fynd*'
-{{ end -}}
-
-source "${ZSH_CUSTOM}/exports.local.zsh"
+[ -f "${HOME}/.local/share/exports.local.zsh" ] && source "${HOME}/.local/share/exports.local.zsh"

@@ -1,4 +1,6 @@
 # User configuration
+export HISTFILESIZE=9223372036854775807
+export HISTSIZE=9223372036854775807
 export KEYTIMEOUT=15
 
 {{ if .machine.macos -}}
@@ -26,9 +28,10 @@ export path=(
   "${HOME}/.local/bin"
 
   {{ if .machine.macos -}}
-  {{  if .machine.work -}}
+  {{   if .machine.work -}}
   "${HOME}/Library/Application Support/Coursier/bin"
-  {{  end -}}
+  {{   end -}}
+  "${HOME}/.orbstack/bin"
   "/opt/homebrew/bin"
   "/opt/homebrew/opt/curl/bin"
   "/opt/homebrew/sbin"
@@ -54,7 +57,7 @@ zstyle ':completion:*' rehash true
 # End User configuration
 
 # Path to your oh-my-zsh installation.
-export ZSH="$HOME/.oh-my-zsh"
+export ZSH="${HOME}/.oh-my-zsh"
 
 # Set name of the theme to load
 ZSH_THEME=""
@@ -75,9 +78,9 @@ plugins=(
   zsh-autosuggestions
   zsh-syntax-highlighting
 
-  {{- if .machine.macos }}
+  {{ if .machine.macos -}}
   macos
-  {{- else }}
+  {{ else -}}
   systemd
   ubuntu
   {{- end }}
@@ -87,7 +90,7 @@ plugins=(
 zstyle ':omz:update' mode disabled
 
 # Path to the completion cache file
-ZSH_COMPDUMP="${ZSH_CACHE_DIR:-~/.oh-my-zsh/cache}/.zcompdump"
+ZSH_COMPDUMP="${ZSH_CACHE_DIR:-${HOME}/.cache}/.zcompdump"
 
 # Display red dots whilst waiting for completion.
 # You can also set it to another string to have that shown instead of the default red dots.
@@ -103,5 +106,9 @@ DISABLE_UNTRACKED_FILES_DIRTY="true"
 
 export ZSH_DISABLE_COMPFIX=true
 source "${ZSH}/oh-my-zsh.sh"
+
+source "${HOME}/.local/share/aliases.zsh"
+source "${HOME}/.local/share/exports.zsh"
+source "${HOME}/.local/share/functions.zsh"
 
 [ x"$(command -v starship)" != x"" ] && eval "$(starship init zsh)"

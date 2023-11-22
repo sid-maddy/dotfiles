@@ -7,7 +7,7 @@ key.txt.age
 
 # Misc.
 README.md
-install.sh
+install.zsh
 
 {{ if not .machine.macos -}}
 .config/karabiner/

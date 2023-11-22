@@ -1,155 +1,155 @@
-"$schema" = 'https://starship.rs/config-schema.json'
+'$schema' = 'https://starship.rs/config-schema.json'
 
 command_timeout = 1000
 
 [aws]
 disabled = true
-symbol = "  "
+symbol   = '  '
 
 [buf]
-symbol = " "
+symbol = ' '
 
 [c]
-symbol = " "
+symbol = ' '
 
 [cmd_duration]
 disabled = true
 
 [conda]
-symbol = " "
+symbol = ' '
 
 [dart]
-symbol = " "
+symbol = ' '
 
 [directory]
-read_only = " 󰌾"
+read_only = ' 󰌾'
 
 [docker_context]
 disabled = true
-symbol = " "
+symbol   = ' '
 
 [elixir]
-symbol = " "
+symbol = ' '
 
 [elm]
-symbol = " "
+symbol = ' '
 
 [fossil_branch]
-symbol = " "
+symbol = ' '
 
 [gcloud]
 disabled = true
 
 [git_branch]
-symbol = " "
+symbol = ' '
 
 [golang]
-symbol = " "
+symbol = ' '
 
 [guix_shell]
-symbol = " "
+symbol = ' '
 
 [haskell]
-symbol = " "
+symbol = ' '
 
 [haxe]
-symbol = " "
+symbol = ' '
 
 [hg_branch]
-symbol = " "
+symbol = ' '
 
 [hostname]
-ssh_symbol = " "
+ssh_symbol = ' '
 
 [java]
-symbol = " "
+symbol = ' '
 
 [julia]
-symbol = " "
+symbol = ' '
 
 [line_break]
 disabled = true
 
 [lua]
-symbol = " "
+symbol = ' '
 
 [kubernetes]
 disabled = false
 
 [memory_usage]
-symbol = "󰍛 "
+symbol = '󰍛 '
 
 [meson]
-symbol = "󰔷 "
+symbol = '󰔷 '
 
 [nim]
-symbol = "󰆥 "
+symbol = '󰆥 '
 
 [nix_shell]
-symbol = " "
+symbol = ' '
 
 [nodejs]
-symbol = " "
+symbol = ' '
 
 [os.symbols]
-Alpaquita = " "
-Alpine = " "
-Amazon = " "
-Android = " "
-Arch = " "
-Artix = " "
-CentOS = " "
-Debian = " "
-DragonFly = " "
-Emscripten = " "
-EndeavourOS = " "
-Fedora = " "
-FreeBSD = " "
-Garuda = "󰛓 "
-Gentoo = " "
-HardenedBSD = "󰞌 "
-Illumos = "󰈸 "
-Linux = " "
-Mabox = " "
-Macos = " "
-Manjaro = " "
-Mariner = " "
-MidnightBSD = " "
-Mint = " "
-NetBSD = " "
-NixOS = " "
-OpenBSD = "󰈺 "
-openSUSE = " "
-OracleLinux = "󰌷 "
-Pop = " "
-Raspbian = " "
-Redhat = " "
-RedHatEnterprise = " "
-Redox = "󰀘 "
-Solus = "󰠳 "
-SUSE = " "
-Ubuntu = " "
-Unknown = " "
-Windows = "󰍲 "
+Alpaquita        = ' '
+Alpine           = ' '
+Amazon           = ' '
+Android          = ' '
+Arch             = ' '
+Artix            = ' '
+CentOS           = ' '
+Debian           = ' '
+DragonFly        = ' '
+Emscripten       = ' '
+EndeavourOS      = ' '
+Fedora           = ' '
+FreeBSD          = ' '
+Garuda           = '󰛓 '
+Gentoo           = ' '
+HardenedBSD      = '󰞌 '
+Illumos          = '󰈸 '
+Linux            = ' '
+Mabox            = ' '
+Macos            = ' '
+Manjaro          = ' '
+Mariner          = ' '
+MidnightBSD      = ' '
+Mint             = ' '
+NetBSD           = ' '
+NixOS            = ' '
+OpenBSD          = '󰈺 '
+OracleLinux      = '󰌷 '
+Pop              = ' '
+Raspbian         = ' '
+RedHatEnterprise = ' '
+Redhat           = ' '
+Redox            = '󰀘 '
+SUSE             = ' '
+Solus            = '󰠳 '
+Ubuntu           = ' '
+Unknown          = ' '
+Windows          = '󰍲 '
+openSUSE         = ' '
 
 [package]
 disabled = true
-symbol = "󰏗 "
+symbol   = '󰏗 '
 
 [pijul_channel]
-symbol = " "
+symbol = ' '
 
 [python]
-symbol = " "
+symbol = ' '
 
 [rlang]
-symbol = "󰟔 "
+symbol = '󰟔 '
 
 [ruby]
-symbol = " "
+symbol = ' '
 
 [rust]
-symbol = " "
+symbol = ' '
 
 [scala]
-symbol = " "
+symbol = ' '

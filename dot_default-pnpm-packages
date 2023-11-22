@@ -6,7 +6,7 @@ dockerfile-language-server-nodejs
 eslint
 har-to-k6
 jsvu
-npm-check
+npm-check-updates
 prettier
 pyright
 renovate

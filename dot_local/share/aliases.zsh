@@ -30,7 +30,3 @@ alias prun='poetry run'
 alias pred="poetry run ${EDITOR}"
 alias pot='poetry task'
 alias prt='poetry run task'
-
-{{ if .machine.macos -}}
-alias x='TERM=xterm-256color'
-{{ end -}}

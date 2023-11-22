@@ -1,72 +1,22 @@
+---
 k9s:
-  clusters: {}
-
-  # Represents UI poll intervals (in seconds)
-  # Default: 2
-  refreshRate: 2
-
-  # Number of retries once the connection to the api-server is lost
-  # Default: 5
-  maxConnRetry: 5
-
   # Enable mouse support
-  # Default: false
   enableMouse: true
 
-  # Whether to hide the header
-  # Default: false
+  # Hide K9s header
   headless: true
 
-  # Whether to hide the logo
-  # Default: false
+  # Hide K9s logo
   logoless: true
 
-  # Whether to hide the crumbs
-  # Default: false
-  crumbsless: false
-
-  # Whether commands like delete/edit/kill/etc. are disabled
-  # Default: false
-  readOnly: false
-
-  # Whether k9s should exit when CTRL-C is pressed
-  # If enabled, you will need to exit k9s via the :quit command
-  # Default: false
-  noExitOnCtrlC: false
-
-  # Whether to display icons
-  # Try disabling if your terminal doesn't support them
-  # Default: false
-  noIcons: false
-
-  # Whether k9s should check for the latest revision from the Github repository releases
-  # Default: false.
+  # Don't check for the latest revision from the GitHub repository releases
   skipLatestRevCheck: true
 
   logger:
-    # Defines the number of lines to return
-    # Default: 100
-    tail: 100
-
-    # Defines the total number of log lines to allow in the view
-    # Default: 1000
-    buffer: 5000
-    #
-    # Represents how far to go back in the log timeline (in seconds)
-    # Setting to -1 will show all available logs
-    # Default: 300 (5m)
-    sinceSeconds: 300
-
     # Go full screen while displaying logs
-    # Default: false
     fullScreenLogs: true
 
-    # Whether to wrap log lines
-    # Default: false
-    textWrap: false
-
     # Whether to show timestamps in log lines
-    # Default: false
     showTime: true
 
   thresholds:
@@ -76,7 +26,3 @@ k9s:
     memory:
       critical: 90
       warn: 70
-
-  # The directory to store screen dumps
-  # Default: $TMPDIR/k9s-screens-$USER
-  # screenDumpDir:

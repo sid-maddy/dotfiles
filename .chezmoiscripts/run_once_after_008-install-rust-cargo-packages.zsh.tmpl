@@ -3,6 +3,6 @@ set -e
 # set -x
 
 # global rust version hash: {{ output "rtx" "ls" "-gp" "rust" | sha256sum }}
-# ~/.default-cargo-packages hash: {{ include "dot_default-cargo-packages" | sha256sum }}
+# ~/.default-cargo-crates hash: {{ include "dot_default-cargo-crates" | sha256sum }}
 rustup component add rust-analyzer
-xargs -rL1 cargo install <~/.default-cargo-packages
+xargs -rL1 cargo install <~/.default-cargo-crates

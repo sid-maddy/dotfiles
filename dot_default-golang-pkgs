@@ -1,5 +1,6 @@
 github.com/ankitpokhrel/jira-cli/cmd/jira@latest
 github.com/charmbracelet/glow@latest
+github.com/dependabot/cli/cmd/dependabot@latest
 github.com/golangci/golangci-lint/cmd/golangci-lint@latest
 github.com/google/go-jsonnet/cmd/jsonnet-deps@latest
 github.com/google/go-jsonnet/cmd/jsonnet-lint@latest
@@ -14,3 +15,4 @@ github.com/oligot/go-mod-upgrade@latest
 github.com/spf13/cobra-cli@latest
 go.k6.io/xk6/cmd/xk6@latest
 golang.org/x/tools/gopls@latest
+sigs.k8s.io/kubectl-validate@latest

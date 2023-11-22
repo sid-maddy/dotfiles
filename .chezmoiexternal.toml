@@ -1,20 +1,18 @@
 {{ define "archive" }}
-  type = "archive"
+  type            = 'archive'
+  exact           = true
+  refreshPeriod   = '24h'
   stripComponents = 1
-  refreshPeriod = "24h"
 {{ end }}
 
-[".oh-my-zsh"]
+['.oh-my-zsh']
   {{ template "archive" }}
-  url = "https://codeload.github.com/ohmyzsh/ohmyzsh/tar.gz/refs/heads/master"
-  exact = false
+  url = 'https://codeload.github.com/ohmyzsh/ohmyzsh/tar.gz/refs/heads/master'
 
-[".oh-my-zsh/custom/plugins/zsh-autosuggestions"]
+['.oh-my-zsh/custom/plugins/zsh-autosuggestions']
   {{ template "archive" }}
-  url = "https://codeload.github.com/zsh-users/zsh-autosuggestions/tar.gz/refs/heads/master"
-  exact = true
+  url = 'https://codeload.github.com/zsh-users/zsh-autosuggestions/tar.gz/refs/heads/master'
 
-[".oh-my-zsh/custom/plugins/zsh-syntax-highlighting"]
+['.oh-my-zsh/custom/plugins/zsh-syntax-highlighting']
   {{ template "archive" }}
-  url = "https://codeload.github.com/zsh-users/zsh-syntax-highlighting/tar.gz/refs/heads/master"
-  exact = true
+  url = 'https://codeload.github.com/zsh-users/zsh-syntax-highlighting/tar.gz/refs/heads/master'

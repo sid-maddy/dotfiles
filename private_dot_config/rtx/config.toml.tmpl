@@ -4,21 +4,21 @@ experimental = true
 trusted_config_paths = ['~/.config/rtx']
 
 [plugins]
-racket = 'https://github.com/sid-maddy/asdf-python'
+racket = 'https://github.com/sid-maddy/asdf-racket'
 
 [tools]
 bun = 'latest'
 deno = 'latest'
 golang = 'latest'
-kubectl = ['prefix:1.28', 'prefix:1.27', 'prefix:1.26', 'prefix:1.25']
+kubectl = ['latest', 'sub-0.1:latest', 'sub-0.2:latest', 'sub-0.3:latest']
 nodejs = ['latest', 'lts']
-python = ['prefix:3.12', 'prefix:3.11']
+python = ['latest', 'sub-0.1:latest']
 # racket = 'latest'
 ruby = 'latest'
-rust = 'latest'
+rust = 'stable'
 stylua = 'latest'
 {{ if .machine.work -}}
-java = ['prefix:graalvm-community-21', 'prefix:graalvm-community-17']
+java = ['graalvm-community-21', 'graalvm-community-17']
 maven = 'latest'
 scala = 'latest'
 {{ end -}}

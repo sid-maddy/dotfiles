@@ -1,0 +1,66 @@
+---
+# yaml-language-server: $schema=https://github.com/derailed/k9s/raw/master/plugins/schema.json
+plugin:
+  # Create debug container for selected pod in current namespace
+  # See https://kubernetes.io/docs/tasks/debug/debug-application/debug-running-pod/#ephemeral-container
+  debug:
+    shortCut: Shift-D
+    description: Add debug container
+    scopes:
+      - containers
+    command: bash
+    background: false
+    confirm: true
+    args:
+      - -c
+      - kubectl debug -it -n=$NAMESPACE $POD --target=$NAME --image=nicolaka/netshoot:v0.11 --share-processes -- bash
+
+  dive:
+    shortCut: d
+    confirm: false
+    description: Dive image
+    scopes:
+      - containers
+    command: dive
+    background: false
+    args:
+      - $COL-IMAGE
+
+  # Leverage stern (https://github.com/stern/stern) to output logs.
+  stern:
+    shortCut: Ctrl-L
+    confirm: false
+    description: Logs <Stern>
+    scopes:
+      - cronjobs
+      - daemonsets
+      - deployments
+      - replicasets
+      - statefulsets
+      - pods
+    command: kubectl-stern
+    background: false
+    args:
+      - --tail
+      - '50'
+      - $FILTER
+      - -n
+      - $NAMESPACE
+      - --context
+      - $CONTEXT
+
+  watch-events:
+    shortCut: Shift-E
+    confirm: false
+    description: Get Events
+    scopes:
+      - all
+    command: sh
+    background: false
+    args:
+      - -c
+      - >-
+        watch -n 5 kubectl get events
+          --context $CONTEXT
+          --namespace $NAMESPACE
+          --field-selector involvedObject.name=$NAME

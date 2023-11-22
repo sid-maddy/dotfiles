@@ -7,6 +7,7 @@ flake8
 iredis
 memray
 mycli
+mypy
 pdm
 pgcli
 pip-tools
@@ -14,9 +15,11 @@ pipenv
 poetry
 pre-commit
 promformat
+py-spy
 pyupgrade
 ruff-lsp
 safety
+scalene
 virtualenv
 watchgha
 yamlfix
