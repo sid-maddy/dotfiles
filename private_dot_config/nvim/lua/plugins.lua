@@ -253,6 +253,7 @@ require('lazy').setup({
                 gopls = {},
                 jsonnet_ls = {},
                 pyright = {},
+                racket_langserver = {},
                 ruff_lsp = {},
                 solargraph = {},
                 lua_ls = {

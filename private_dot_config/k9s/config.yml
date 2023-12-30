@@ -1,22 +1,16 @@
 ---
 k9s:
-  # Enable mouse support
   enableMouse: true
-
-  # Hide K9s header
   headless: true
-
-  # Hide K9s logo
   logoless: true
-
-  # Don't check for the latest revision from the GitHub repository releases
   skipLatestRevCheck: true
 
-  logger:
-    # Go full screen while displaying logs
-    fullScreenLogs: true
+  shellPod:
+    image: alpine:latest
+    namespace: utility
 
-    # Whether to show timestamps in log lines
+  logger:
+    fullScreenLogs: true
     showTime: true
 
   thresholds:

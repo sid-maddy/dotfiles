@@ -14,7 +14,6 @@ pip-tools
 pipenv
 poetry
 pre-commit
-promformat
 py-spy
 pyupgrade
 ruff-lsp

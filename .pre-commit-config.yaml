@@ -29,7 +29,7 @@ repos:
       - id: prettier
 
   - repo: https://github.com/lyz-code/yamlfix
-    rev: 1.15.0
+    rev: 1.16.0
     hooks:
       - id: yamlfix
         args:
@@ -44,7 +44,7 @@ repos:
           - --strict
 
   - repo: https://github.com/python-jsonschema/check-jsonschema
-    rev: 0.27.1
+    rev: 0.27.3
     hooks:
       - id: check-github-actions
 
@@ -54,12 +54,12 @@ repos:
       - id: ripsecrets
 
   - repo: https://github.com/crate-ci/typos
-    rev: v1.16.23
+    rev: v1.16.26
     hooks:
       - id: typos
         args: []
 
   - repo: https://github.com/commitizen-tools/commitizen
-    rev: 3.12.0
+    rev: v3.13.0
     hooks:
       - id: commitizen
