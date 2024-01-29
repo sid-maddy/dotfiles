@@ -126,7 +126,7 @@ handle_extension() {
             ## JSON
         json|ipynb)
             jq --color-output . "${FILE_PATH}" && exit 0
-            python -m json.tool -- "${FILE_PATH}" && exit 0
+            python3 -m json.tool -- "${FILE_PATH}" && exit 0
             ;;
 
             ## Direct Stream Digital/Transfer (DSDIFF) and wavpack aren't detected

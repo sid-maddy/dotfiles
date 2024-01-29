@@ -2,7 +2,7 @@
   description = "System";
 
   inputs = {
-    nixpkgs.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
+    nixpkgs.url = "github:NixOS/nixpkgs";
 
     nix-darwin = {
       url = "github:LnL7/nix-darwin";
@@ -42,7 +42,7 @@
 
         ## Git
         difftastic
-        # gitoxide  # build fails
+        gitoxide
         gitui
 
         ## Text processing
@@ -67,9 +67,8 @@
 
         ## Networking
         prettyping
-        ipcalc
-        ldns # for drill
-        sipcalc
+        # ipcalc  # Build fails because of transitive dependency: nokogiri
+        ldns  # For drill
 
         ## Containers/images
         crane
@@ -79,7 +78,7 @@
         k9s
         kubeshark
 
-        ## Helm  # Need to be debugged
+        ## Helm  # Needs to be debugged
         # kubernetes-helm-wrapped
         # kubernetes-helmPlugins.helm-diff
         # kubernetes-helmPlugins.helm-secrets  # build fails

@@ -1,4 +1,5 @@
 bundler
 jekyll
 pry
+ruby-lsp
 solargraph

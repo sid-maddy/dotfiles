@@ -1,7 +1,7 @@
-[settings]
-asdf_compat = false
-experimental = true
-trusted_config_paths = ['~/.config/rtx']
+[env]
+MISE_PYTHON_COMPILE = '1'
+PYTHON_CFLAGS='-march=native -mtune=native'
+PYTHON_CONFIGURE_OPTS='--enable-optimizations --with-lto'
 
 [tools]
 bun = 'latest'
@@ -11,7 +11,7 @@ kubectl = ['latest', 'sub-0.1:latest', 'sub-0.2:latest', 'sub-0.3:latest']
 nodejs = ['latest', 'lts']
 python = ['latest', 'sub-0.1:latest', 'sub-0.2:latest']
 ruby = 'latest'
-rust = 'stable'
+rust = 'latest'
 stylua = 'latest'
 {{ if .machine.work -}}
 java = ['graalvm-community-21', 'graalvm-community-17']

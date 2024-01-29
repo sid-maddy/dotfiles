@@ -1,0 +1,3 @@
+asdf_compat = false
+experimental = true
+trusted_config_paths = ['~/.config/mise']

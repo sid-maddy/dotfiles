@@ -166,7 +166,10 @@ require('lazy').setup({
             })
 
             cmp.setup.filetype('gitcommit', {
-                sources = cmp.config.sources({ { name = 'git' }, { name = 'conventionalcommits' } }, { { name = 'buffer' } }),
+                sources = cmp.config.sources(
+                    { { name = 'git' }, { name = 'conventionalcommits' } },
+                    { { name = 'buffer' } }
+                ),
             })
 
             -- Use buffer source for `/` and `?` (if you enabled `native_menu`, this won't work anymore).
@@ -252,8 +255,10 @@ require('lazy').setup({
                 efm = efm,
                 gopls = {},
                 jsonnet_ls = {},
+                prismals = {},
                 pyright = {},
                 racket_langserver = {},
+                ruby_ls = {},
                 ruff_lsp = {},
                 solargraph = {},
                 lua_ls = {

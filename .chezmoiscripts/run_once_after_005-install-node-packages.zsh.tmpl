@@ -1,6 +1,6 @@
 #!/usr/bin/env zsh
 # set -x
 
-# global node version hash: {{ output "rtx" "ls" "-gp" "node" | sha256sum }}
+# global node version hash: {{ output "mise" "ls" "-gp" "node" | sha256sum }}
 # ~/.default-pnpm-packages hash: {{ include "dot_default-pnpm-packages" | sha256sum }}
 xargs -r pnpm add -g <~/.default-pnpm-packages

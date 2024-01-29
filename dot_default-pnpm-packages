@@ -1,4 +1,5 @@
 @astrojs/language-server
+@prisma/language-server
 @slidev/cli
 @typescript-eslint/parser
 bash-language-server

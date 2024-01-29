@@ -1,26 +1,12 @@
-ansible
-autopep8
+--include-deps ansible
 commitizen
 cookiecutter
 copier
-flake8
-iredis
-memray
-mycli
 mypy
-pdm
-pgcli
 pip-tools
-pipenv
 poetry
 pre-commit
-py-spy
 pyupgrade
 ruff-lsp
-safety
-scalene
 virtualenv
-watchgha
-yamlfix
-yamllint
 --include-deps yls-yara

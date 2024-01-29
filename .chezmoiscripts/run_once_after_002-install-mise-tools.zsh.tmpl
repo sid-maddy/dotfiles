@@ -1,0 +1,9 @@
+#!/usr/bin/env zsh
+set -e
+# set -x
+
+# ~/.config/mise/config.toml hash: {{ include "private_dot_config/mise/config.toml.tmpl" | sha256sum }}
+# Install Python with optimizations
+PYTHON_CONFIGURE_OPTS='--enable-optimizations --with-lto' PYTHON_CFLAGS='-march=native -mtune=native' mise install python
+mise install
+mise prune

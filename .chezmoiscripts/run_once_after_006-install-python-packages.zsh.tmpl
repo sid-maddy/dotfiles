@@ -1,6 +1,6 @@
 #!/usr/bin/env zsh
 # set -x
 
-# global python version hash: {{ output "rtx" "ls" "-gp" "python" | sha256sum }}
+# global python version hash: {{ output "mise" "ls" "-gp" "python" | sha256sum }}
 # ~/.default-python-packages hash: {{ include "dot_default-python-packages" | sha256sum }}
-python -bbOOum pip install --check-build-dependencies --compile --upgrade-strategy eager --use-pep517 -Ur ~/.default-python-packages
+python3 -bbOOum pip install --check-build-dependencies --compile --upgrade-strategy eager --use-pep517 -Ur ~/.default-python-packages
