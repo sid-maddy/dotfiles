@@ -1,4 +1,4 @@
-# vim: ft=ruby
+# vim: ft=ruby.chezmoitmpl
 tap 'homebrew/bundle'
 
 tap 'cue-lang/tap'
@@ -122,12 +122,10 @@ cask 'utm'
 cask 'visual-studio-code'
 
 {{    if .machine.work -}}
-tap 'coursier/formulas'
-
 brew 'azure-cli'
-brew 'coursier/formulas/coursier'
+brew 'coursier'
 brew 'librdkafka'
-brew 'openjdk' # Required by coursier
+brew 'openjdk'  # Required by coursier
 
 cask 'figma'
 cask 'google-drive'
