@@ -1,0 +1,8 @@
+[terminal.shell]
+args    = ['attach', '-c', 'main']
+program = '/opt/homebrew/bin/zellij'
+
+[window]
+decorations   = 'Transparent'
+startup_mode  = 'SimpleFullscreen'
+option_as_alt = 'Both'

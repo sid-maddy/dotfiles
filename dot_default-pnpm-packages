@@ -1,17 +1,5 @@
-@astrojs/language-server
-@prisma/language-server
 @slidev/cli
-@typescript-eslint/parser
-bash-language-server
-dockerfile-language-server-nodejs
-eslint
 har-to-k6
-jsvu
 npm-check-updates
-prettier
 pyright
 renovate
-typescript
-typescript-language-server
-vue-eslint-parser
-yaml-language-server

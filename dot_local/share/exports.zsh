@@ -22,4 +22,7 @@ export USE_GKE_GCLOUD_AUTH_PLUGIN=True
 # k9s
 export K9S_CONFIG_DIR="${HOME}/.config/k9s"
 
+# Starship
+export STARSHIP_LOG=error
+
 [ -f "${HOME}/.local/share/exports.local.zsh" ] && source "${HOME}/.local/share/exports.local.zsh"

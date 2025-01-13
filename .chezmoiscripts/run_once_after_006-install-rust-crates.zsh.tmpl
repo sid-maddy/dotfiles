@@ -1,0 +1,8 @@
+#!/usr/bin/env zsh
+set -e
+# set -x
+
+# global rust version hash: {{ output "mise" "ls" "-gp" "rust" | sha256sum }}
+for version in $(mise ls -g --json rust | jq -r '.[].version'); do
+  mise -C "$HOME" exec rust@${version} -- cargo install cargo-binstall
+done

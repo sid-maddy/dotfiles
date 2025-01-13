@@ -1,20 +1,79 @@
+[settings]
+asdf_compat          = false
+experimental         = true
+trusted_config_paths = ['~/.config/mise']
+
+go_set_goroot = true
+
+  [settings.pipx]
+  uvx = true
+
+  [settings.python]
+  compile = true
+
 [env]
-MISE_PYTHON_COMPILE = '1'
-PYTHON_CFLAGS='-march=native -mtune=native'
-PYTHON_CONFIGURE_OPTS='--enable-optimizations --with-lto'
+PYTHON_CFLAGS         = '-march=native -mtune=native'
+PYTHON_CONFIGURE_OPTS = '--enable-optimizations --with-lto'
 
 [tools]
-bun = 'latest'
-deno = 'latest'
-golang = 'latest'
-kubectl = ['latest', 'sub-0.1:latest', 'sub-0.2:latest', 'sub-0.3:latest']
-nodejs = ['latest', 'lts']
-python = ['latest', 'sub-0.1:latest', 'sub-0.2:latest']
-ruby = 'latest'
-rust = 'latest'
-stylua = 'latest'
-{{ if .machine.work -}}
-java = ['graalvm-community-21', 'graalvm-community-17']
-maven = 'latest'
-scala = 'latest'
-{{ end -}}
+bun     = 'latest'
+deno    = 'latest'
+erlang  = 'latest'
+go      = 'latest'
+kubectl = ['latest', 'sub-0.1:latest', 'sub-0.2:latest', 'sub-0.3:latest', '1.28']
+nodejs  = ['latest', 'lts', '18']
+python  = ['latest', 'sub-0.1:latest', 'sub-0.2:latest', 'sub-0.3:latest', 'sub-0.4:latest']
+ruby    = 'latest'
+rust    = 'stable'
+stylua  = 'latest'
+uv      = 'latest'
+{{- if .machine.work }}
+java    = ['graalvm-community-21', 'graalvm-community-17']
+maven   = 'latest'
+scala   = 'latest'
+{{- end }}
+
+# Go
+'go:github.com/ankitpokhrel/jira-cli/cmd/jira'               = 'latest'
+'go:github.com/charmbracelet/glow'                           = 'latest'
+'go:github.com/charmbracelet/mods'                           = 'latest'
+'go:github.com/golangci/golangci-lint/cmd/golangci-lint'     = 'latest'
+'go:github.com/google/go-jsonnet/cmd/jsonnet'                = 'latest'
+'go:github.com/google/go-jsonnet/cmd/jsonnet-deps'           = 'latest'
+'go:github.com/google/go-jsonnet/cmd/jsonnet-lint'           = 'latest'
+'go:github.com/google/go-jsonnet/cmd/jsonnetfmt'             = 'latest'
+'go:github.com/goreleaser/goreleaser'                        = 'latest'
+'go:github.com/grafana/dashboard-linter'                     = 'latest'
+'go:github.com/grafana/jsonnet-language-server'              = 'latest'
+'go:github.com/jsonnet-bundler/jsonnet-bundler/cmd/jb'       = 'latest'
+'go:github.com/nats-io/natscli/nats'                         = 'latest'
+'go:github.com/oligot/go-mod-upgrade'                        = 'latest'
+'go:github.com/spf13/cobra-cli'                              = 'latest'
+'go:go.k6.io/xk6/cmd/xk6'                                    = 'latest'
+'go:sigs.k8s.io/kubectl-validate'                            = 'latest'
+
+# Python
+'pipx:commitizen'   = 'latest'
+'pipx:cookiecutter' = 'latest'
+'pipx:copier'       = 'latest'
+'pipx:memray'       = 'latest'
+'pipx:mycli'        = 'latest'
+'pipx:mypy'         = 'latest'
+'pipx:pdm'          = 'latest'
+'pipx:pgcli'        = {version = 'latest', uvx_args = '--with psycopg[binary]'}
+'pipx:pip-tools'    = 'latest'
+'pipx:poetry'       = {version = 'latest', uvx_args = '--with poetry-plugin-export'}
+'pipx:pre-commit'   = 'latest'
+'pipx:pyupgrade'    = 'latest'
+'pipx:virtualenv'   = 'latest'
+
+# Rust
+'cargo:cargo-edit'     = 'latest'
+'cargo:cargo-generate' = 'latest'
+'cargo:cargo-outdated' = 'latest'
+'cargo:cargo-valgrind' = 'latest'
+
+'cargo:atuin'   = 'latest'
+'cargo:joshuto' = 'latest'
+'cargo:lazyjj'  = 'latest'
+'cargo:mdbook'  = 'latest'

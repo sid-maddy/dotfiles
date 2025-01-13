@@ -1,3 +1,0 @@
-ansible --include-apps ansible-builder ansible-lint ansible-navigator
-copier jinja2-slug
-poetry poetry-plugin-export

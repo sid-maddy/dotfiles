@@ -1,0 +1,7 @@
+[terminal.shell]
+args    = ['attach', '-c', 'main']
+program = '/home/linuxbrew/.linuxbrew/bin/zellij'
+
+[window]
+decorations  = 'None'
+startup_mode = 'Fullscreen'

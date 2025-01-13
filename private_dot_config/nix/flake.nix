@@ -2,7 +2,9 @@
   description = "System";
 
   inputs = {
-    nixpkgs.url = "github:NixOS/nixpkgs";
+    determinate.url = "https://flakehub.com/f/DeterminateSystems/determinate/*.tar.gz";
+
+    nixpkgs.url = "https://flakehub.com/f/NixOS/nixpkgs/0.1.0.tar.gz";
 
     nix-darwin = {
       url = "github:LnL7/nix-darwin";
@@ -12,6 +14,7 @@
 
   outputs = inputs @ {
     self,
+    determinate,
     nixpkgs,
     nix-darwin,
   }: let
@@ -25,17 +28,19 @@
         alejandra
 
         # Shells
-        nushellFull
+        fish
+        nushell
         powershell
 
         ## Completer
         carapace
 
-        # Editors
+        ## Editors
         helix
 
         # Tools
         bat
+        graphviz
         less
         libqalculate
         watchexec
@@ -44,6 +49,7 @@
         difftastic
         gitoxide
         gitui
+        lazygit
 
         ## Text processing
         miller
@@ -67,47 +73,35 @@
 
         ## Networking
         prettyping
-        # ipcalc  # Build fails because of transitive dependency: nokogiri
-        ldns  # For drill
+        ipcalc # Build fails because of transitive dependency: nokogiri
+        ldns # For drill
 
         ## Containers/images
         crane
         dive
+        trivy
 
         ## Kubernetes
         k9s
         kubeshark
-
-        ## Helm  # Needs to be debugged
-        # kubernetes-helm-wrapped
-        # kubernetes-helmPlugins.helm-diff
-        # kubernetes-helmPlugins.helm-secrets  # build fails
-        # helmfile-wrapped
       ];
 
-      # Auto upgrade nix package and the daemon service.
-      nix.package = pkgs.nix;
-      services.nix-daemon.enable = true;
-
       # Necessary for using flakes on this system.
-      # Partly taken from https://github.com/DeterminateSystems/nix-installer/
       nix.settings = {
-        auto-optimise-store = true;
-        bash-prompt-prefix = "(nix:$name)\\040";
-        experimental-features = "nix-command flakes auto-allocate-uids";
-        extra-nix-path = "nixpkgs=flake:nixpkgs";
-        trusted-users = ["root" "siddheshmhadnak"];
+        experimental-features = "nix-command flakes";
       };
 
       # Create /etc/zshrc that loads the nix-darwin environment.
       programs.zsh.enable = true;
+      # Enable alternative shell support in nix-darwin.
+      programs.fish.enable = true;
 
       # Set Git commit hash for darwin-version.
       system.configurationRevision = self.rev or self.dirtyRev or null;
 
       # Used for backwards compatibility, please read the changelog before changing.
       # $ darwin-rebuild changelog
-      system.stateVersion = 4;
+      system.stateVersion = 5;
 
       # The platform the configuration will be used on.
       nixpkgs.hostPlatform = "${system}";
@@ -116,7 +110,7 @@
     # Build darwin flake using:
     # $ darwin-rebuild build --flake .#default
     darwinConfigurations.default = nix-darwin.lib.darwinSystem {
-      modules = [configuration];
+      modules = [determinate.darwinModules.default configuration];
     };
 
     # Expose the package set, including overlays, for convenience.

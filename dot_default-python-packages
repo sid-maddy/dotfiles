@@ -1,9 +1,6 @@
 pip
 setuptools
 wheel
-pipx
-black[colorama]
 ipython
 ptpython[ptipython,all]
-isort
-rope
+uv

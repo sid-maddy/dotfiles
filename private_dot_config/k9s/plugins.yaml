@@ -1,0 +1,115 @@
+---
+# yaml-language-server: $schema=https://github.com/derailed/k9s/raw/master/internal/config/json/schemas/plugins.json
+plugins:
+  # Create debug container for selected pod in current namespace
+  # See https://kubernetes.io/docs/tasks/debug/debug-application/debug-running-pod/#ephemeral-container
+  debug:
+    shortCut: Shift-D
+    description: Add debug container
+    scopes:
+      - containers
+    command: bash
+    args:
+      - -c
+      - kubectl debug -it --context $CONTEXT -n=$NAMESPACE $POD --target=$NAME --image=nicolaka/netshoot:v0.12 --share-processes
+        -- bash
+    background: false
+    confirm: true
+    dangerous: true
+
+  dive:
+    shortCut: d
+    description: Dive image
+    scopes:
+      - containers
+    command: dive
+    args:
+      - $COL-IMAGE
+    background: false
+    confirm: false
+
+  # Duplicate Pods, Deployments and StatefulSet for easy debugging
+  # and troubleshooting.
+  #
+  # See https://github.com/Telemaco019/duplik8s
+  duplicate-pod:
+    shortCut: Ctrl-T
+    description: Duplicate
+    scopes:
+      - po
+    command: kubectl
+    args:
+      - duplicate
+      - pod
+      - $NAME
+      - -n
+      - $NAMESPACE
+      - --context
+      - $CONTEXT
+    background: true
+    confirm: true
+
+  duplicate-deployment:
+    shortCut: Ctrl-T
+    description: Duplicate
+    scopes:
+      - deploy
+    command: kubectl
+    args:
+      - duplicate
+      - deploy
+      - $NAME
+      - -n
+      - $NAMESPACE
+      - --context
+      - $CONTEXT
+    background: true
+    confirm: true
+
+  duplicate-statefulset:
+    shortCut: Ctrl-T
+    description: Duplicate
+    scopes:
+      - statefulset
+    command: kubectl
+    args:
+      - duplicate
+      - statefulset
+      - $NAME
+      - -n
+      - $NAMESPACE
+      - --context
+      - $CONTEXT
+    background: true
+    confirm: true
+
+  # Removes all finalizers from the selected resource. Finalizers are namespaced keys that tell Kubernetes to wait
+  # until specific conditions are met before it fully deletes resources marked for deletion.
+  # Before deleting an object you need to ensure that all finalizers has been removed. Usually this would be done
+  # by the specific controller but under some circumstances it is possible to encounter a set of objects blocked
+  # for deletion.
+  # This plugins makes this task easier by providing a shortcut to directly removing them all.
+  # Be careful when using this plugin as it may leave dangling resources or instantly deleting resources that were
+  # blocked by the finalizers.
+  # Author: github.com/jalvarezit
+  remove_finalizers:
+    shortCut: Ctrl-F
+    description: Remove all finalizers
+    scopes:
+      - all
+    command: kubectl
+    args:
+      - patch
+      - --context
+      - $CONTEXT
+      - --namespace
+      - $NAMESPACE
+      - $RESOURCE_NAME
+      - $NAME
+      - -p
+      - '{"metadata":{"finalizers":null}}'
+      - --type
+      - merge
+    background: true
+    confirm: true
+    dangerous: true

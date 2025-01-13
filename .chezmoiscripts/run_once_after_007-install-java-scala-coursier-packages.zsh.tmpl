@@ -1,10 +1,11 @@
 #!/usr/bin/env zsh
+set -e
 # set -x
+{{- $toolVersions := (fromToml (includeTemplate (joinPath .chezmoi.sourceDir "private_dot_config/mise/config.toml.tmpl" ) .)).tools -}}
+{{ if and (hasKey $toolVersions "java") (hasKey $toolVersions "scala") -}}
 
 # global java version hash: {{ output "mise" "ls" "-gp" "java" | sha256sum }}
 # global scala version hash: {{ output "mise" "ls" "-gp" "scala" | sha256sum }}
 # ~/.default-coursier-packages hash: {{ include "dot_default-coursier-packages" | sha256sum }}
-{{- $toolVersions := (fromToml (includeTemplate (joinPath .chezmoi.sourceDir "private_dot_config/mise/config.toml.tmpl" ) .)).tools -}}
-{{ if and $toolVersions.java $toolVersions.scala -}}
 xargs -r cs install <~/.default-coursier-packages
 {{ end -}}

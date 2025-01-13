@@ -1,9 +1,0 @@
-cargo-edit
-cargo-generate
-cargo-outdated
-cargo-valgrind
-
-dprint
-
-joshuto --git https://github.com/kamiyaa/joshuto.git
-taplo-cli --features lsp

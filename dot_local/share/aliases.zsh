@@ -11,6 +11,7 @@ alias gl='git pull -f'
 alias gmm='git merge $(git_main_branch)'
 
 alias gt='gitui'
+alias lg='lazygit'
 
 # Kubectl
 alias kdelhpa='kubectl delete hpa'
@@ -21,8 +22,6 @@ alias kghpaa='kghpa --all-namespaces'
 alias kghpaw='kghpa --watch'
 
 # NeoVim
-alias vi='nvim'
-alias vim='nvim'
 alias vimdiff='nvim -d'
 
 # Poetry
@@ -30,3 +29,8 @@ alias prun='poetry run'
 alias pred="poetry run ${EDITOR}"
 alias pot='poetry task'
 alias prt='poetry run task'
+
+# UV
+alias uvrun='uv run'
+alias uvred="uv run ${EDITOR}"
+alias uvt='uv run task'
