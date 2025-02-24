@@ -11,7 +11,7 @@ plugins:
     command: bash
     args:
       - -c
-      - kubectl debug -it --context $CONTEXT -n=$NAMESPACE $POD --target=$NAME --image=nicolaka/netshoot:v0.12 --share-processes
+      - kubectl debug -it --context=$CONTEXT -n $NAMESPACE $POD --target=$NAME --image=nicolaka/netshoot:v0.13 --share-processes
         -- bash
     background: false
     confirm: true

@@ -1,0 +1,33 @@
+"$schema" = "https://jj-vcs.github.io/jj/latest/config-schema.json"
+
+[user]
+email = '{{ .email }}'
+name  = 'Siddhesh Mhadnak'
+
+[core]
+fsmonitor = 'watchman'
+
+  [core.watchman]
+  register_snapshot_trigger = true
+
+[git]
+auto-local-bookmark  = false
+private-commits      = 'description(glob:"stash:*") | description(glob:"wip:*")'
+push-bookmark-prefix = 'sid/push-'
+
+[signing]
+backend  = 'gpg'
+behavior = 'own'
+key      = '{{ .email }}'
+
+[ui]
+default-command = 'log'
+diff-editor     = ':builtin'
+merge-editor    = ':builtin'
+pager           = ':builtin'
+
+  [ui.diff]
+  tool = ['difft', '--color=always', '--sort-paths', '$left', '$right']
+
+[merge-tools.vimdiff]
+diff-invocation-mode = 'file-by-file'
