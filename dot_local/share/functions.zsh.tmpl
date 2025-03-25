@@ -1,10 +1,24 @@
 #!/usr/bin/env zsh
 fm() {
-    local output_file
-    output_file="$(mktemp)"
+    local cwd_file
+    cwd_file="$(mktemp -t "yazi-cwd.XXXXXX")"
+
+    env yazi --cwd-file "$cwd_file" $@
+
+    local cwd
+    if cwd="$(command cat -- "$cwd_file")" && [ -n "$cwd" ] && [ "$cwd" != "$PWD" ]; then
+        builtin cd -- "$cwd"
+    fi
+
+    rm -f -- "$cwd_file"
+}
+
+fmj() {
+    local cwd_file
+    cwd_file="$(mktemp -t "joshuto-cwd.XXXXXX")"
 
     local exit_code
-    env joshuto --output-file "$output_file" $@
+    env joshuto --output-file "$cwd_file" $@
     exit_code=$?
 
     case "$exit_code" in
@@ -12,7 +26,10 @@ fm() {
         0) ;;
         # output contains current directory
         101)
-            cd "$(cat "$output_file")"
+            local cwd
+            if cwd="$(command cat -- "$cwd_file")" && [ -n "$cwd" ] && [ "$cwd" != "$PWD" ]; then
+                builtin cd -- "$cwd"
+            fi
             ;;
         # output selected files
         102) ;;
@@ -20,6 +37,8 @@ fm() {
             echo "Exit code: $exit_code"
             ;;
     esac
+
+    rm -f -- "$cwd_file"
 }
 
 least() {

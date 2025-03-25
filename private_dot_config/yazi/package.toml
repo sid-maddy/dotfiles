@@ -1,0 +1,24 @@
+[[plugin.deps]]
+use  = "Reledia/glow"
+rev  = "c76bf4f"
+hash = "a6b78bf9af5390e3a85a6951fbb7b93"
+
+[[plugin.deps]]
+use  = "Reledia/miller"
+rev  = "40e0265"
+hash = "2d6d77583162aaf0a599e7a3091b5878"
+
+[[plugin.deps]]
+use  = "yazi-rs/plugins:chmod"
+rev  = "9a09505"
+hash = "2f1053f89d1a301a648ab181d0948e38"
+
+[[plugin.deps]]
+use  = "TD-Sky/sudo"
+rev  = "af70636"
+hash = "a94dcbe9266512806c677138e8591ddb"
+
+[[flavor.deps]]
+use  = "BennyOe/tokyo-night"
+rev  = "695dac6"
+hash = "a8f426ea0d9cb843b081d62ab01364c8"
