@@ -1,25 +1,16 @@
 #!/usr/bin/env zsh
 fm() {
-    local output_file
-    output_file="$(mktemp)"
+    local cwd_file
+    cwd_file="$(mktemp -t "yazi-cwd.XXXXXX")"
 
-    local exit_code
-    env joshuto --output-file "$output_file" $@
-    exit_code=$?
+    env yazi --cwd-file "$cwd_file" $@
 
-    case "$exit_code" in
-        # regular exit
-        0) ;;
-        # output contains current directory
-        101)
-            cd "$(cat "$output_file")"
-            ;;
-        # output selected files
-        102) ;;
-        *)
-            echo "Exit code: $exit_code"
-            ;;
-    esac
+    local cwd
+    if cwd="$(command cat -- "$cwd_file")" && [ -n "$cwd" ] && [ "$cwd" != "$PWD" ]; then
+        builtin cd -- "$cwd"
+    fi
+
+    rm -f -- "$cwd_file"
 }
 
 least() {

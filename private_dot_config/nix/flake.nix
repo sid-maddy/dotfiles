@@ -58,6 +58,8 @@
           graphviz
           less
           libqalculate
+          poppler
+          poppler_data
           watchexec
 
           ## Git
@@ -98,6 +100,12 @@
           ## Kubernetes
           k9s
           kubeshark
+
+          ## Archivers
+          _7zz
+
+          ## Media players
+          mpv
         ];
 
         # Enable alternative shell support in nix-darwin.
