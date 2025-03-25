@@ -392,6 +392,25 @@ window-width = 9999
 # default.
 copy-on-select = clipboard
 
+# Shell integration features to enable. These require our shell integration
+# to be loaded, either automatically via shell-integration or manually.
+#
+# The format of this is a list of features to enable separated by commas. If
+# you prefix a feature with `no-` then it is disabled. If you omit a feature,
+# its default value is used, so you must explicitly disable features you don't
+# want. You can also use `true` or `false` to turn all features on or off.
+#
+# Available features:
+#
+#   * `cursor` - Set the cursor to a blinking bar at the prompt.
+#
+#   * `sudo` - Set sudo wrapper to preserve terminfo.
+#
+#   * `title` - Set the window title via shell integration.
+#
+# Example: `cursor`, `no-cursor`, `sudo`, `no-sudo`, `title`, `no-title`
+shell-integration-features = no-cursor,sudo,title
+
 # If `true`, the bold text will use the bright color palette.
 bold-is-bright = true
 

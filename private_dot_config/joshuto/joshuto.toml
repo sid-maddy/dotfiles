@@ -1,7 +1,0 @@
-use_trash = false
-xdg_open  = true
-
-[display]
-automatically_count_files = true
-collapse_preview          = false
-show_borders              = false
