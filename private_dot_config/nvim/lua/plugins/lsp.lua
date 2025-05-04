@@ -1,6 +1,6 @@
 return {
   {
-    'williamboman/mason.nvim',
+    'mason-org/mason.nvim',
     opts = function(_, opts)
       vim.list_extend(opts.ensure_installed, {
         'ast-grep',
@@ -41,8 +41,6 @@ return {
         'prosemd-lsp',
         'protols',
         'rust-analyzer',
-        'spectral-language-server',
-        'sqlls',
         'stylelint-lsp',
         'systemd-language-server',
         'templ',
