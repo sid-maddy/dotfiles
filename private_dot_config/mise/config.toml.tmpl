@@ -1,19 +1,19 @@
 [settings]
-asdf_compat          = false
-experimental         = true
-trusted_config_paths = ['~/.config/mise']
+auto_install           = false
+exec_auto_install      = false
+experimental           = true
+not_found_auto_install = false
+task_run_auto_install  = false
+trusted_config_paths   = ['~/.config/mise']
 
-go_set_goroot = true
+  [settings.npm]
+  bun = true
 
   [settings.pipx]
   uvx = true
 
-  [settings.python]
-  compile = true
-
-[env]
-PYTHON_CFLAGS         = '-march=native -mtune=native'
-PYTHON_CONFIGURE_OPTS = '--enable-optimizations --with-lto'
+  # [settings.python]
+  # uv_venv_auto = true
 
 [tools]
 bun     = 'latest'
@@ -21,7 +21,7 @@ deno    = 'latest'
 elixir  = 'latest'
 erlang  = 'latest'
 go      = 'latest'
-kubectl = ['latest', 'sub-0.1:latest', 'sub-0.2:latest', 'sub-0.3:latest', '1.28']
+kubectl = ['latest', 'sub-0.1:latest', 'sub-0.2:latest', 'sub-0.3:latest']
 nodejs  = ['latest', 'lts', '18']
 python  = ['latest', 'sub-0.1:latest', 'sub-0.2:latest', 'sub-0.3:latest', 'sub-0.4:latest']
 ruby    = 'latest'
@@ -30,7 +30,6 @@ stylua  = 'latest'
 uv      = 'latest'
 {{- if .machine.work }}
 java    = ['graalvm-community-21']
-maven   = 'latest'
 scala   = 'latest'
 {{- end }}
 
@@ -50,6 +49,7 @@ rebar = 'latest'
 'go:github.com/grafana/dashboard-linter'                    = 'latest'
 'go:github.com/grafana/jsonnet-language-server'             = 'latest'
 'go:github.com/jsonnet-bundler/jsonnet-bundler/cmd/jb'      = 'latest'
+'go:github.com/mark3labs/mcphost'                           = 'latest'
 'go:github.com/nats-io/natscli/nats'                        = 'latest'
 'go:github.com/oligot/go-mod-upgrade'                       = 'latest'
 'go:github.com/spf13/cobra-cli'                             = 'latest'
@@ -75,7 +75,6 @@ rebar = 'latest'
 'cargo:cargo-valgrind' = 'latest'
 
 'cargo:atuin'    = 'latest'
-'cargo:eza'      = 'latest'
 'cargo:lazyjj'   = 'latest'
 'cargo:mdbook'   = 'latest'
 'cargo:yazi-cli' = 'latest'
