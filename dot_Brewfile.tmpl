@@ -66,7 +66,9 @@ brew 'yq'
 {{ end -}}
 
 {{ if .machine.macos -}}
-tap "homebrew/cask-fonts"
+tap 'homebrew/cask-fonts'
+tap 'FelixKratz/formulae'
+tap 'nikitabobko/tap'
 
 brew 'bash'
 brew 'cmake'
@@ -90,6 +92,7 @@ brew 'neovim'
 brew 'pinentry-mac'
 brew 'postgresql@15'
 brew 'rename'
+brew 'FelixKratz/formulae/sketchybar'
 brew 'tcptraceroute'
 brew 'tmux'
 brew 'watch'
@@ -98,12 +101,14 @@ brew 'yara'
 brew 'zellij'
 brew 'zsh'
 
+cask 'nikitabobko/tap/aerospace', args: { no_quarantine: true }
 cask 'alacritty'
 cask 'arc'
 cask 'betterdisplay'
 cask 'discord@canary'
 cask 'eloston-chromium'
 cask 'firefox@nightly'
+cask 'font-sketchybar-app-font'
 cask 'font-victor-mono'
 cask 'font-victor-mono-nerd-font'
 cask 'ghostty'
