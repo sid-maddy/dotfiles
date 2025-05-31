@@ -23,11 +23,9 @@ key      = '{{ .email }}'
 [ui]
 default-command = 'log'
 diff-editor     = ':builtin'
+diff-formatter  = ['difft', '--color=always', '--sort-paths', '$left', '$right']
 merge-editor    = ':builtin'
 pager           = ':builtin'
-
-  [ui.diff]
-  tool = ['difft', '--color=always', '--sort-paths', '$left', '$right']
 
 [merge-tools.vimdiff]
 diff-invocation-mode = 'file-by-file'
