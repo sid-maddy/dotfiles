@@ -1,5 +1,6 @@
 #!/usr/bin/env zsh
 export LESS='-fiFMRS -# 1 --follow-name --no-histdups'
+export SKIM_DEFAULT_OPTIONS='--reverse'
 
 # cURL
 export CURL_CA_BUNDLE="${HOME}/.local/share/ca-bundle.crt"

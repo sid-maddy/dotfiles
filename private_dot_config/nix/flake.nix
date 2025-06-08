@@ -1,10 +1,12 @@
 {
+  # A helpful description of your flake
   description = "System";
 
+  # Flake inputs
   inputs = {
-    determinate.url = "https://flakehub.com/f/DeterminateSystems/determinate/*.tar.gz";
+    flake-schemas.url = "https://flakehub.com/f/DeterminateSystems/flake-schemas/*";
 
-    nixpkgs.url = "https://flakehub.com/f/NixOS/nixpkgs/0.1.0.tar.gz";
+    nixpkgs.url = "https://flakehub.com/f/NixOS/nixpkgs/0.1.*";
 
     nix-darwin = {
       url = "github:LnL7/nix-darwin";
@@ -12,110 +14,110 @@
     };
   };
 
-  outputs = inputs @ {
-    self,
-    determinate,
-    nixpkgs,
-    nix-darwin,
-  }: let
-    system = "aarch64-darwin";
+  # Flake outputs that other flakes can use
+  outputs = { self, flake-schemas, nixpkgs, nix-darwin }:
+    let
+      system = "aarch64-darwin";
 
-    configuration = {pkgs, ...}: {
-      # List packages installed in system profile. To search by name, run:
-      # $ nix-env -qaP | grep wget
-      environment.systemPackages = with pkgs; [
-        # Nix Formatter
-        alejandra
+      configuration = { pkgs, ... }: {
+        # Ensure that `nix-darwin``’s own Nix installation management is disabled.
+        nix.enable = false;
 
-        # Shells
-        fish
-        nushell
-        powershell
+        # Necessary for using flakes on this system.
+        nix.settings = {
+          experimental-features = "nix-command flakes";
+        };
 
-        ## Completer
-        carapace
+        # Set Git commit hash for darwin-version.
+        system.configurationRevision = self.rev or self.dirtyRev or null;
 
-        ## Editors
-        helix
+        # Used for backwards compatibility, please read the changelog before changing.
+        # $ darwin-rebuild changelog
+        system.stateVersion = 6;
 
-        # Tools
-        bat
-        graphviz
-        less
-        libqalculate
-        watchexec
+        # The platform the configuration will be used on.
+        nixpkgs.hostPlatform = "${system}";
 
-        ## Git
-        difftastic
-        gitoxide
-        gitui
-        lazygit
+        # Allow unfree packages.
+        nixpkgs.config.allowUnfree = true;
 
-        ## Text processing
-        miller
-        yq-go
+        # List packages installed in system profile. To search by name, run:
+        # $ nix-env -qaP | grep wget
+        environment.systemPackages = with pkgs; [
+          # Nix Formatter
+          alejandra
 
-        ## Encryption
-        age
-        sops
+          # Shell
+          fish
 
-        ## Process monitoring
-        bottom
-        htop
-        procs
+          ## Completer
+          carapace
 
-        ## Build/task systems
-        earthly
-        just
+          # Tools
+          bat
+          graphviz
+          less
+          libqalculate
+          watchexec
 
-        ## Log processing
-        lnav
+          ## Git
+          difftastic
+          gitoxide
+          gitui
+          lazygit
 
-        ## Networking
-        prettyping
-        ipcalc # Build fails because of transitive dependency: nokogiri
-        ldns # For drill
+          ## Text processing
+          miller
+          yq-go
 
-        ## Containers/images
-        crane
-        dive
-        trivy
+          ## Encryption
+          age
+          sops
 
-        ## Kubernetes
-        k9s
-        kubeshark
-      ];
+          ## Process monitoring
+          bottom
+          htop
+          procs
 
-      # Necessary for using flakes on this system.
-      nix.settings = {
-        experimental-features = "nix-command flakes";
+          ## Build/task systems
+          earthly
+          just
+
+          ## Log processing
+          lnav
+
+          ## Networking
+          prettyping
+          ipcalc
+
+          ## Containers/images
+          crane
+          dive
+          trivy
+
+          ## Kubernetes
+          k9s
+          kubeshark
+        ];
+
+        # Enable alternative shell support in nix-darwin.
+        programs.fish.enable = true;
+        # Create /etc/zshrc that loads the nix-darwin environment.
+        programs.zsh.enable = true;
+      };
+    in {
+      # Schemas tell Nix about the structure of your flake's outputs
+      schemas = flake-schemas.schemas;
+
+      formatter.${system} = nixpkgs.legacyPackages.${system}.alejandra;
+
+      # Build darwin flake using:
+      # $ darwin-rebuild build --flake .#default
+      darwinConfigurations.default = nix-darwin.lib.darwinSystem {
+        modules = [ configuration ];
       };
 
-      # Create /etc/zshrc that loads the nix-darwin environment.
-      programs.zsh.enable = true;
-      # Enable alternative shell support in nix-darwin.
-      programs.fish.enable = true;
-
-      # Set Git commit hash for darwin-version.
-      system.configurationRevision = self.rev or self.dirtyRev or null;
-
-      # Used for backwards compatibility, please read the changelog before changing.
-      # $ darwin-rebuild changelog
-      system.stateVersion = 5;
-
-      # The platform the configuration will be used on.
-      nixpkgs.hostPlatform = "${system}";
+      # Expose the package set, including overlays, for convenience.
+      darwinPackages = self.darwinConfigurations.default.pkgs;
     };
-  in {
-    # Build darwin flake using:
-    # $ darwin-rebuild build --flake .#default
-    darwinConfigurations.default = nix-darwin.lib.darwinSystem {
-      modules = [determinate.darwinModules.default configuration];
-    };
-
-    # Expose the package set, including overlays, for convenience.
-    darwinPackages = self.darwinConfigurations.default.pkgs;
-
-    formatter.${system} = nixpkgs.legacyPackages.${system}.alejandra;
-  };
 }
