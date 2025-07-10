@@ -1,10 +1,11 @@
 [settings]
-auto_install           = false
-exec_auto_install      = false
-experimental           = true
-not_found_auto_install = false
-task_run_auto_install  = false
-trusted_config_paths   = ['~/.config/mise']
+auto_install                        = false
+exec_auto_install                   = false
+experimental                        = true
+idiomatic_version_file_enable_tools = ['rust']
+not_found_auto_install              = false
+task_run_auto_install               = false
+trusted_config_paths                = ['~/.config/mise']
 
   [settings.npm]
   bun = true
@@ -40,6 +41,7 @@ rebar = 'latest'
 'go:github.com/ankitpokhrel/jira-cli/cmd/jira'              = 'latest'
 'go:github.com/charmbracelet/glow'                          = 'latest'
 'go:github.com/charmbracelet/mods'                          = 'latest'
+'go:github.com/go-delve/delve/cmd/dlv'                      = 'latest'
 'go:github.com/golangci/golangci-lint/v2/cmd/golangci-lint' = 'latest'
 'go:github.com/google/go-jsonnet/cmd/jsonnet'               = 'latest'
 'go:github.com/google/go-jsonnet/cmd/jsonnet-deps'          = 'latest'
@@ -61,8 +63,11 @@ rebar = 'latest'
 'go:sigs.k8s.io/kustomize/kustomize/v5'                     = 'latest'
 
 # Node.js
+'npm:@anthropic-ai/claude-code'       = 'latest'
+'npm:@apideck/postman-to-k6'          = 'latest'
 'npm:@modelcontextprotocol/inspector' = 'latest'
 'npm:@openai/codex'                   = 'latest'
+'npm:@google/gemini-cli'              = 'latest'
 
 # Python
 'pipx:aider-chat'   = {version = 'latest', uvx_args = '--python 3.12'}

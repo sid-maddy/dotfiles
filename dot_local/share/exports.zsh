@@ -2,6 +2,10 @@
 export LESS='-fiFMRS -# 1 --follow-name --no-histdups'
 export SKIM_DEFAULT_OPTIONS='--reverse'
 
+# Claude Code
+export CLAUDE_CODE_DISABLE_NONESSENTIAL_TRAFFIC=1
+export DISABLE_NON_ESSENTIAL_MODEL_CALLS=1
+
 # cURL
 export CURL_CA_BUNDLE="${HOME}/.local/share/ca-bundle.crt"
 

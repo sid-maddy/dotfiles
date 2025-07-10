@@ -69,7 +69,7 @@ inner.horizontal = 8
 inner.vertical   = 8
 outer.left       = 8
 outer.bottom     = 8
-outer.top        = 8
+outer.top        = [{monitor."built-in" = 8}, 40]
 outer.right      = 8
 
 # 'main' binding mode declaration
@@ -106,10 +106,10 @@ outer.right      = 8
 # '''
 
 # i3 wraps focus by default
-cmd-ctrl-j         = 'focus --boundaries all-monitors-outer-frame --boundaries-action wrap-around-all-monitors left'
-cmd-ctrl-k         = 'focus --boundaries all-monitors-outer-frame --boundaries-action wrap-around-all-monitors down'
-cmd-ctrl-l         = 'focus --boundaries all-monitors-outer-frame --boundaries-action wrap-around-all-monitors up'
-cmd-ctrl-semicolon = 'focus --boundaries all-monitors-outer-frame --boundaries-action wrap-around-all-monitors right'
+cmd-ctrl-j         = 'exec-and-forget aerospace focus --boundaries-action fail left || aerospace workspace --wrap-around prev'
+cmd-ctrl-k         = 'focus --boundaries-action fail down'
+cmd-ctrl-l         = 'focus --boundaries-action fail up'
+cmd-ctrl-semicolon = 'exec-and-forget aerospace focus --boundaries-action fail right || aerospace workspace --wrap-around next'
 
 cmd-ctrl-shift-j         = 'move left'
 cmd-ctrl-shift-k         = 'move down'
@@ -167,6 +167,10 @@ if.app-id = 'com.mitchellh.ghostty'
 run       = 'move-node-to-workspace 1'
 
 [[on-window-detected]]
+if.app-id = 'dev.zed.Zed'
+run       = 'move-node-to-workspace 1'
+
+[[on-window-detected]]
 if.app-id = 'app.zen-browser.zen'
 run       = 'move-node-to-workspace 2'
 
@@ -197,6 +201,10 @@ run       = 'move-node-to-workspace 4'
 [[on-window-detected]]
 if.app-id = 'org.mozilla.nightly'
 run       = 'move-node-to-workspace 4'
+
+[[on-window-detected]]
+if.app-id = 'com.nomachine.nxdock'
+run       = 'move-node-to-workspace 10'
 
 [workspace-to-monitor-force-assignment]
 1 = 'main'      # Terminal

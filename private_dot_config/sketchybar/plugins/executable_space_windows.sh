@@ -2,11 +2,11 @@
 
 # Interim solution. See branch 'Space'.
 
-for sid in $(aerospace list-workspaces --monitor 1 --empty); do
+for sid in $(aerospace list-workspaces --monitor all --empty); do
 	sketchybar --set space."$sid" label=" " drawing=off
 done
 
-for sid in $(aerospace list-workspaces --monitor 1 --empty no); do
+for sid in $(aerospace list-workspaces --monitor all --empty no); do
 	apps=$(aerospace list-windows --workspace "$sid" | awk -F'|' '{gsub(/^ *| *$/, "", $2); print $2}')
 	sketchybar --set space."$sid" drawing=on
 

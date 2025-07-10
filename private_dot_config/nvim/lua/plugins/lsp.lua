@@ -25,7 +25,6 @@ return {
         'gitlab-ci-ls',
         'golangci-lint-langserver',
         'graphql-language-service-cli',
-        'groovy-language-server',
         'harper-ls',
         'html-lsp',
         'htmx-lsp',

@@ -25,7 +25,7 @@ clickhouse-client() {
         --entrypoint clickhouse-client \
         --env TERM \
         --volume "${HOME}/.clickhouse-client-history":/root/.clickhouse-client-history \
-        clickhouse/clickhouse-server:23.8 --host host.docker.internal "$@"
+        clickhouse/clickhouse-server:24.3 --host host.docker.internal "$@"
 }
 
 ado_repos() {

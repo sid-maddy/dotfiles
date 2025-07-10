@@ -11,9 +11,9 @@ fsmonitor = 'watchman'
   register-snapshot-trigger = true
 
 [git]
-auto-local-bookmark  = false
-private-commits      = 'description(glob:"stash:*") | description(glob:"wip:*")'
-push-bookmark-prefix = 'sid/push-'
+auto-local-bookmark         = false
+private-commits             = 'description(glob:"stash:*") | description(glob:"wip:*")'
+templates.git_push_bookmark = '"sid/push-" ++ change_id.short()'
 
 [signing]
 backend  = 'gpg'
