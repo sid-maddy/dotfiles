@@ -1,11 +1,11 @@
 [[plugin.deps]]
 use  = "yazi-rs/plugins:chmod"
-rev  = "de53d90"
+rev  = "d7588f6"
 hash = "1adc12c2b2b025411ab61eb8f0879574"
 
 [[plugin.deps]]
 use  = "yazi-rs/plugins:git"
-rev  = "de53d90"
+rev  = "d7588f6"
 hash = "63b6c222bf2103b3023389dde5e2ecfe"
 
 [[plugin.deps]]

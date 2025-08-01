@@ -65,12 +65,12 @@ preset = 'qwerty'
 #                 See:
 #                 https://nikitabobko.github.io/AeroSpace/guide#assign-workspaces-to-monitors
 [gaps]
-inner.horizontal = 8
-inner.vertical   = 8
-outer.left       = 8
-outer.bottom     = 8
-outer.top        = [{monitor."built-in" = 8}, 40]
-outer.right      = 8
+inner.horizontal = 1
+inner.vertical   = 1
+outer.left       = 0
+outer.bottom     = 0
+outer.top        = [{monitor."built-in" = 5}, 38]
+outer.right      = 0
 
 # 'main' binding mode declaration
 # See: https://nikitabobko.github.io/AeroSpace/guide#binding-modes
@@ -162,30 +162,42 @@ j     = 'resize height +50'
 k     = 'resize height -50'
 l     = 'resize width +50'
 
+# Ghostty
 [[on-window-detected]]
 if.app-id = 'com.mitchellh.ghostty'
 run       = 'move-node-to-workspace 1'
 
+# Cursor
+[[on-window-detected]]
+if.app-id = 'com.todesktop.230313mzl4w4u92'
+run       = 'move-node-to-workspace 1'
+
+# Zed
 [[on-window-detected]]
 if.app-id = 'dev.zed.Zed'
 run       = 'move-node-to-workspace 1'
 
+# Zen
 [[on-window-detected]]
 if.app-id = 'app.zen-browser.zen'
 run       = 'move-node-to-workspace 2'
 
+# Notion
 [[on-window-detected]]
 if.app-id = 'notion.id'
 run       = 'move-node-to-workspace 3'
 
+# Notion Calendar
 [[on-window-detected]]
 if.app-id = 'com.cron.electron'
 run       = 'move-node-to-workspace 3'
 
+# Slack
 [[on-window-detected]]
 if.app-id = 'com.tinyspeck.slackmacgap'
 run       = 'move-node-to-workspace 3'
 
+# Thunderbird
 [[on-window-detected]]
 if.app-id = 'org.mozilla.thunderbird'
 run       = 'move-node-to-workspace 3'
@@ -194,6 +206,7 @@ run       = 'move-node-to-workspace 3'
 if.app-id = 'org.mozilla.thunderbird-daily'
 run       = 'move-node-to-workspace 3'
 
+# Firefox
 [[on-window-detected]]
 if.app-id = 'org.mozilla.firefox'
 run       = 'move-node-to-workspace 4'
@@ -202,12 +215,23 @@ run       = 'move-node-to-workspace 4'
 if.app-id = 'org.mozilla.nightly'
 run       = 'move-node-to-workspace 4'
 
+# Discord
+[[on-window-detected]]
+if.app-id = 'com.hnc.DiscordCanary'
+run       = 'move-node-to-workspace 5'
+
+[[on-window-detected]]
+if.app-id = 'com.hnc.Discord'
+run       = 'move-node-to-workspace 5'
+
+# NoMachine
 [[on-window-detected]]
 if.app-id = 'com.nomachine.nxdock'
 run       = 'move-node-to-workspace 10'
 
 [workspace-to-monitor-force-assignment]
-1 = 'main'      # Terminal
+1 = 'main'      # Terminal & Code
 2 = 'main'      # Main browser
-3 = 'main'      # Communication
+3 = 'main'      # Main comms.
 4 = 'secondary' # Secondary browser
+5 = 'secondary' # Secondary comms.
