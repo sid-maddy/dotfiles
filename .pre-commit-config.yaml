@@ -46,7 +46,7 @@ repos:
       - id: ripsecrets
 
   - repo: https://github.com/crate-ci/typos
-    rev: 3d97dc5b9833a60a62e70d5b56af2cc7ddd522f6  # frozen: v1
+    rev: 229c2573318986f3b0f933e761508d23a13540d5  # frozen: v1
     hooks:
       - id: typos
         args: []
