@@ -4,10 +4,10 @@
 email = '{{ .email }}'
 name  = 'Siddhesh Mhadnak'
 
-[core]
-fsmonitor = 'watchman'
+[fsmonitor]
+backend = 'watchman'
 
-  [core.watchman]
+  [fsmonitor.watchman]
   register-snapshot-trigger = true
 
 [git]

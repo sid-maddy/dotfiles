@@ -5,6 +5,7 @@ return {
       vim.list_extend(opts.ensure_installed, {
         'ast-grep',
         'azure-pipelines-language-server',
+        'basedpyright',
         'biome',
         'buf',
         'css-lsp',

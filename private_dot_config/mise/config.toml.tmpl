@@ -56,11 +56,7 @@ rebar = 'latest'
 'go:github.com/oligot/go-mod-upgrade'                       = 'latest'
 'go:github.com/spf13/cobra-cli'                             = 'latest'
 'go:go.k6.io/xk6/cmd/xk6'                                   = 'latest'
-'go:sigs.k8s.io/controller-runtime/tools/setup-envtest'     = 'release-0.20'
-'go:sigs.k8s.io/controller-tools/cmd/controller-gen'        = 'latest'
-'go:sigs.k8s.io/kubebuilder/v4'                             = 'latest'
 'go:sigs.k8s.io/kubectl-validate'                           = 'latest'
-'go:sigs.k8s.io/kustomize/kustomize/v5'                     = 'latest'
 
 # Node.js
 'npm:@anthropic-ai/claude-code'       = 'latest'
@@ -68,17 +64,16 @@ rebar = 'latest'
 'npm:@modelcontextprotocol/inspector' = 'latest'
 'npm:@openai/codex'                   = 'latest'
 'npm:@google/gemini-cli'              = 'latest'
+'npm:ts-json-schema-generator'        = 'latest'
 
 # Python
-'pipx:aider-chat'   = {version = 'latest', uvx_args = '--python 3.12'}
 'pipx:memray'       = 'latest'
 'pipx:mycli'        = 'latest'
-'pipx:mypy'         = 'latest'
 'pipx:pdm'          = 'latest'
 'pipx:pgcli'        = {version = 'latest', uvx_args = '--with psycopg[binary]'}
 'pipx:pip-tools'    = 'latest'
 'pipx:poetry'       = {version = 'latest', uvx_args = '--with poetry-plugin-export'}
-'pipx:pre-commit'   = 'latest'
+'pipx:pre-commit'   = {version = 'latest', uvx_args = '--with pre-commit-uv'}
 'pipx:pyupgrade'    = 'latest'
 'pipx:virtualenv'   = 'latest'
 
@@ -90,6 +85,5 @@ rebar = 'latest'
 
 'cargo:atuin'    = 'latest'
 'cargo:lazyjj'   = 'latest'
-'cargo:mdbook'   = 'latest'
 'cargo:yazi-cli' = 'latest'
 'cargo:yazi-fm'  = 'latest'
