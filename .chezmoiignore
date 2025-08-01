@@ -10,5 +10,6 @@ README.md
 install.zsh
 
 {{ if not .machine.macos -}}
+.config/aerospace/
 .config/karabiner/
 {{ end -}}
