@@ -3,4 +3,4 @@ set -e
 # set -x
 
 # ~/.Brewfile hash: {{ include "dot_Brewfile.tmpl" | sha256sum }}
-brew bundle -v --global
+brew bundle -v --global || exit 0

@@ -1,7 +1,10 @@
 #!/usr/bin/env bash
 
 # A simple sketchybar config for aerospace users.
+HELPER_DIR="$CONFIG_DIR/helpers"
 PLUGIN_DIR="$CONFIG_DIR/plugins"
+# shellcheck source=./helpers/executable_icon_map.sh
+source "$HELPER_DIR/icon_map.sh"
 # shellcheck source=./plugins/executable_colors.sh
 source "$PLUGIN_DIR/colors.sh"
 
@@ -12,7 +15,15 @@ source "$PLUGIN_DIR/colors.sh"
 # If you are looking for other colors, see the color picker:
 # https://felixkratz.github.io/SketchyBar/config/tricks#color-picker
 
-sketchybar --bar position=top height=37 color="$TRANSPARENT"
+bar=(
+	blur_radius=20
+	color="$TRANSPARENT"
+	font_smoothing=on
+
+	height=38
+	position=top
+)
+sketchybar --bar "${bar[@]}"
 
 ##### Changing Defaults #####
 # We now change some default values, which are applied to all further items.
@@ -22,42 +33,34 @@ sketchybar --bar position=top height=37 color="$TRANSPARENT"
 default=(
 	padding_left=5
 	padding_right=5
-	icon.font="VictorMono Nerd Font:Bold:15.0"
-	label.font="VictorMono Nerd Font:Semibold:14.0"
+
 	icon.color="$TEXT_WHITE"
+	icon.font="VictorMono Nerd Font:Semibold:14.0"
+	icon.padding_right=5
+
 	label.color="$TEXT_WHITE"
-	icon.padding_left=4
-	icon.padding_right=4
-	label.padding_left=4
-	label.padding_right=4
+	label.font="VictorMono Nerd Font:Semibold:14.0"
+
 	updates=on
 )
 sketchybar --default "${default[@]}"
-
-sketchybar --add item spacePaddingLeft left \
-	--set spacePaddingLeft padding_left=-18
 
 ##### Adding AeroSpace Workspace Indicators #####
 sketchybar --add event aerospace_workspace_change
 
 for sid in $(aerospace list-workspaces --all); do
 	space=(
-		background.corner_radius=5
-		background.drawing=on
-		background.height=23
-		background.padding_left=5
-		background.padding_right=5
 		drawing=off
-		icon="$sid"
-		icon.padding_left=10
-		icon.shadow.drawing=off
-		label.font="sketchybar-app-font:Regular:14.0"
-		label.padding_left=0
-		label.padding_right=20
-		label.shadow.drawing=off
-		label.y_offset=-1
+
+		background.corner_radius=5
+		background.height=24
+
+		icon.font="sketchybar-app-font:Regular:14.0"
+		icon.padding_right=15
+		icon.y_offset=-1
+
 		click_script="aerospace workspace $sid"
-		script="$CONFIG_DIR/plugins/aerospace.sh $sid"
+		script="$PLUGIN_DIR/aerospace.sh $sid"
 	)
 	sketchybar --add item space."$sid" left \
 		--set space."$sid" "${space[@]}" \
@@ -65,31 +68,33 @@ for sid in $(aerospace list-workspaces --all); do
 done
 
 # Load icons on startup
-for sid in $(aerospace list-workspaces --monitor all --empty no); do
+for sid in $(aerospace list-workspaces --monitor=all --empty=no); do
 	apps=$(aerospace list-windows --workspace "$sid" | awk -F'|' '{gsub(/^ *| *$/, "", $2); print $2}')
 
 	sketchybar --set space."$sid" drawing=on
 
-	icon_strip=" "
+	icon_strip=""
 	if [ "${apps}" != "" ]; then
 		while read -r app; do
-			icon_strip+=" $("$CONFIG_DIR/plugins/icon_map_fn.sh" "$app")"
+			__icon_map "$app"
+			icon_strip+=" $icon_result"
 		done <<<"${apps}"
-	else
-		icon_strip=""
 	fi
-	sketchybar --set space."$sid" label="$icon_strip"
+
+	sketchybar --set space."$sid" icon="$icon_strip"
 done
 
-sketchybar --add item spacePaddingRight left \
-	--set spacePaddingRight padding_left=-18
+front_app=(
+	# shellcheck source=./plugins/executable_front_app.sh
+	script="$PLUGIN_DIR/front_app.sh"
+)
+sketchybar --add item front_app left \
+	--set front_app "${front_app[@]}" \
+	--subscribe front_app front_app_switched
 
 space_separator=(
-	background.drawing=off
-	icon.padding_left=20
-	icon.padding_right=0
-	label.drawing=off
-	label.padding_left=0
+	drawing=off
+	# shellcheck source=./plugins/executable_space_windows.sh
 	script="$PLUGIN_DIR/space_windows.sh"
 )
 sketchybar --add item space_separator q \
@@ -108,7 +113,7 @@ sketchybar --add item space_separator q \
 # https://felixkratz.github.io/SketchyBar/config/events
 
 sketchybar --add item clock right \
-	--set clock update_freq=10 icon= script="$PLUGIN_DIR/clock.sh" \
+	--set clock update_freq=10 script="$PLUGIN_DIR/clock.sh" \
 	\
 	--add item battery right \
 	--set battery update_freq=120 script="$PLUGIN_DIR/battery.sh" \
