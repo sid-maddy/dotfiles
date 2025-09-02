@@ -122,22 +122,30 @@ plugins=(
   # Needs to be at the top
   mise
 
+  command-not-found
   docker
   docker-compose
+  gcloud
   git
   jj
   kubectl
+  pre-commit
+  starship
+  sudo
   zoxide
   zsh-autosuggestions
   zsh-syntax-highlighting
 
   {{ if .machine.macos -}}
+  gnu-utils
   macos
   {{ else -}}
   systemd
   ubuntu
   {{- end }}
 )
+zstyle ':completion:*:*:docker:*' option-stacking yes
+zstyle ':completion:*:*:docker-*:*' option-stacking yes
 
 # Path to the completion cache file
 ZSH_COMPDUMP="${ZSH_CACHE_DIR:-$HOME/.cache}/.zcompdump"
@@ -149,5 +157,4 @@ source "$HOME/.local/share/aliases.zsh"
 source "$HOME/.local/share/exports.zsh"
 source "$HOME/.local/share/functions.zsh"
 
-[ x"$(command -v starship)" != x"" ] && eval "$(starship init zsh)"
 [ x"$(command -v atuin)" != x"" ] && eval "$(atuin init zsh --disable-up-arrow)"

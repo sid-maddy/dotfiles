@@ -1,6 +1,7 @@
 #!/usr/bin/env bash
 
-# Interim solution. See branch 'Space'.
+# shellcheck source=../helpers/executable_icon_map.sh
+source "$CONFIG_DIR/helpers/icon_map.sh"
 
 for sid in $(aerospace list-workspaces --monitor all --empty); do
 	sketchybar --set space."$sid" label=" " drawing=off
@@ -13,7 +14,8 @@ for sid in $(aerospace list-workspaces --monitor all --empty no); do
 	icon_strip=" "
 	if [ "${apps}" != "" ]; then
 		while read -r app; do
-			icon_strip+=" $("$CONFIG_DIR/plugins/icon_map_fn.sh" "$app")"
+			__icon_map "$app"
+			icon_strip+=" $icon_result"
 		done <<<"${apps}"
 	else
 		icon_strip=""
@@ -21,6 +23,6 @@ for sid in $(aerospace list-workspaces --monitor all --empty no); do
 	sketchybar --set space."$sid" label="$icon_strip"
 done
 
-if [ "$SENDER" == "aerospace_workspace_change" ]; then
+if [ "$SENDER" == "aerospace_workspace_change" ] || [ "$SENDER" == "forced" ]; then
 	sketchybar --set space."$FOCUSED_WORKSPACE" drawing=on
 fi

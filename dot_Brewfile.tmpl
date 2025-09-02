@@ -1,6 +1,4 @@
 # vim: ft=ruby.chezmoitmpl
-tap 'homebrew/bundle'
-
 tap 'cue-lang/tap'
 tap 'hashicorp/tap'
 tap 'stefanprodan/tap'
@@ -19,7 +17,6 @@ brew 'grizzly'
 brew 'gum'
 brew 'hadolint'
 brew 'helm'
-brew 'helmfile'
 brew 'jj'
 brew 'jq'
 brew 'kind'
@@ -66,7 +63,6 @@ brew 'yq'
 {{ end -}}
 
 {{ if .machine.macos -}}
-tap 'homebrew/cask-fonts'
 tap 'FelixKratz/formulae'
 tap 'nikitabobko/tap'
 
@@ -116,7 +112,6 @@ cask 'ghostty'
 cask 'jetbrains-toolbox'
 cask 'karabiner-elements'
 cask 'languagetool-desktop'
-cask 'maccy'
 cask 'middleclick', args: { no_quarantine: true }
 cask 'nomachine'
 cask 'notion'
