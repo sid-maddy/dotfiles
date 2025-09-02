@@ -1,0 +1,263 @@
+[[tools.bun]]
+version = "1.2.23"
+backend = "core:bun"
+
+[[tools."cargo:atuin"]]
+version = "18.8.0"
+backend = "cargo:atuin"
+
+[[tools."cargo:cargo-edit"]]
+version = "0.13.7"
+backend = "cargo:cargo-edit"
+
+[[tools."cargo:cargo-generate"]]
+version = "0.23.5"
+backend = "cargo:cargo-generate"
+
+[[tools."cargo:cargo-outdated"]]
+version = "0.17.0"
+backend = "cargo:cargo-outdated"
+
+[[tools."cargo:cargo-valgrind"]]
+version = "2.3.2"
+backend = "cargo:cargo-valgrind"
+
+[[tools."cargo:lazyjj"]]
+version = "0.5.0"
+backend = "cargo:lazyjj"
+
+[[tools."cargo:yazi-cli"]]
+version = "25.5.31"
+backend = "cargo:yazi-cli"
+
+[[tools."cargo:yazi-fm"]]
+version = "25.5.31"
+backend = "cargo:yazi-fm"
+
+[[tools.deno]]
+version = "2.5.2"
+backend = "core:deno"
+
+[[tools.elixir]]
+version = "1.18.4-otp-28"
+backend = "core:elixir"
+
+[[tools.erlang]]
+version = "28.1"
+backend = "core:erlang"
+
+[[tools.go]]
+version = "1.25.1"
+backend = "core:go"
+
+[[tools."go:github.com/ankitpokhrel/jira-cli/cmd/jira"]]
+version = "1.7.0"
+backend = "go:github.com/ankitpokhrel/jira-cli/cmd/jira"
+
+[[tools."go:github.com/charmbracelet/glow"]]
+version = "1.5.1"
+backend = "go:github.com/charmbracelet/glow"
+
+[[tools."go:github.com/charmbracelet/mods"]]
+version = "1.8.1"
+backend = "go:github.com/charmbracelet/mods"
+
+[[tools."go:github.com/go-delve/delve/cmd/dlv"]]
+version = "1.25.2"
+backend = "go:github.com/go-delve/delve/cmd/dlv"
+
+[[tools."go:github.com/golangci/golangci-lint/v2/cmd/golangci-lint"]]
+version = "2.5.0"
+backend = "go:github.com/golangci/golangci-lint/v2/cmd/golangci-lint"
+
+[[tools."go:github.com/google/go-jsonnet/cmd/jsonnet"]]
+version = "0.21.0"
+backend = "go:github.com/google/go-jsonnet/cmd/jsonnet"
+
+[[tools."go:github.com/google/go-jsonnet/cmd/jsonnet-deps"]]
+version = "0.21.0"
+backend = "go:github.com/google/go-jsonnet/cmd/jsonnet-deps"
+
+[[tools."go:github.com/google/go-jsonnet/cmd/jsonnet-lint"]]
+version = "0.21.0"
+backend = "go:github.com/google/go-jsonnet/cmd/jsonnet-lint"
+
+[[tools."go:github.com/google/go-jsonnet/cmd/jsonnetfmt"]]
+version = "0.21.0"
+backend = "go:github.com/google/go-jsonnet/cmd/jsonnetfmt"
+
+[[tools."go:github.com/goreleaser/goreleaser"]]
+version = "1.26.2"
+backend = "go:github.com/goreleaser/goreleaser"
+
+[[tools."go:github.com/grafana/dashboard-linter"]]
+version = "latest"
+backend = "go:github.com/grafana/dashboard-linter"
+
+[[tools."go:github.com/grafana/jsonnet-language-server"]]
+version = "0.16.0"
+backend = "go:github.com/grafana/jsonnet-language-server"
+
+[[tools."go:github.com/jsonnet-bundler/jsonnet-bundler/cmd/jb"]]
+version = "0.6.0"
+backend = "go:github.com/jsonnet-bundler/jsonnet-bundler/cmd/jb"
+
+[[tools."go:github.com/mark3labs/mcphost"]]
+version = "0.31.0"
+backend = "go:github.com/mark3labs/mcphost"
+
+[[tools."go:github.com/nats-io/natscli/nats"]]
+version = "0.3.0"
+backend = "go:github.com/nats-io/natscli/nats"
+
+[[tools."go:github.com/oligot/go-mod-upgrade"]]
+version = "0.12.0"
+backend = "go:github.com/oligot/go-mod-upgrade"
+
+[[tools."go:github.com/spf13/cobra-cli"]]
+version = "1.3.0"
+backend = "go:github.com/spf13/cobra-cli"
+
+[[tools."go:go.k6.io/xk6/cmd/xk6"]]
+version = "1.1.5"
+backend = "go:go.k6.io/xk6/cmd/xk6"
+
+[[tools."go:sigs.k8s.io/kubectl-validate"]]
+version = "0.0.4"
+backend = "go:sigs.k8s.io/kubectl-validate"
+
+[[tools.java]]
+version = "graalvm-community-21.0.2"
+backend = "core:java"
+
+[[tools.kubectl]]
+version = "1.34.1"
+backend = "aqua:kubernetes/kubectl"
+
+[[tools.kubectl]]
+version = "1.33.5"
+backend = "aqua:kubernetes/kubectl"
+
+[[tools.kubectl]]
+version = "1.32.9"
+backend = "aqua:kubernetes/kubectl"
+
+[[tools.kubectl]]
+version = "1.31.13"
+backend = "aqua:kubernetes/kubectl"
+
+[[tools.node]]
+version = "24.9.0"
+backend = "core:node"
+
+[[tools.node]]
+version = "22.20.0"
+backend = "core:node"
+
+[[tools.node]]
+version = "18.20.8"
+backend = "core:node"
+
+[[tools."npm:@anthropic-ai/claude-code"]]
+version = "2.0.1"
+backend = "npm:@anthropic-ai/claude-code"
+
+[[tools."npm:@apideck/postman-to-k6"]]
+version = "1.13.0"
+backend = "npm:@apideck/postman-to-k6"
+
+[[tools."npm:@google/gemini-cli"]]
+version = "0.6.1"
+backend = "npm:@google/gemini-cli"
+
+[[tools."npm:@modelcontextprotocol/inspector"]]
+version = "0.16.8"
+backend = "npm:@modelcontextprotocol/inspector"
+
+[[tools."npm:@openai/codex"]]
+version = "0.42.0"
+backend = "npm:@openai/codex"
+
+[[tools."npm:ts-json-schema-generator"]]
+version = "2.4.0"
+backend = "npm:ts-json-schema-generator"
+
+[[tools."pipx:memray"]]
+version = "1.18.0"
+backend = "pipx:memray"
+
+[[tools."pipx:mycli"]]
+version = "1.38.4"
+backend = "pipx:mycli"
+
+[[tools."pipx:pdm"]]
+version = "2.25.9"
+backend = "pipx:pdm"
+
+[[tools."pipx:pgcli"]]
+version = "4.3.0"
+backend = "pipx:pgcli[uvx_args=--with psycopg[binary]]"
+
+[[tools."pipx:pip-tools"]]
+version = "7.5.0"
+backend = "pipx:pip-tools"
+
+[[tools."pipx:poetry"]]
+version = "2.2.1"
+backend = "pipx:poetry[uvx_args=--with poetry-plugin-export]"
+
+[[tools."pipx:pre-commit"]]
+version = "4.3.0"
+backend = "pipx:pre-commit"
+
+[[tools."pipx:pyupgrade"]]
+version = "3.20.0"
+backend = "pipx:pyupgrade"
+
+[[tools."pipx:virtualenv"]]
+version = "20.34.0"
+backend = "pipx:virtualenv"
+
+[[tools.python]]
+version = "3.13.7"
+backend = "core:python"
+
+[[tools.python]]
+version = "3.12.11"
+backend = "core:python"
+
+[[tools.python]]
+version = "3.11.13"
+backend = "core:python"
+
+[[tools.python]]
+version = "3.10.18"
+backend = "core:python"
+
+[[tools.python]]
+version = "3.9.23"
+backend = "core:python"
+
+[[tools.rebar]]
+version = "3.25.1"
+backend = "asdf:rebar"
+
+[[tools.ruby]]
+version = "3.4.6"
+backend = "core:ruby"
+
+[[tools.rust]]
+version = "stable"
+backend = "core:rust"
+
+[[tools.scala]]
+version = "3.7.3"
+backend = "asdf:scala"
+
+[[tools.stylua]]
+version = "2.3.0"
+backend = "aqua:JohnnyMorganz/StyLua"
+
+[[tools.uv]]
+version = "0.8.22"
+backend = "aqua:astral-sh/uv"

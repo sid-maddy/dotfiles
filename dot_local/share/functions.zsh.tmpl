@@ -23,15 +23,32 @@ least() {
 clickhouse-client() {
     docker run -it --rm \
         --entrypoint clickhouse-client \
-        --env TERM \
+        --env TERM=xterm-256color \
         --volume "${HOME}/.clickhouse-client-history":/root/.clickhouse-client-history \
         clickhouse/clickhouse-server:24.3 --host host.docker.internal "$@"
 }
 
-ado_repos() {
+ado-repos() {
     az devops project list --query 'value[].id' \
         | jq -r '.[]' \
         | xargs -rxn1 az repos list --query '[].{name: name, sshUrl: sshUrl, webUrl: webUrl}' -p \
         | jq -r '.[] | "\(.name): \(.webUrl) (remote: \(.sshUrl))"'
+}
+
+ssh-iap() {
+    if [[ $# -lt 2 ]]; then
+      echo >&2 'Usage: ssh-iap <gcp-project-id> <instance-name> [ssh-args]'
+      return
+    fi
+
+    local gcp_project_id
+    gcp_project_id="$1"
+    shift
+
+    local instance_name
+    instance_name="$1"
+    shift
+
+    gcloud compute ssh --tunnel-through-iap --project="${gcp_project_id}" "${instance_name}" -- -oControlMaster=no -oSetEnv=TERM=xterm-256color "$@"
 }
 {{ end -}}

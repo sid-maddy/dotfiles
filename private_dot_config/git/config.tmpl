@@ -27,6 +27,7 @@
 
 [init]
 	defaultBranch = main
+	defaultRefFormat = files  # unset after git 3.0
 
 [merge]
 	tool = nvimdiff
@@ -49,3 +50,8 @@
 [tag]
 	forceSignAnnotated = true
 	gpgSign = true
+
+{{ if .machine.work -}}
+[url "git@ssh.dev.azure.com:v3"]
+	insteadOf = https://dev.azure.com
+{{ end -}}

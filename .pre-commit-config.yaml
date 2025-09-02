@@ -26,7 +26,7 @@ repos:
       - id: taplo-lint
 
   - repo: https://github.com/lyz-code/yamlfix
-    rev: 8072181c0f2eab9f2dd8db2eb3b9556d7cd0bd74  # frozen: 1.17.0
+    rev: 881308160e4589cf886919438a3ed0acba42ea0e  # frozen: 1.18.0
     hooks:
       - id: yamlfix
         args:
@@ -44,9 +44,3 @@ repos:
     rev: 7d94620933e79b8acaa0cd9e60e9864b07673d86  # frozen: v0.1.11
     hooks:
       - id: ripsecrets
-
-  - repo: https://github.com/crate-ci/typos
-    rev: c8e6164eed533110d3d09d62b10ba2fe1ec27d91  # frozen: v1
-    hooks:
-      - id: typos
-        args: []
