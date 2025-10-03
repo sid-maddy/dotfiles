@@ -46,9 +46,6 @@
 # this within config files if you want to clear previously set values in
 # configuration files or on the CLI if you want to clear values set on the
 # CLI.
-#
-# Changing this configuration at runtime will only affect new terminals, i.e.
-# new windows, tabs, etc.
 font-family = VictorMono Nerd Font
 
 # Font size in points. This value can be a non-integer and the nearest integer
@@ -57,15 +54,20 @@ font-family = VictorMono Nerd Font
 #
 # For example, 13.5pt @ 2px/pt = 27px
 #
-# Changing this configuration at runtime will only affect new terminals,
-# i.e. new windows, tabs, etc. Note that you may still not see the change
-# depending on your `window-inherit-font-size` setting. If that setting is
-# true, only the first window will be affected by this change since all
-# subsequent windows will inherit the font size of the previous window.
+# Changing this configuration at runtime will only affect existing
+# terminals that have NOT manually adjusted their font size in some way
+# (e.g. increased or decreased the font size). Terminals that have manually
+# adjusted their font size will retain their manually adjusted size.
+# Otherwise, the font size of existing terminals will be updated on
+# reload.
+#
+# On Linux with GTK, font size is scaled according to both display-wide and
+# text-specific scaling factors, which are often managed by your desktop
+# environment (e.g. the GNOME display scale and large text settings).
 font-size = 14
 
-# Draw fonts with a thicker stroke, if supported. This is only supported
-# currently on macOS.
+# Draw fonts with a thicker stroke, if supported.
+# This is currently only supported on macOS.
 font-thicken = true
 
 # A theme to use. This can be a built-in theme name, a custom theme
@@ -83,15 +85,15 @@ font-thicken = true
 # include path separators unless it is an absolute pathname.
 #
 # The first directory is the `themes` subdirectory of your Ghostty
-# configuration directory. This is `$XDG_CONFIG_DIR/ghostty/themes` or
+# configuration directory. This is `$XDG_CONFIG_HOME/ghostty/themes` or
 # `~/.config/ghostty/themes`.
 #
 # The second directory is the `themes` subdirectory of the Ghostty resources
 # directory. Ghostty ships with a multitude of themes that will be installed
-# into this directory. On macOS, this list is in the `Ghostty.app/Contents/
-# Resources/ghostty/themes` directory. On Linux, this list is in the `share/
-# ghostty/themes` directory (wherever you installed the Ghostty "share"
-# directory.
+# into this directory. On macOS, this list is in the
+# `Ghostty.app/Contents/Resources/ghostty/themes` directory. On Linux, this
+# list is in the `share/ghostty/themes` directory (wherever you installed the
+# Ghostty "share" directory.
 #
 # To see a list of available themes, run `ghostty +list-themes`.
 #
@@ -112,7 +114,7 @@ font-thicken = true
 #
 # To specify a different theme for light and dark mode, use the following
 # syntax: `light:theme-name,dark:theme-name`. For example:
-# `light:rose-pine-dawn,dark:rose-pine`. Whitespace around all values are
+# `light:Rose Pine Dawn,dark:Rose Pine`. Whitespace around all values are
 # trimmed and order of light and dark does not matter. Both light and dark
 # must be specified in this form. In this form, the theme used will be
 # based on the current desktop environment theme.
@@ -121,12 +123,11 @@ font-thicken = true
 # be fixed in a future update:
 #
 #   - macOS: titlebar tabs style is not updated when switching themes.
-#
 theme = ayu
 
 # The minimum contrast ratio between the foreground and background colors.
 # The contrast ratio is a value between 1 and 21. A value of 1 allows for no
-# contrast (i.e. black on black). This value is the contrast ratio as defined
+# contrast (e.g. black on black). This value is the contrast ratio as defined
 # by the [WCAG 2.0 specification](https://www.w3.org/TR/WCAG20/).
 #
 # If you want to avoid invisible text (same color as background), a value of
@@ -150,15 +151,42 @@ mouse-hide-while-typing = true
 # On macOS, background opacity is disabled when the terminal enters native
 # fullscreen. This is because the background becomes gray and it can cause
 # widgets to show through which isn't generally desirable.
+#
+# On macOS, changing this configuration requires restarting Ghostty completely.
 background-opacity = 0.8
 
-# A positive value enables blurring of the background when background-opacity
-# is less than 1. The value is the blur radius to apply. A value of 20
-# is reasonable for a good looking blur. Higher values will cause strange
-# rendering issues as well as performance issues.
+# Whether to blur the background when `background-opacity` is less than 1.
 #
-# This is only supported on macOS.
-background-blur-radius = 20
+# Valid values are:
+#
+#   * a nonnegative integer specifying the *blur intensity*
+#   * `false`, equivalent to a blur intensity of 0
+#   * `true`, equivalent to the default blur intensity of 20, which is
+#     reasonable for a good looking blur. Higher blur intensities may
+#     cause strange rendering and performance issues.
+#
+# Supported on macOS and on some Linux desktop environments, including:
+#
+#   * KDE Plasma (Wayland and X11)
+#
+# Warning: the exact blur intensity is _ignored_ under KDE Plasma, and setting
+# this setting to either `true` or any positive blur intensity value would
+# achieve the same effect. The reason is that KWin, the window compositor
+# powering Plasma, only has one global blur setting and does not allow
+# applications to specify individual blur settings.
+#
+# To configure KWin's global blur setting, open System Settings and go to
+# "Apps & Windows" > "Window Management" > "Desktop Effects" and select the
+# "Blur" plugin. If disabled, enable it by ticking the checkbox to the left.
+# Then click on the "Configure" button and there will be two sliders that
+# allow you to set background blur and noise intensities for all apps,
+# including Ghostty.
+#
+# All other Linux desktop environments are as of now unsupported. Users may
+# need to set environment-specific settings and/or install third-party plugins
+# in order to support background blur, as there isn't a unified interface for
+# doing so.
+background-blur = 20
 
 # The command to run, usually a shell. If this is not an absolute path, it'll
 # be looked up in the `PATH`. If this is not set, a default will be looked up
@@ -169,8 +197,17 @@ background-blur-radius = 20
 #   * `passwd` entry (user information)
 #
 # This can contain additional arguments to run the command with. If additional
-# arguments are provided, the command will be executed using `/bin/sh -c`.
-# Ghostty does not do any shell command parsing.
+# arguments are provided, the command will be executed using `/bin/sh -c`
+# to offload shell argument expansion.
+#
+# To avoid shell expansion altogether, prefix the command with `direct:`, e.g.
+# `direct:nvim foo`. This will avoid the roundtrip to `/bin/sh` but will also
+# not support any shell parsing such as arguments with spaces, filepaths with
+# `~`, globs, etc. (Available since: 1.2.0)
+#
+# You can also explicitly prefix the command with `shell:` to always wrap the
+# command in a shell. This can be used to ensure our heuristics to choose the
+# right mode are not used in case they are wrong. (Available since: 1.2.0)
 #
 # This command will be used for all new terminal surfaces, i.e. new windows,
 # tabs, etc. If you want to run a command only for the first terminal surface
@@ -208,19 +245,48 @@ scrollback-limit = 18446744073709551615
 # the documentation or using the `ghostty +list-actions` command.
 #
 # Trigger: `+`-separated list of keys and modifiers. Example: `ctrl+a`,
-# `ctrl+shift+b`, `up`. Some notes:
+# `ctrl+shift+b`, `up`.
 #
-#   * modifiers cannot repeat, `ctrl+ctrl+a` is invalid.
+# If the key is a single Unicode codepoint, the trigger will match
+# any presses that produce that codepoint. These are impacted by
+# keyboard layouts. For example, `a` will match the `a` key on a
+# QWERTY keyboard, but will match the `q` key on a AZERTY keyboard
+# (assuming US physical layout).
 #
-#   * modifiers and keys can be in any order, `shift+a+ctrl` is *weird*,
-#     but valid.
+# For Unicode codepoints, matching is done by comparing the set of
+# modifiers with the unmodified codepoint. The unmodified codepoint is
+# sometimes called an "unshifted character" in other software, but all
+# modifiers are considered, not only shift. For example, `ctrl+a` will match
+# `a` but not `ctrl+shift+a` (which is `A` on a US keyboard).
 #
-#   * only a single key input is allowed, `ctrl+a+b` is invalid.
+# Further, codepoint matching is case-insensitive and the unmodified
+# codepoint is always case folded for comparison. As a result,
+# `ctrl+A` configured will match when `ctrl+a` is pressed. Note that
+# this means some key combinations are impossible depending on keyboard
+# layout. For example, `ctrl+_` is impossible on a US keyboard because
+# `_` is `shift+-` and `ctrl+shift+-` is not equal to `ctrl+_` (because
+# the modifiers don't match!). More details on impossible key combinations
+# can be found at this excellent source written by Qt developers:
+# https://doc.qt.io/qt-6/qkeysequence.html#keyboard-layout-issues
 #
-#   * the key input can be prefixed with `physical:` to specify a
-#     physical key mapping rather than a logical one. A physical key
-#     mapping responds to the hardware keycode and not the keycode
-#     translated by any system keyboard layouts. Example: "ctrl+physical:a"
+# Physical key codes can be specified by using any of the key codes
+# as specified by the [W3C specification](https://www.w3.org/TR/uievents-code/).
+# For example, `KeyA` will match the physical `a` key on a US standard
+# keyboard regardless of the keyboard layout. These are case-sensitive.
+#
+# For aesthetic reasons, the w3c codes also support snake case. For
+# example, `key_a` is equivalent to `KeyA`. The only exceptions are
+# function keys, e.g. `F1` is `f1` (no underscore). This is a consequence
+# of our internal code using snake case but is purposely supported
+# and tested so it is safe to use. It allows an all-lowercase binding
+# which I find more aesthetically pleasing.
+#
+# Function keys such as `insert`, `up`, `f5`, etc. are also specified
+# using the keys as specified by the previously linked W3C specification.
+#
+# Physical keys always match with a higher priority than Unicode codepoints,
+# so if you specify both `a` and `KeyA`, the physical key will always be used
+# regardless of what order they are configured.
 #
 # Valid modifiers are `shift`, `ctrl` (alias: `control`), `alt` (alias: `opt`,
 # `option`), and `super` (alias: `cmd`, `command`). You may use the modifier
@@ -230,6 +296,15 @@ scrollback-limit = 18446744073709551615
 # Note: The fn or "globe" key on keyboards are not supported as a
 # modifier. This is a limitation of the operating systems and GUI toolkits
 # that Ghostty uses.
+#
+# Some additional notes for triggers:
+#
+#   * modifiers cannot repeat, `ctrl+ctrl+a` is invalid.
+#
+#   * modifiers and keys can be in any order, `shift+a+ctrl` is *weird*,
+#     but valid.
+#
+#   * only a single key input is allowed, `ctrl+a+b` is invalid.
 #
 # You may also specify multiple triggers separated by `>` to require a
 # sequence of triggers to activate the action. For example,
@@ -247,7 +322,7 @@ scrollback-limit = 18446744073709551615
 #   * Ghostty will wait an indefinite amount of time for the next key in
 #     the sequence. There is no way to specify a timeout. The only way to
 #     force the output of a prefix key is to assign another keybind to
-#     specifically output that key (i.e. `ctrl+a>ctrl+a=text:foo`) or
+#     specifically output that key (e.g. `ctrl+a>ctrl+a=text:foo`) or
 #     press an unbound key which will send both keys to the program.
 #
 #   * If a prefix in a sequence is previously bound, the sequence will
@@ -273,15 +348,17 @@ scrollback-limit = 18446744073709551615
 #
 #   * `unbind` - Remove the binding. This makes it so the previous action
 #     is removed, and the key will be sent through to the child command
-#     if it is printable.
+#     if it is printable. Unbind will remove any matching trigger,
+#     including `physical:`-prefixed triggers without specifying the
+#     prefix.
 #
-#   * `csi:text` - Send a CSI sequence. i.e. `csi:A` sends "cursor up".
+#   * `csi:text` - Send a CSI sequence. e.g. `csi:A` sends "cursor up".
 #
-#   * `esc:text` - Send an escape sequence. i.e. `esc:d` deletes to the
+#   * `esc:text` - Send an escape sequence. e.g. `esc:d` deletes to the
 #     end of the word to the right.
 #
 #   * `text:text` - Send a string. Uses Zig string literal syntax.
-#     i.e. `text:\x15` sends Ctrl-U.
+#     e.g. `text:\x15` sends Ctrl-U.
 #
 #   * All other actions can be found in the documentation or by using the
 #     `ghostty +list-actions` command.
@@ -303,29 +380,59 @@ scrollback-limit = 18446744073709551615
 # The keybind trigger can be prefixed with some special values to change
 # the behavior of the keybind. These are:
 #
-#   * `all:` - Make the keybind apply to all terminal surfaces. By default,
-#     keybinds only apply to the focused terminal surface. If this is true,
-#     then the keybind will be sent to all terminal surfaces. This only
-#     applies to actions that are surface-specific. For actions that
-#     are already global (i.e. `quit`), this prefix has no effect.
+#  * `all:`
 #
-#   * `global:` - Make the keybind global. By default, keybinds only work
-#     within Ghostty and under the right conditions (application focused,
-#     sometimes terminal focused, etc.). If you want a keybind to work
-#     globally across your system (i.e. even when Ghostty is not focused),
-#     specify this prefix. This prefix implies `all:`. Note: this does not
-#     work in all environments; see the additional notes below for more
-#     information.
+#    Make the keybind apply to all terminal surfaces. By default,
+#    keybinds only apply to the focused terminal surface. If this is true,
+#    then the keybind will be sent to all terminal surfaces. This only
+#    applies to actions that are surface-specific. For actions that
+#    are already global (e.g. `quit`), this prefix has no effect.
 #
-#   * `unconsumed:` - Do not consume the input. By default, a keybind
-#     will consume the input, meaning that the associated encoding (if
-#     any) will not be sent to the running program in the terminal. If
-#     you wish to send the encoded value to the program, specify the
-#     `unconsumed:` prefix before the entire keybind. For example:
-#     `unconsumed:ctrl+a=reload_config`. `global:` and `all:`-prefixed
-#     keybinds will always consume the input regardless of this setting.
-#     Since they are not associated with a specific terminal surface,
-#     they're never encoded.
+#    Available since: 1.0.0
+#
+#  * `global:`
+#
+#    Make the keybind global. By default, keybinds only work within Ghostty
+#    and under the right conditions (application focused, sometimes terminal
+#    focused, etc.). If you want a keybind to work globally across your system
+#    (e.g. even when Ghostty is not focused), specify this prefix.
+#    This prefix implies `all:`.
+#
+#    Note: this does not work in all environments; see the additional notes
+#    below for more information.
+#
+#    Available since: 1.0.0 on macOS, 1.2.0 on GTK
+#
+#  * `unconsumed:`
+#
+#    Do not consume the input. By default, a keybind will consume the input,
+#    meaning that the associated encoding (if any) will not be sent to the
+#    running program in the terminal. If you wish to send the encoded value
+#    to the program, specify the `unconsumed:` prefix before the entire
+#    keybind. For example: `unconsumed:ctrl+a=reload_config`. `global:` and
+#    `all:`-prefixed keybinds will always consume the input regardless of
+#    this setting. Since they are not associated with a specific terminal
+#    surface, they're never encoded.
+#
+#    Available since: 1.0.0
+#
+#  * `performable:`
+#
+#    Only consume the input if the action is able to be performed.
+#    For example, the `copy_to_clipboard` action will only consume the input
+#    if there is a selection to copy. If there is no selection, Ghostty
+#    behaves as if the keybind was not set. This has no effect with `global:`
+#    or `all:`-prefixed keybinds. For key sequences, this will reset the
+#    sequence if the action is not performable (acting identically to not
+#    having a keybind set at all).
+#
+#    Performable keybinds will not appear as menu shortcuts in the
+#    application menu. This is because the menu shortcuts force the
+#    action to be performed regardless of the state of the terminal.
+#    Performable keybinds will still work, they just won't appear as
+#    a shortcut label in the menu.
+#
+#    Available since: 1.1.0
 #
 # Keybind triggers are not unique per prefix combination. For example,
 # `ctrl+a` and `global:ctrl+a` are not two separate keybinds. The keybind
@@ -336,12 +443,33 @@ scrollback-limit = 18446744073709551615
 # `global:unconsumed:ctrl+a=reload_config` will make the keybind global
 # and not consume the input to reload the config.
 #
-# Note: `global:` is only supported on macOS. On macOS,
-# this feature requires accessibility permissions to be granted to Ghostty.
-# When a `global:` keybind is specified and Ghostty is launched or reloaded,
-# Ghostty will attempt to request these permissions. If the permissions are
-# not granted, the keybind will not work. On macOS, you can find these
-# permissions in System Preferences -> Privacy & Security -> Accessibility.
+# Note: `global:` is only supported on macOS and certain Linux platforms.
+#
+# On macOS, this feature requires accessibility permissions to be granted
+# to Ghostty. When a `global:` keybind is specified and Ghostty is launched
+# or reloaded, Ghostty will attempt to request these permissions.
+# If the permissions are not granted, the keybind will not work. On macOS,
+# you can find these permissions in System Preferences -> Privacy & Security
+# -> Accessibility.
+#
+# On Linux, you need a desktop environment that implements the
+# [Global Shortcuts](https://flatpak.github.io/xdg-desktop-portal/docs/doc-org.freedesktop.portal.GlobalShortcuts.html)
+# protocol as a part of its XDG desktop protocol implementation.
+# Desktop environments that are known to support (or not support)
+# global shortcuts include:
+#
+#  - Users using KDE Plasma (since [5.27](https://kde.org/announcements/plasma/5/5.27.0/#wayland))
+#    and GNOME (since [48](https://release.gnome.org/48/#and-thats-not-all)) should be able
+#    to use global shortcuts with little to no configuration.
+#
+#  - Some manual configuration is required on Hyprland. Consult the steps
+#    outlined on the [Hyprland Wiki](https://wiki.hyprland.org/Configuring/Binds/#dbus-global-shortcuts)
+#    to set up global shortcuts correctly.
+#    (Important: [`xdg-desktop-portal-hyprland`](https://wiki.hyprland.org/Hypr-Ecosystem/xdg-desktop-portal-hyprland/)
+#    must also be installed!)
+#
+#  - Notably, global shortcuts have not been implemented on wlroots-based
+#    compositors like Sway (see [upstream issue](https://github.com/emersion/xdg-desktop-portal-wlr/issues/240)).
 keybind = global:ctrl+grave_accent=toggle_quick_terminal
 
 # The initial window size. This size is in terminal grid cells by default.
@@ -368,75 +496,24 @@ keybind = global:ctrl+grave_accent=toggle_quick_terminal
 # BUG: On Linux with GTK, the calculated window size will not properly take
 # into account window decorations. As a result, the grid dimensions will not
 # exactly match this configuration. If window decorations are disabled (see
-# window-decorations), then this will work as expected.
+# `window-decoration`), then this will work as expected.
 #
 # Windows smaller than 10 wide by 4 high are not allowed.
 window-height = 9999
 window-width = 9999
 
 # Whether to automatically copy selected text to the clipboard. `true`
-# will prefer to copy to the selection clipboard if supported by the
-# OS, otherwise it will copy to the system clipboard.
+# will prefer to copy to the selection clipboard, otherwise it will copy to
+# the system clipboard.
 #
 # The value `clipboard` will always copy text to the selection clipboard
-# (for supported systems) as well as the system clipboard. This is sometimes
-# a preferred behavior on Linux.
+# as well as the system clipboard.
 #
-# Middle-click paste will always use the selection clipboard on Linux
-# and the system clipboard on macOS. Middle-click paste is always enabled
-# even if this is `false`.
+# Middle-click paste will always use the selection clipboard. Middle-click
+# paste is always enabled even if this is `false`.
 #
-# The default value is true on Linux and false on macOS. macOS copy on
-# select behavior is not typical for applications so it is disabled by
-# default. On Linux, this is a standard behavior so it is enabled by
-# default.
+# The default value is true on Linux and macOS.
 copy-on-select = clipboard
-
-# Shell integration features to enable. These require our shell integration
-# to be loaded, either automatically via shell-integration or manually.
-#
-# The format of this is a list of features to enable separated by commas. If
-# you prefix a feature with `no-` then it is disabled. If you omit a feature,
-# its default value is used, so you must explicitly disable features you don't
-# want. You can also use `true` or `false` to turn all features on or off.
-#
-# Available features:
-#
-#   * `cursor` - Set the cursor to a blinking bar at the prompt.
-#
-#   * `sudo` - Set sudo wrapper to preserve terminfo.
-#
-#   * `title` - Set the window title via shell integration.
-#
-# Example: `cursor`, `no-cursor`, `sudo`, `no-sudo`, `title`, `no-title`
-shell-integration-features = no-cursor,sudo,title
-
-# If `true`, the bold text will use the bright color palette.
-bold-is-bright = true
-
-# Control the auto-update functionality of Ghostty. This is only supported
-# on macOS currently, since Linux builds are distributed via package
-# managers that are not centrally controlled by Ghostty.
-#
-# Checking or downloading an update does not send any information to
-# the project beyond standard network information mandated by the
-# underlying protocols. To put it another way: Ghostty doesn't explicitly
-# add any tracking to the update process. The update process works by
-# downloading information about the latest version and comparing it
-# client-side to the current version.
-#
-# Valid values are:
-#
-#  * `off` - Disable auto-updates.
-#  * `check` - Check for updates and notify the user if an update is
-#    available, but do not automatically download or install the update.
-#  * `download` - Check for updates, automatically download the update,
-#    notify the user, but do not automatically install the update.
-#
-# The default value is `check`.
-#
-# Changing this value at runtime works after a small delay.
-auto-update = off
 
 # Additional configuration files to read. This configuration can be repeated
 # to read multiple configuration files. Configuration files themselves can
@@ -466,3 +543,239 @@ auto-update = off
 # `foo` is loaded after the configuration file that configures the
 # nested `config-file` value.
 config-file = "{{ .chezmoi.os }}"
+
+# Shell integration features to enable. These require our shell integration
+# to be loaded, either automatically via shell-integration or manually.
+#
+# The format of this is a list of features to enable separated by commas. If
+# you prefix a feature with `no-` then it is disabled. If you omit a feature,
+# its default value is used, so you must explicitly disable features you don't
+# want. You can also use `true` or `false` to turn all features on or off.
+#
+# Example: `cursor`, `no-cursor`, `sudo`, `no-sudo`, `title`, `no-title`
+#
+# Available features:
+#
+#   * `cursor` - Set the cursor to a blinking bar at the prompt.
+#
+#   * `sudo` - Set sudo wrapper to preserve terminfo.
+#
+#   * `title` - Set the window title via shell integration.
+#
+#   * `ssh-env` - Enable SSH environment variable compatibility. Automatically
+#     converts TERM from `xterm-ghostty` to `xterm-256color` when connecting to
+#     remote hosts and propagates COLORTERM, TERM_PROGRAM, and TERM_PROGRAM_VERSION.
+#     Whether or not these variables will be accepted by the remote host(s) will
+#     depend on whether or not the variables are allowed in their sshd_config.
+#     (Available since: 1.2.0)
+#
+#   * `ssh-terminfo` - Enable automatic terminfo installation on remote hosts.
+#     Attempts to install Ghostty's terminfo entry using `infocmp` and `tic` when
+#     connecting to hosts that lack it. Requires `infocmp` to be available locally
+#     and `tic` to be available on remote hosts. Once terminfo is installed on a
+#     remote host, it will be automatically "cached" to avoid repeat installations.
+#     If desired, the `+ssh-cache` CLI action can be used to manage the installation
+#     cache manually using various arguments.
+#     (Available since: 1.2.0)
+#
+#   * `path` - Add Ghostty's binary directory to PATH. This ensures the `ghostty`
+#     command is available in the shell even if shell init scripts reset PATH.
+#     This is particularly useful on macOS where PATH is often overridden by
+#     system scripts. The directory is only added if not already present.
+#
+# SSH features work independently and can be combined for optimal experience:
+# when both `ssh-env` and `ssh-terminfo` are enabled, Ghostty will install its
+# terminfo on remote hosts and use `xterm-ghostty` as TERM, falling back to
+# `xterm-256color` with environment variables if terminfo installation fails.
+shell-integration-features = no-cursor,sudo,ssh-env
+
+# Custom shaders to run after the default shaders. This is a file path
+# to a GLSL-syntax shader for all platforms.
+#
+# Warning: Invalid shaders can cause Ghostty to become unusable such as by
+# causing the window to be completely black. If this happens, you can
+# unset this configuration to disable the shader.
+#
+# Custom shader support is based on and compatible with the Shadertoy shaders.
+# Shaders should specify a `mainImage` function and the available uniforms
+# largely match Shadertoy, with some caveats and Ghostty-specific extensions.
+#
+# The uniform values available to shaders are as follows:
+#
+#  * `sampler2D iChannel0` - Input texture.
+#
+#    A texture containing the current terminal screen. If multiple custom
+#    shaders are specified, the output of previous shaders is written to
+#    this texture, to allow combining multiple effects.
+#
+#  * `vec3 iResolution` - Output texture size, `[width, height, 1]` (in px).
+#
+#  * `float iTime` - Time in seconds since first frame was rendered.
+#
+#  * `float iTimeDelta` - Time in seconds since previous frame was rendered.
+#
+#  * `float iFrameRate` - Average framerate. (NOT CURRENTLY SUPPORTED)
+#
+#  * `int iFrame` - Number of frames that have been rendered so far.
+#
+#  * `float iChannelTime[4]` - Current time for video or sound input. (N/A)
+#
+#  * `vec3 iChannelResolution[4]` - Resolutions of the 4 input samplers.
+#
+#    Currently only `iChannel0` exists, and `iChannelResolution[0]` is
+#    identical to `iResolution`.
+#
+#  * `vec4 iMouse` - Mouse input info. (NOT CURRENTLY SUPPORTED)
+#
+#  * `vec4 iDate` - Date/time info. (NOT CURRENTLY SUPPORTED)
+#
+#  * `float iSampleRate` - Sample rate for audio. (N/A)
+#
+# Ghostty-specific extensions:
+#
+#  * `vec4 iCurrentCursor` - Info about the terminal cursor.
+#
+#    - `iCurrentCursor.xy` is the -X, +Y corner of the current cursor.
+#    - `iCurrentCursor.zw` is the width and height of the current cursor.
+#
+#  * `vec4 iPreviousCursor` - Info about the previous terminal cursor.
+#
+#  * `vec4 iCurrentCursorColor` - Color of the terminal cursor.
+#
+#  * `vec4 iPreviousCursorColor` - Color of the previous terminal cursor.
+#
+#  * `float iTimeCursorChange` - Timestamp of terminal cursor change.
+#
+#    When the terminal cursor changes position or color, this is set to
+#    the same time as the `iTime` uniform, allowing you to compute the
+#    time since the change by subtracting this from `iTime`.
+#
+# If the shader fails to compile, the shader will be ignored. Any errors
+# related to shader compilation will not show up as configuration errors
+# and only show up in the log, since shader compilation happens after
+# configuration loading on the dedicated render thread.  For interactive
+# development, use [shadertoy.com](https://shadertoy.com).
+#
+# This can be repeated multiple times to load multiple shaders. The shaders
+# will be run in the order they are specified.
+#
+# This can be changed at runtime and will affect all open terminals.
+custom-shader = ~/.config/ghostty/shaders/cursor_blaze_hackr-sh.glsl
+# custom-shader = ~/.config/ghostty/shaders/cursor_blaze.glsl
+# custom-shader = ~/.config/ghostty/shaders/cursor_smear.glsl
+# custom-shader = ~/.config/ghostty/shaders/cursor_smear_fade.glsl
+# custom-shader = ~/.config/ghostty/shaders/cursor_smear_gradient.glsl
+
+# If `true` (default), the focused terminal surface will run an animation
+# loop when custom shaders are used. This uses slightly more CPU (generally
+# less than 10%) but allows the shader to animate. This only runs if there
+# are custom shaders and the terminal is focused.
+#
+# If this is set to `false`, the terminal and custom shader will only render
+# when the terminal is updated. This is more efficient but the shader will
+# not animate.
+#
+# This can also be set to `always`, which will always run the animation
+# loop regardless of whether the terminal is focused or not. The animation
+# loop will still only run when custom shaders are used. Note that this
+# will use more CPU per terminal surface and can become quite expensive
+# depending on the shader and your terminal usage.
+#
+# This can be changed at runtime and will affect all open terminals.
+custom-shader-animation = false
+
+# Bell features to enable if bell support is available in your runtime. Not
+# all features are available on all runtimes. The format of this is a list of
+# features to enable separated by commas. If you prefix a feature with `no-`
+# then it is disabled. If you omit a feature, its default value is used.
+#
+# Valid values are:
+#
+#  * `system`
+#
+#    Instruct the system to notify the user using built-in system functions.
+#    This could result in an audiovisual effect, a notification, or something
+#    else entirely. Changing these effects require altering system settings:
+#    for instance under the "Sound > Alert Sound" setting in GNOME,
+#    or the "Accessibility > System Bell" settings in KDE Plasma. (GTK only)
+#
+#  * `audio`
+#
+#    Play a custom sound. (GTK only)
+#
+#  * `attention` *(enabled by default)*
+#
+#    Request the user's attention when Ghostty is unfocused, until it has
+#    received focus again. On macOS, this will bounce the app icon in the
+#    dock once. On Linux, the behavior depends on the desktop environment
+#    and/or the window manager/compositor:
+#
+#    - On KDE, the background of the desktop icon in the task bar would be
+#      highlighted;
+#
+#    - On GNOME, you may receive a notification that, when clicked, would
+#      bring the Ghostty window into focus;
+#
+#    - On Sway, the window may be decorated with a distinctly colored border;
+#
+#    - On other systems this may have no effect at all.
+#
+#  * `title` *(enabled by default)*
+#
+#    Prepend a bell emoji (🔔) to the title of the alerted surface until the
+#    terminal is re-focused or interacted with (such as on keyboard input).
+#
+#  * `border`
+#
+#    Display a border around the alerted surface until the terminal is
+#    re-focused or interacted with (such as on keyboard input).
+#
+#    GTK only.
+#
+# Example: `audio`, `no-audio`, `system`, `no-system`
+#
+# Available since: 1.2.0
+bell-features = system
+
+# Modifies the color used for bold text in the terminal.
+#
+# This can be set to a specific color, using the same format as
+# `background` or `foreground` (e.g. `#RRGGBB` but other formats
+# are also supported; see the aforementioned documentation). If a
+# specific color is set, this color will always be used for the default
+# bold text color. It will set the rest of the bold colors to `bright`.
+#
+# This can also be set to `bright`, which uses the bright color palette
+# for bold text. For example, if the text is red, then the bold will
+# use the bright red color. The terminal palette is set with `palette`
+# but can also be overridden by the terminal application itself using
+# escape sequences such as OSC 4. (Since Ghostty 1.2.0, the previous
+# configuration `bold-is-bright` is deprecated and replaced by this
+# usage).
+#
+# Available since Ghostty 1.2.0.
+bold-color = bright
+
+# Control the auto-update functionality of Ghostty. This is only supported
+# on macOS currently, since Linux builds are distributed via package
+# managers that are not centrally controlled by Ghostty.
+#
+# Checking or downloading an update does not send any information to
+# the project beyond standard network information mandated by the
+# underlying protocols. To put it another way: Ghostty doesn't explicitly
+# add any tracking to the update process. The update process works by
+# downloading information about the latest version and comparing it
+# client-side to the current version.
+#
+# Valid values are:
+#
+#  * `off` - Disable auto-updates.
+#  * `check` - Check for updates and notify the user if an update is
+#    available, but do not automatically download or install the update.
+#  * `download` - Check for updates, automatically download the update,
+#    notify the user, but do not automatically install the update.
+#
+# The default value is `check`.
+#
+# Changing this value at runtime works after a small delay.
+auto-update = off

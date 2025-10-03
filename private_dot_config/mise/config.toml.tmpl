@@ -17,21 +17,21 @@ trusted_config_paths                = ['~/.config/mise']
   # uv_venv_auto = true
 
 [tools]
-bun     = 'latest'
-deno    = 'latest'
-elixir  = 'latest'
-erlang  = 'latest'
-go      = 'latest'
-kubectl = ['latest', 'sub-0.1:latest', 'sub-0.2:latest', 'sub-0.3:latest']
-nodejs  = ['latest', 'lts', '18']
-python  = ['latest', 'sub-0.1:latest', 'sub-0.2:latest', 'sub-0.3:latest', 'sub-0.4:latest']
-ruby    = 'latest'
-rust    = 'stable'
-stylua  = 'latest'
-uv      = 'latest'
+bun                         = 'latest'
+deno                        = 'latest'
+elixir                      = 'latest'
+erlang                      = 'latest'
+go                          = 'latest'
+'aqua:kubernetes/kubectl'   = ['latest', 'sub-0.1:latest']
+node                        = ['latest', 'lts']
+python                      = ['latest', 'sub-0.1:latest', 'sub-0.2:latest', 'sub-0.3:latest', 'sub-0.4:latest']
+ruby                        = 'latest'
+rust                        = '1.90'
+'aqua:JohnnyMorganz/StyLua' = 'latest'
+'aqua:astral-sh/uv'         = 'latest'
 {{- if .machine.work }}
-java    = ['graalvm-community-21']
-scala   = 'latest'
+java                        = ['graalvm-community-21']
+scala                       = 'latest'
 {{- end }}
 
 # Erlang
@@ -49,6 +49,7 @@ rebar = 'latest'
 'go:github.com/google/go-jsonnet/cmd/jsonnetfmt'            = 'latest'
 'go:github.com/goreleaser/goreleaser'                       = 'latest'
 'go:github.com/grafana/dashboard-linter'                    = 'latest'
+'go:github.com/grafana/grafanactl/cmd/grafanactl'           = 'latest'
 'go:github.com/grafana/jsonnet-language-server'             = 'latest'
 'go:github.com/jsonnet-bundler/jsonnet-bundler/cmd/jb'      = 'latest'
 'go:github.com/mark3labs/mcphost'                           = 'latest'

@@ -113,3 +113,16 @@ plugins:
     background: true
     confirm: true
     dangerous: true
+
+  watch-events:
+    shortCut: Shift-E
+    description: Get Events
+    scopes:
+      - all
+    command: sh
+    background: false
+    confirm: false
+    args:
+      - -c
+      - kubectl events --context $CONTEXT --namespace $NAMESPACE --for $RESOURCE_NAME.${RESOURCE_GROUP:+.RESOURCE_GROUP}/$NAME
+        --watch

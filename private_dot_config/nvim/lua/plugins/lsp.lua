@@ -47,6 +47,7 @@ return {
         'textlsp',
         'thriftls',
         'tinymist',
+        'ty',
         'typescript-language-server',
         'typos-lsp',
         'vale-ls',

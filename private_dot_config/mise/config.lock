@@ -1,9 +1,39 @@
+[[tools."aqua:JohnnyMorganz/StyLua"]]
+version = "2.3.0"
+backend = "aqua:JohnnyMorganz/StyLua"
+
+[tools."aqua:JohnnyMorganz/StyLua".platforms.macos-arm64]
+checksum = "blake3:848c8d6741532a792eea83068eb758589b389b62bb4242c06adae6550f037cd5"
+size = 3069000
+url = "https://github.com/JohnnyMorganz/StyLua/releases/download/v2.3.0/stylua-macos-aarch64.zip"
+
+[[tools."aqua:astral-sh/uv"]]
+version = "0.9.7"
+backend = "aqua:astral-sh/uv"
+
+[tools."aqua:astral-sh/uv".platforms.macos-arm64]
+checksum = "sha256:35572b9619fc14d67fc1cd72582c3cfc5c9c66d97f310192e04f26fb3fe96005"
+size = 18372336
+url = "https://github.com/astral-sh/uv/releases/download/0.9.7/uv-aarch64-apple-darwin.tar.gz"
+
+[[tools."aqua:kubernetes/kubectl"]]
+version = "1.34.1"
+backend = "aqua:kubernetes/kubectl"
+
+[[tools."aqua:kubernetes/kubectl"]]
+version = "1.33.5"
+backend = "aqua:kubernetes/kubectl"
+
 [[tools.bun]]
-version = "1.2.23"
+version = "1.3.1"
 backend = "core:bun"
 
+[tools.bun.platforms.macos-arm64]
+checksum = "blake3:1643fe56ae2f8adc8229a82672484113c01c82b5fe15b3e498610fc050831ffd"
+size = 22437956
+
 [[tools."cargo:atuin"]]
-version = "18.8.0"
+version = "18.10.0"
 backend = "cargo:atuin"
 
 [[tools."cargo:cargo-edit"]]
@@ -19,7 +49,7 @@ version = "0.17.0"
 backend = "cargo:cargo-outdated"
 
 [[tools."cargo:cargo-valgrind"]]
-version = "2.3.2"
+version = "2.3.3"
 backend = "cargo:cargo-valgrind"
 
 [[tools."cargo:lazyjj"]]
@@ -35,20 +65,37 @@ version = "25.5.31"
 backend = "cargo:yazi-fm"
 
 [[tools.deno]]
-version = "2.5.2"
+version = "2.5.6"
 backend = "core:deno"
 
+[tools.deno.platforms.macos-arm64]
+checksum = "blake3:ddd4829e1b8527a1402faaf8f44795131affe8e0e4b997551a3d3f5f2f882f47"
+size = 40627212
+
 [[tools.elixir]]
-version = "1.18.4-otp-28"
+version = "1.19.1-otp-28"
 backend = "core:elixir"
 
+[tools.elixir.platforms.macos-arm64]
+checksum = "blake3:6d4f310f2abed6308e41ccc531dafce62d66d9807583a259ea207eddfbf48484"
+size = 8323558
+
 [[tools.erlang]]
-version = "28.1"
+version = "28.1.1"
 backend = "core:erlang"
 
+[tools.erlang.platforms.macos-arm64]
+checksum = "blake3:93125e6ebcaa96f6e42acb404c7f88ed1545b31fa88cfdf469ef7dc1ced29e77"
+size = 69928448
+
 [[tools.go]]
-version = "1.25.1"
+version = "1.25.3"
 backend = "core:go"
+
+[tools.go.platforms.macos-arm64]
+checksum = "sha256:7c083e3d2c00debfeb2f77d9a4c00a1aac97113b89b9ccc42a90487af3437382"
+size = 58028114
+url = "https://dl.google.com/go/go1.25.3.darwin-arm64.tar.gz"
 
 [[tools."go:github.com/ankitpokhrel/jira-cli/cmd/jira"]]
 version = "1.7.0"
@@ -67,7 +114,7 @@ version = "1.25.2"
 backend = "go:github.com/go-delve/delve/cmd/dlv"
 
 [[tools."go:github.com/golangci/golangci-lint/v2/cmd/golangci-lint"]]
-version = "2.5.0"
+version = "2.6.0"
 backend = "go:github.com/golangci/golangci-lint/v2/cmd/golangci-lint"
 
 [[tools."go:github.com/google/go-jsonnet/cmd/jsonnet"]]
@@ -94,6 +141,10 @@ backend = "go:github.com/goreleaser/goreleaser"
 version = "latest"
 backend = "go:github.com/grafana/dashboard-linter"
 
+[[tools."go:github.com/grafana/grafanactl/cmd/grafanactl"]]
+version = "0.1.7"
+backend = "go:github.com/grafana/grafanactl/cmd/grafanactl"
+
 [[tools."go:github.com/grafana/jsonnet-language-server"]]
 version = "0.16.0"
 backend = "go:github.com/grafana/jsonnet-language-server"
@@ -103,7 +154,7 @@ version = "0.6.0"
 backend = "go:github.com/jsonnet-bundler/jsonnet-bundler/cmd/jb"
 
 [[tools."go:github.com/mark3labs/mcphost"]]
-version = "0.31.0"
+version = "0.31.3"
 backend = "go:github.com/mark3labs/mcphost"
 
 [[tools."go:github.com/nats-io/natscli/nats"]]
@@ -119,7 +170,7 @@ version = "1.3.0"
 backend = "go:github.com/spf13/cobra-cli"
 
 [[tools."go:go.k6.io/xk6/cmd/xk6"]]
-version = "1.1.5"
+version = "1.2.3"
 backend = "go:go.k6.io/xk6/cmd/xk6"
 
 [[tools."go:sigs.k8s.io/kubectl-validate"]]
@@ -130,36 +181,26 @@ backend = "go:sigs.k8s.io/kubectl-validate"
 version = "graalvm-community-21.0.2"
 backend = "core:java"
 
-[[tools.kubectl]]
-version = "1.34.1"
-backend = "aqua:kubernetes/kubectl"
-
-[[tools.kubectl]]
-version = "1.33.5"
-backend = "aqua:kubernetes/kubectl"
-
-[[tools.kubectl]]
-version = "1.32.9"
-backend = "aqua:kubernetes/kubectl"
-
-[[tools.kubectl]]
-version = "1.31.13"
-backend = "aqua:kubernetes/kubectl"
-
 [[tools.node]]
-version = "24.9.0"
+version = "25.1.0"
 backend = "core:node"
 
-[[tools.node]]
-version = "22.20.0"
-backend = "core:node"
+[tools.node.platforms.macos-arm64]
+checksum = "sha256:811dcf54580d9eef0abfed9f65457545d2aac8e24853b6e638194fcba0257168"
+size = 52626542
+url = "https://nodejs.org/dist/v25.1.0/node-v25.1.0-darwin-arm64.tar.gz"
 
 [[tools.node]]
-version = "18.20.8"
+version = "24.11.0"
 backend = "core:node"
+
+[tools.node.platforms.macos-arm64]
+checksum = "sha256:0be2ab2816a4fa02d1acff014a434f29f56d8d956f5af6a98b70ced6c5f4d201"
+size = 51168984
+url = "https://nodejs.org/dist/v24.11.0/node-v24.11.0-darwin-arm64.tar.gz"
 
 [[tools."npm:@anthropic-ai/claude-code"]]
-version = "2.0.1"
+version = "2.0.30"
 backend = "npm:@anthropic-ai/claude-code"
 
 [[tools."npm:@apideck/postman-to-k6"]]
@@ -167,15 +208,15 @@ version = "1.13.0"
 backend = "npm:@apideck/postman-to-k6"
 
 [[tools."npm:@google/gemini-cli"]]
-version = "0.6.1"
+version = "0.11.2"
 backend = "npm:@google/gemini-cli"
 
 [[tools."npm:@modelcontextprotocol/inspector"]]
-version = "0.16.8"
+version = "0.17.2"
 backend = "npm:@modelcontextprotocol/inspector"
 
 [[tools."npm:@openai/codex"]]
-version = "0.42.0"
+version = "0.53.0"
 backend = "npm:@openai/codex"
 
 [[tools."npm:ts-json-schema-generator"]]
@@ -183,15 +224,15 @@ version = "2.4.0"
 backend = "npm:ts-json-schema-generator"
 
 [[tools."pipx:memray"]]
-version = "1.18.0"
+version = "1.19.1"
 backend = "pipx:memray"
 
 [[tools."pipx:mycli"]]
-version = "1.38.4"
+version = "1.40.0"
 backend = "pipx:mycli"
 
 [[tools."pipx:pdm"]]
-version = "2.25.9"
+version = "2.26.1"
 backend = "pipx:pdm"
 
 [[tools."pipx:pgcli"]]
@@ -199,7 +240,7 @@ version = "4.3.0"
 backend = "pipx:pgcli[uvx_args=--with psycopg[binary]]"
 
 [[tools."pipx:pip-tools"]]
-version = "7.5.0"
+version = "7.5.1"
 backend = "pipx:pip-tools"
 
 [[tools."pipx:poetry"]]
@@ -211,31 +252,31 @@ version = "4.3.0"
 backend = "pipx:pre-commit"
 
 [[tools."pipx:pyupgrade"]]
-version = "3.20.0"
+version = "3.21.0"
 backend = "pipx:pyupgrade"
 
 [[tools."pipx:virtualenv"]]
-version = "20.34.0"
+version = "20.35.4"
 backend = "pipx:virtualenv"
 
 [[tools.python]]
-version = "3.13.7"
+version = "3.14.0"
 backend = "core:python"
 
 [[tools.python]]
-version = "3.12.11"
+version = "3.13.9"
 backend = "core:python"
 
 [[tools.python]]
-version = "3.11.13"
+version = "3.12.12"
 backend = "core:python"
 
 [[tools.python]]
-version = "3.10.18"
+version = "3.11.14"
 backend = "core:python"
 
 [[tools.python]]
-version = "3.9.23"
+version = "3.10.19"
 backend = "core:python"
 
 [[tools.rebar]]
@@ -243,21 +284,13 @@ version = "3.25.1"
 backend = "asdf:rebar"
 
 [[tools.ruby]]
-version = "3.4.6"
+version = "3.4.7"
 backend = "core:ruby"
 
 [[tools.rust]]
-version = "stable"
+version = "1.90.0"
 backend = "core:rust"
 
 [[tools.scala]]
 version = "3.7.3"
 backend = "asdf:scala"
-
-[[tools.stylua]]
-version = "2.3.0"
-backend = "aqua:JohnnyMorganz/StyLua"
-
-[[tools.uv]]
-version = "0.8.22"
-backend = "aqua:astral-sh/uv"
