@@ -35,8 +35,12 @@ version = "25.5.31"
 backend = "cargo:yazi-fm"
 
 [[tools.deno]]
-version = "2.5.2"
+version = "2.5.3"
 backend = "core:deno"
+
+[tools.deno.platforms.macos-arm64]
+checksum = "blake3:31bbe037626abcf56b0187bd0109f704e1cf965ac5327fec54f8e6e748b9e5e7"
+size = 40449898
 
 [[tools.elixir]]
 version = "1.18.4-otp-28"
@@ -159,7 +163,7 @@ version = "18.20.8"
 backend = "core:node"
 
 [[tools."npm:@anthropic-ai/claude-code"]]
-version = "2.0.1"
+version = "2.0.5"
 backend = "npm:@anthropic-ai/claude-code"
 
 [[tools."npm:@apideck/postman-to-k6"]]
@@ -167,15 +171,15 @@ version = "1.13.0"
 backend = "npm:@apideck/postman-to-k6"
 
 [[tools."npm:@google/gemini-cli"]]
-version = "0.6.1"
+version = "0.7.0"
 backend = "npm:@google/gemini-cli"
 
 [[tools."npm:@modelcontextprotocol/inspector"]]
-version = "0.16.8"
+version = "0.17.0"
 backend = "npm:@modelcontextprotocol/inspector"
 
 [[tools."npm:@openai/codex"]]
-version = "0.42.0"
+version = "0.44.0"
 backend = "npm:@openai/codex"
 
 [[tools."npm:ts-json-schema-generator"]]
@@ -187,7 +191,7 @@ version = "1.18.0"
 backend = "pipx:memray"
 
 [[tools."pipx:mycli"]]
-version = "1.38.4"
+version = "1.39.0"
 backend = "pipx:mycli"
 
 [[tools."pipx:pdm"]]
@@ -199,7 +203,7 @@ version = "4.3.0"
 backend = "pipx:pgcli[uvx_args=--with psycopg[binary]]"
 
 [[tools."pipx:pip-tools"]]
-version = "7.5.0"
+version = "7.5.1"
 backend = "pipx:pip-tools"
 
 [[tools."pipx:poetry"]]
