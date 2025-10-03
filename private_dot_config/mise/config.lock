@@ -35,8 +35,12 @@ version = "25.5.31"
 backend = "cargo:yazi-fm"
 
 [[tools.deno]]
-version = "2.5.2"
+version = "2.5.3"
 backend = "core:deno"
+
+[tools.deno.platforms.macos-arm64]
+checksum = "blake3:31bbe037626abcf56b0187bd0109f704e1cf965ac5327fec54f8e6e748b9e5e7"
+size = 40449898
 
 [[tools.elixir]]
 version = "1.18.4-otp-28"
@@ -47,8 +51,13 @@ version = "28.1"
 backend = "core:erlang"
 
 [[tools.go]]
-version = "1.25.1"
+version = "1.25.2"
 backend = "core:go"
+
+[tools.go.platforms.macos-arm64]
+checksum = "sha256:d1ade1b480e51b6269b6e65856c602aed047e1f0d32fffef7eebbd7faa8d7687"
+size = 58024236
+url = "https://dl.google.com/go/go1.25.2.darwin-arm64.tar.gz"
 
 [[tools."go:github.com/ankitpokhrel/jira-cli/cmd/jira"]]
 version = "1.7.0"
@@ -93,6 +102,10 @@ backend = "go:github.com/goreleaser/goreleaser"
 [[tools."go:github.com/grafana/dashboard-linter"]]
 version = "latest"
 backend = "go:github.com/grafana/dashboard-linter"
+
+[[tools."go:github.com/grafana/grafanactl/cmd/grafanactl"]]
+version = "0.1.5"
+backend = "go:github.com/grafana/grafanactl/cmd/grafanactl"
 
 [[tools."go:github.com/grafana/jsonnet-language-server"]]
 version = "0.16.0"
@@ -159,7 +172,7 @@ version = "18.20.8"
 backend = "core:node"
 
 [[tools."npm:@anthropic-ai/claude-code"]]
-version = "2.0.1"
+version = "2.0.10"
 backend = "npm:@anthropic-ai/claude-code"
 
 [[tools."npm:@apideck/postman-to-k6"]]
@@ -167,15 +180,15 @@ version = "1.13.0"
 backend = "npm:@apideck/postman-to-k6"
 
 [[tools."npm:@google/gemini-cli"]]
-version = "0.6.1"
+version = "0.8.1"
 backend = "npm:@google/gemini-cli"
 
 [[tools."npm:@modelcontextprotocol/inspector"]]
-version = "0.16.8"
+version = "0.17.0"
 backend = "npm:@modelcontextprotocol/inspector"
 
 [[tools."npm:@openai/codex"]]
-version = "0.42.0"
+version = "0.45.0"
 backend = "npm:@openai/codex"
 
 [[tools."npm:ts-json-schema-generator"]]
@@ -187,7 +200,7 @@ version = "1.18.0"
 backend = "pipx:memray"
 
 [[tools."pipx:mycli"]]
-version = "1.38.4"
+version = "1.39.1"
 backend = "pipx:mycli"
 
 [[tools."pipx:pdm"]]
@@ -199,7 +212,7 @@ version = "4.3.0"
 backend = "pipx:pgcli[uvx_args=--with psycopg[binary]]"
 
 [[tools."pipx:pip-tools"]]
-version = "7.5.0"
+version = "7.5.1"
 backend = "pipx:pip-tools"
 
 [[tools."pipx:poetry"]]
@@ -219,7 +232,11 @@ version = "20.34.0"
 backend = "pipx:virtualenv"
 
 [[tools.python]]
-version = "3.13.7"
+version = "3.12.11"
+backend = "core:python"
+
+[[tools.python]]
+version = "3.13.8"
 backend = "core:python"
 
 [[tools.python]]
@@ -234,16 +251,12 @@ backend = "core:python"
 version = "3.10.18"
 backend = "core:python"
 
-[[tools.python]]
-version = "3.9.23"
-backend = "core:python"
-
 [[tools.rebar]]
 version = "3.25.1"
 backend = "asdf:rebar"
 
 [[tools.ruby]]
-version = "3.4.6"
+version = "3.4.7"
 backend = "core:ruby"
 
 [[tools.rust]]
@@ -259,5 +272,10 @@ version = "2.3.0"
 backend = "aqua:JohnnyMorganz/StyLua"
 
 [[tools.uv]]
-version = "0.8.22"
+version = "0.8.23"
 backend = "aqua:astral-sh/uv"
+
+[tools.uv.platforms.macos-arm64]
+checksum = "sha256:e9128449ea08a3c953f0e08dabc78c7588361a898e6bd8163e7e8f8c96adeb66"
+size = 18226776
+url = "https://github.com/astral-sh/uv/releases/download/0.8.23/uv-aarch64-apple-darwin.tar.gz"
