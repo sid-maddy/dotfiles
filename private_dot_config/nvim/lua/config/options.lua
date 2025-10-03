@@ -3,5 +3,8 @@
 -- Add any additional options here
 vim.g.lazyvim_check_order = false
 
+-- Disable clipboard sync.
+vim.opt.clipboard = ''
+
 -- LSP Server to use for Python.
 vim.g.lazyvim_python_lsp = 'basedpyright'

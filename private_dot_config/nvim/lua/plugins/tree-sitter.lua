@@ -9,6 +9,7 @@ return {
         'commonlisp',
         'cpp',
         'csv',
+        'cue',
         'dart',
         'desktop',
         'dot',
