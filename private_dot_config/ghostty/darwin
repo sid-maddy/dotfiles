@@ -7,8 +7,17 @@
 #   * `passwd` entry (user information)
 #
 # This can contain additional arguments to run the command with. If additional
-# arguments are provided, the command will be executed using `/bin/sh -c`.
-# Ghostty does not do any shell command parsing.
+# arguments are provided, the command will be executed using `/bin/sh -c`
+# to offload shell argument expansion.
+#
+# To avoid shell expansion altogether, prefix the command with `direct:`, e.g.
+# `direct:nvim foo`. This will avoid the roundtrip to `/bin/sh` but will also
+# not support any shell parsing such as arguments with spaces, filepaths with
+# `~`, globs, etc. (Available since: 1.2.0)
+#
+# You can also explicitly prefix the command with `shell:` to always wrap the
+# command in a shell. This can be used to ensure our heuristics to choose the
+# right mode are not used in case they are wrong. (Available since: 1.2.0)
 #
 # This command will be used for all new terminal surfaces, i.e. new windows,
 # tabs, etc. If you want to run a command only for the first terminal surface
@@ -22,7 +31,7 @@ command = /opt/homebrew/bin/zsh
 
 # macOS doesn't have a distinct "alt" key and instead has the "option"
 # key which behaves slightly differently. On macOS by default, the
-# option key plus a character will sometimes produces a Unicode character.
+# option key plus a character will sometimes produce a Unicode character.
 # For example, on US standard layouts option-b produces "∫". This may be
 # undesirable if you want to use "option" as an "alt" key for keybindings
 # in terminal programs or shells.
@@ -39,7 +48,7 @@ command = /opt/homebrew/bin/zsh
 #   - U.S. International
 #
 # Note that if an *Option*-sequence doesn't produce a printable character, it
-# will be treated as *Alt* regardless of this setting. (i.e. `alt+ctrl+a`).
+# will be treated as *Alt* regardless of this setting. (e.g. `alt+ctrl+a`).
 #
 # Explicit values that can be set:
 #
@@ -52,6 +61,4 @@ command = /opt/homebrew/bin/zsh
 #
 # The values `left` or `right` enable this for the left or right *Option*
 # key, respectively.
-#
-# This does not work with GLFW builds.
 macos-option-as-alt = true
