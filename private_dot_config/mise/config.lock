@@ -200,7 +200,7 @@ size = 51168984
 url = "https://nodejs.org/dist/v24.11.0/node-v24.11.0-darwin-arm64.tar.gz"
 
 [[tools."npm:@anthropic-ai/claude-code"]]
-version = "2.0.30"
+version = "2.0.31"
 backend = "npm:@anthropic-ai/claude-code"
 
 [[tools."npm:@apideck/postman-to-k6"]]
@@ -208,7 +208,7 @@ version = "1.13.0"
 backend = "npm:@apideck/postman-to-k6"
 
 [[tools."npm:@google/gemini-cli"]]
-version = "0.11.2"
+version = "0.11.3"
 backend = "npm:@google/gemini-cli"
 
 [[tools."npm:@modelcontextprotocol/inspector"]]
@@ -218,6 +218,10 @@ backend = "npm:@modelcontextprotocol/inspector"
 [[tools."npm:@openai/codex"]]
 version = "0.53.0"
 backend = "npm:@openai/codex"
+
+[[tools."npm:renovate"]]
+version = "41.168.4"
+backend = "npm:renovate"
 
 [[tools."npm:ts-json-schema-generator"]]
 version = "2.4.0"
