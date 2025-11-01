@@ -40,6 +40,7 @@ return {
         'postgrestools',
         'prosemd-lsp',
         'protols',
+        'pyright',
         'rust-analyzer',
         'stylelint-lsp',
         'systemd-language-server',
@@ -47,7 +48,7 @@ return {
         'textlsp',
         'thriftls',
         'tinymist',
-        'ty',
+        -- 'ty',  -- Unstable
         'typescript-language-server',
         'typos-lsp',
         'vale-ls',

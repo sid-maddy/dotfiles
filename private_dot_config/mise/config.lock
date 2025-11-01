@@ -1,47 +1,25 @@
-[[tools."aqua:JohnnyMorganz/StyLua"]]
-version = "2.3.0"
-backend = "aqua:JohnnyMorganz/StyLua"
-
-[tools."aqua:JohnnyMorganz/StyLua".platforms.macos-arm64]
-checksum = "blake3:848c8d6741532a792eea83068eb758589b389b62bb4242c06adae6550f037cd5"
-size = 3069000
-url = "https://github.com/JohnnyMorganz/StyLua/releases/download/v2.3.0/stylua-macos-aarch64.zip"
-
-[[tools."aqua:astral-sh/uv"]]
-version = "0.9.7"
-backend = "aqua:astral-sh/uv"
-
-[tools."aqua:astral-sh/uv".platforms.macos-arm64]
-checksum = "sha256:35572b9619fc14d67fc1cd72582c3cfc5c9c66d97f310192e04f26fb3fe96005"
-size = 18372336
-url = "https://github.com/astral-sh/uv/releases/download/0.9.7/uv-aarch64-apple-darwin.tar.gz"
-
-[[tools."aqua:kubernetes/kubectl"]]
-version = "1.34.1"
-backend = "aqua:kubernetes/kubectl"
-
-[[tools."aqua:kubernetes/kubectl"]]
-version = "1.33.5"
-backend = "aqua:kubernetes/kubectl"
-
 [[tools.bun]]
-version = "1.3.1"
+version = "1.3.3"
 backend = "core:bun"
 
+[tools.bun.platforms.linux-x64]
+checksum = "blake3:21d78fbc47b9175cc18a79bc228c6b3aa92d102c3f9c006934101c6b588cc900"
+size = 39185481
+
 [tools.bun.platforms.macos-arm64]
-checksum = "blake3:1643fe56ae2f8adc8229a82672484113c01c82b5fe15b3e498610fc050831ffd"
-size = 22437956
+checksum = "blake3:2b8fa453577fa737c9eaf42730791360c8a133397db28684c93e49f9dd5d501a"
+size = 22063538
 
 [[tools."cargo:atuin"]]
 version = "18.10.0"
 backend = "cargo:atuin"
 
 [[tools."cargo:cargo-edit"]]
-version = "0.13.7"
+version = "0.13.8"
 backend = "cargo:cargo-edit"
 
 [[tools."cargo:cargo-generate"]]
-version = "0.23.5"
+version = "0.23.7"
 backend = "cargo:cargo-generate"
 
 [[tools."cargo:cargo-outdated"]]
@@ -51,10 +29,6 @@ backend = "cargo:cargo-outdated"
 [[tools."cargo:cargo-valgrind"]]
 version = "2.3.3"
 backend = "cargo:cargo-valgrind"
-
-[[tools."cargo:lazyjj"]]
-version = "0.5.0"
-backend = "cargo:lazyjj"
 
 [[tools."cargo:yazi-cli"]]
 version = "25.5.31"
@@ -73,29 +47,33 @@ checksum = "blake3:ddd4829e1b8527a1402faaf8f44795131affe8e0e4b997551a3d3f5f2f882
 size = 40627212
 
 [[tools.elixir]]
-version = "1.19.1-otp-28"
+version = "1.19.4-otp-28"
 backend = "core:elixir"
 
+[tools.elixir.platforms.linux-x64]
+checksum = "blake3:70eb62ce170fa5aa897cbb84cbd7ab36b4d792d8510fa82e717b9c3783477cb7"
+size = 8248263
+
 [tools.elixir.platforms.macos-arm64]
-checksum = "blake3:6d4f310f2abed6308e41ccc531dafce62d66d9807583a259ea207eddfbf48484"
-size = 8323558
+checksum = "blake3:70eb62ce170fa5aa897cbb84cbd7ab36b4d792d8510fa82e717b9c3783477cb7"
+size = 8248263
 
 [[tools.erlang]]
-version = "28.1.1"
+version = "28.2"
 backend = "core:erlang"
 
 [tools.erlang.platforms.macos-arm64]
-checksum = "blake3:93125e6ebcaa96f6e42acb404c7f88ed1545b31fa88cfdf469ef7dc1ced29e77"
-size = 69928448
+checksum = "blake3:66ebfb41f82144fdee661000863097843e9d870eb1488ec47541600aa7a385be"
+size = 70064920
 
 [[tools.go]]
-version = "1.25.3"
+version = "1.25.4"
 backend = "core:go"
 
 [tools.go.platforms.macos-arm64]
-checksum = "sha256:7c083e3d2c00debfeb2f77d9a4c00a1aac97113b89b9ccc42a90487af3437382"
-size = 58028114
-url = "https://dl.google.com/go/go1.25.3.darwin-arm64.tar.gz"
+checksum = "sha256:c1b04e74251fe1dfbc5382e73d0c6d96f49642d8aebb7ee10a7ecd4cae36ebd2"
+size = 58026727
+url = "https://dl.google.com/go/go1.25.4.darwin-arm64.tar.gz"
 
 [[tools."go:github.com/ankitpokhrel/jira-cli/cmd/jira"]]
 version = "1.7.0"
@@ -105,33 +83,13 @@ backend = "go:github.com/ankitpokhrel/jira-cli/cmd/jira"
 version = "1.5.1"
 backend = "go:github.com/charmbracelet/glow"
 
-[[tools."go:github.com/charmbracelet/mods"]]
-version = "1.8.1"
-backend = "go:github.com/charmbracelet/mods"
-
 [[tools."go:github.com/go-delve/delve/cmd/dlv"]]
 version = "1.25.2"
 backend = "go:github.com/go-delve/delve/cmd/dlv"
 
 [[tools."go:github.com/golangci/golangci-lint/v2/cmd/golangci-lint"]]
-version = "2.6.0"
+version = "2.6.2"
 backend = "go:github.com/golangci/golangci-lint/v2/cmd/golangci-lint"
-
-[[tools."go:github.com/google/go-jsonnet/cmd/jsonnet"]]
-version = "0.21.0"
-backend = "go:github.com/google/go-jsonnet/cmd/jsonnet"
-
-[[tools."go:github.com/google/go-jsonnet/cmd/jsonnet-deps"]]
-version = "0.21.0"
-backend = "go:github.com/google/go-jsonnet/cmd/jsonnet-deps"
-
-[[tools."go:github.com/google/go-jsonnet/cmd/jsonnet-lint"]]
-version = "0.21.0"
-backend = "go:github.com/google/go-jsonnet/cmd/jsonnet-lint"
-
-[[tools."go:github.com/google/go-jsonnet/cmd/jsonnetfmt"]]
-version = "0.21.0"
-backend = "go:github.com/google/go-jsonnet/cmd/jsonnetfmt"
 
 [[tools."go:github.com/goreleaser/goreleaser"]]
 version = "1.26.2"
@@ -142,20 +100,8 @@ version = "latest"
 backend = "go:github.com/grafana/dashboard-linter"
 
 [[tools."go:github.com/grafana/grafanactl/cmd/grafanactl"]]
-version = "0.1.7"
+version = "0.1.8"
 backend = "go:github.com/grafana/grafanactl/cmd/grafanactl"
-
-[[tools."go:github.com/grafana/jsonnet-language-server"]]
-version = "0.16.0"
-backend = "go:github.com/grafana/jsonnet-language-server"
-
-[[tools."go:github.com/jsonnet-bundler/jsonnet-bundler/cmd/jb"]]
-version = "0.6.0"
-backend = "go:github.com/jsonnet-bundler/jsonnet-bundler/cmd/jb"
-
-[[tools."go:github.com/mark3labs/mcphost"]]
-version = "0.31.3"
-backend = "go:github.com/mark3labs/mcphost"
 
 [[tools."go:github.com/nats-io/natscli/nats"]]
 version = "0.3.0"
@@ -170,7 +116,7 @@ version = "1.3.0"
 backend = "go:github.com/spf13/cobra-cli"
 
 [[tools."go:go.k6.io/xk6/cmd/xk6"]]
-version = "1.2.3"
+version = "1.2.6"
 backend = "go:go.k6.io/xk6/cmd/xk6"
 
 [[tools."go:sigs.k8s.io/kubectl-validate"]]
@@ -181,58 +127,64 @@ backend = "go:sigs.k8s.io/kubectl-validate"
 version = "graalvm-community-21.0.2"
 backend = "core:java"
 
+[[tools.kubectl]]
+version = "1.34.2"
+backend = "aqua:kubernetes/kubernetes/kubectl"
+
+[tools.kubectl.platforms.linux-x64]
+checksum = "sha256:9591f3d75e1581f3f7392e6ad119aab2f28ae7d6c6e083dc5d22469667f27253"
+size = 60559544
+url = "https://dl.k8s.io/v1.34.2/bin/linux/amd64/kubectl"
+
+[[tools.kubectl]]
+version = "1.33.6"
+backend = "aqua:kubernetes/kubernetes/kubectl"
+
+[tools.kubectl.platforms.linux-x64]
+checksum = "sha256:d25d9b63335c038333bed785e9c6c4b0e41d791a09cac5f3e8df9862c684afbe"
+size = 60129464
+url = "https://dl.k8s.io/v1.33.6/bin/linux/amd64/kubectl"
+
+[[tools.kubectl]]
+version = "1.31.14"
+backend = "aqua:kubernetes/kubernetes/kubectl"
+
+[tools.kubectl.platforms.linux-x64]
+checksum = "sha256:8791ec7c8966b61420d55103a5fb948de9f0ca3d7306d789734975ad9704bdb0"
+size = 57565368
+url = "https://dl.k8s.io/v1.31.14/bin/linux/amd64/kubectl"
+
 [[tools.node]]
-version = "25.1.0"
+version = "24.11.1"
 backend = "core:node"
 
 [tools.node.platforms.macos-arm64]
-checksum = "sha256:811dcf54580d9eef0abfed9f65457545d2aac8e24853b6e638194fcba0257168"
-size = 52626542
-url = "https://nodejs.org/dist/v25.1.0/node-v25.1.0-darwin-arm64.tar.gz"
-
-[[tools.node]]
-version = "24.11.0"
-backend = "core:node"
-
-[tools.node.platforms.macos-arm64]
-checksum = "sha256:0be2ab2816a4fa02d1acff014a434f29f56d8d956f5af6a98b70ced6c5f4d201"
-size = 51168984
-url = "https://nodejs.org/dist/v24.11.0/node-v24.11.0-darwin-arm64.tar.gz"
-
-[[tools."npm:@anthropic-ai/claude-code"]]
-version = "2.0.30"
-backend = "npm:@anthropic-ai/claude-code"
-
-[[tools."npm:@apideck/postman-to-k6"]]
-version = "1.13.0"
-backend = "npm:@apideck/postman-to-k6"
+checksum = "sha256:b05aa3a66efe680023f930bd5af3fdbbd542794da5644ca2ad711d68cbd4dc35"
+size = 51177814
+url = "https://nodejs.org/dist/v24.11.1/node-v24.11.1-darwin-arm64.tar.gz"
 
 [[tools."npm:@google/gemini-cli"]]
-version = "0.11.2"
+version = "0.18.4"
 backend = "npm:@google/gemini-cli"
 
-[[tools."npm:@modelcontextprotocol/inspector"]]
-version = "0.17.2"
-backend = "npm:@modelcontextprotocol/inspector"
+[[tools."npm:renovate"]]
+version = "42.26.11"
+backend = "npm:renovate"
 
-[[tools."npm:@openai/codex"]]
-version = "0.53.0"
-backend = "npm:@openai/codex"
-
-[[tools."npm:ts-json-schema-generator"]]
-version = "2.4.0"
-backend = "npm:ts-json-schema-generator"
+[[tools."pipx:iredis"]]
+version = "1.15.2"
+backend = "pipx:iredis"
 
 [[tools."pipx:memray"]]
 version = "1.19.1"
 backend = "pipx:memray"
 
 [[tools."pipx:mycli"]]
-version = "1.40.0"
+version = "1.41.2"
 backend = "pipx:mycli"
 
 [[tools."pipx:pdm"]]
-version = "2.26.1"
+version = "2.26.2"
 backend = "pipx:pdm"
 
 [[tools."pipx:pgcli"]]
@@ -240,19 +192,19 @@ version = "4.3.0"
 backend = "pipx:pgcli[uvx_args=--with psycopg[binary]]"
 
 [[tools."pipx:pip-tools"]]
-version = "7.5.1"
+version = "7.5.2"
 backend = "pipx:pip-tools"
 
 [[tools."pipx:poetry"]]
 version = "2.2.1"
 backend = "pipx:poetry[uvx_args=--with poetry-plugin-export]"
 
-[[tools."pipx:pre-commit"]]
-version = "4.3.0"
-backend = "pipx:pre-commit"
+[[tools."pipx:prek"]]
+version = "0.2.19"
+backend = "pipx:prek"
 
 [[tools."pipx:pyupgrade"]]
-version = "3.21.0"
+version = "3.21.2"
 backend = "pipx:pyupgrade"
 
 [[tools."pipx:virtualenv"]]
@@ -279,6 +231,10 @@ backend = "core:python"
 version = "3.10.19"
 backend = "core:python"
 
+[[tools.python]]
+version = "3.8.20"
+backend = "core:python"
+
 [[tools.rebar]]
 version = "3.25.1"
 backend = "asdf:rebar"
@@ -288,9 +244,37 @@ version = "3.4.7"
 backend = "core:ruby"
 
 [[tools.rust]]
-version = "1.90.0"
+version = "1.91.1"
 backend = "core:rust"
 
 [[tools.scala]]
-version = "3.7.3"
+version = "3.7.4"
 backend = "asdf:scala"
+
+[[tools.stylua]]
+version = "2.3.1"
+backend = "aqua:JohnnyMorganz/StyLua"
+
+[tools.stylua.platforms.linux-x64]
+checksum = "sha256:1b3ca3f577e584e19a0ad2264a0ab87f4133818e35700a094416ca98251ffb4a"
+size = 3446998
+url = "https://github.com/JohnnyMorganz/StyLua/releases/download/v2.3.1/stylua-linux-x86_64-musl.zip"
+
+[tools.stylua.platforms.macos-arm64]
+checksum = "sha256:e212e6c21e76c2b1d0f10f8dcf50ec3b5f03f02da7597e0679f539eb18ba0d53"
+size = 3061621
+url = "https://github.com/JohnnyMorganz/StyLua/releases/download/v2.3.1/stylua-macos-aarch64.zip"
+
+[[tools.uv]]
+version = "0.9.13"
+backend = "aqua:astral-sh/uv"
+
+[tools.uv.platforms.linux-x64]
+checksum = "sha256:04cf326d2d742ce5c8890fdc0b9f71bd707be8640979bf6e53ddd52da74dfb41"
+size = 21914060
+url = "https://github.com/astral-sh/uv/releases/download/0.9.13/uv-x86_64-unknown-linux-musl.tar.gz"
+
+[tools.uv.platforms.macos-arm64]
+checksum = "sha256:9c594dce1c237e11680be2b6d1331448eeb6f8a1453fb851a66a40291bb624de"
+size = 18455072
+url = "https://github.com/astral-sh/uv/releases/download/0.9.13/uv-aarch64-apple-darwin.tar.gz"

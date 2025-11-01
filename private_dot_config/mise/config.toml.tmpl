@@ -22,15 +22,15 @@ deno                        = 'latest'
 elixir                      = 'latest'
 erlang                      = 'latest'
 go                          = 'latest'
-'aqua:kubernetes/kubectl'   = ['latest', 'sub-0.1:latest']
-node                        = ['latest', 'lts']
-python                      = ['latest', 'sub-0.1:latest', 'sub-0.2:latest', 'sub-0.3:latest', 'sub-0.4:latest']
+kubectl                     = ['latest', '1.33', '1.31']
+node                        = 'lts'
+python                      = ['latest', 'sub-0.1:latest', 'sub-0.2:latest', 'sub-0.3:latest', 'sub-0.4:latest', '3.8']
 ruby                        = 'latest'
-rust                        = '1.90'
-'aqua:JohnnyMorganz/StyLua' = 'latest'
-'aqua:astral-sh/uv'         = 'latest'
+rust                        = '1.91'
+stylua                      = 'latest'
+uv                          = 'latest'
 {{- if .machine.work }}
-java                        = ['graalvm-community-21']
+java                        = 'graalvm-community-21'
 scala                       = 'latest'
 {{- end }}
 
@@ -40,19 +40,11 @@ rebar = 'latest'
 # Go
 'go:github.com/ankitpokhrel/jira-cli/cmd/jira'              = 'latest'
 'go:github.com/charmbracelet/glow'                          = 'latest'
-'go:github.com/charmbracelet/mods'                          = 'latest'
 'go:github.com/go-delve/delve/cmd/dlv'                      = 'latest'
 'go:github.com/golangci/golangci-lint/v2/cmd/golangci-lint' = 'latest'
-'go:github.com/google/go-jsonnet/cmd/jsonnet'               = 'latest'
-'go:github.com/google/go-jsonnet/cmd/jsonnet-deps'          = 'latest'
-'go:github.com/google/go-jsonnet/cmd/jsonnet-lint'          = 'latest'
-'go:github.com/google/go-jsonnet/cmd/jsonnetfmt'            = 'latest'
 'go:github.com/goreleaser/goreleaser'                       = 'latest'
 'go:github.com/grafana/dashboard-linter'                    = 'latest'
 'go:github.com/grafana/grafanactl/cmd/grafanactl'           = 'latest'
-'go:github.com/grafana/jsonnet-language-server'             = 'latest'
-'go:github.com/jsonnet-bundler/jsonnet-bundler/cmd/jb'      = 'latest'
-'go:github.com/mark3labs/mcphost'                           = 'latest'
 'go:github.com/nats-io/natscli/nats'                        = 'latest'
 'go:github.com/oligot/go-mod-upgrade'                       = 'latest'
 'go:github.com/spf13/cobra-cli'                             = 'latest'
@@ -60,21 +52,18 @@ rebar = 'latest'
 'go:sigs.k8s.io/kubectl-validate'                           = 'latest'
 
 # Node.js
-'npm:@anthropic-ai/claude-code'       = 'latest'
-'npm:@apideck/postman-to-k6'          = 'latest'
-'npm:@modelcontextprotocol/inspector' = 'latest'
-'npm:@openai/codex'                   = 'latest'
 'npm:@google/gemini-cli'              = 'latest'
-'npm:ts-json-schema-generator'        = 'latest'
+'npm:renovate'                        = 'latest'
 
 # Python
+'pipx:iredis'       = 'latest'
 'pipx:memray'       = 'latest'
 'pipx:mycli'        = 'latest'
 'pipx:pdm'          = 'latest'
 'pipx:pgcli'        = {version = 'latest', uvx_args = '--with psycopg[binary]'}
 'pipx:pip-tools'    = 'latest'
 'pipx:poetry'       = {version = 'latest', uvx_args = '--with poetry-plugin-export'}
-'pipx:pre-commit'   = {version = 'latest', uvx_args = '--with pre-commit-uv'}
+'pipx:prek'         = 'latest'
 'pipx:pyupgrade'    = 'latest'
 'pipx:virtualenv'   = 'latest'
 
@@ -85,6 +74,5 @@ rebar = 'latest'
 'cargo:cargo-valgrind' = 'latest'
 
 'cargo:atuin'    = 'latest'
-'cargo:lazyjj'   = 'latest'
 'cargo:yazi-cli' = 'latest'
 'cargo:yazi-fm'  = 'latest'
