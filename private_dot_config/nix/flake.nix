@@ -65,8 +65,6 @@
           ## Git
           difftastic
           gitoxide
-          gitui
-          lazygit
 
           ## Text processing
           miller

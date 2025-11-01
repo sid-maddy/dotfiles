@@ -26,7 +26,7 @@ repos:
       - id: taplo-lint
 
   - repo: https://github.com/lyz-code/yamlfix
-    rev: 881308160e4589cf886919438a3ed0acba42ea0e  # frozen: 1.18.0
+    rev: 4193c8de6dbd35819d3404925f7aee6b79368591  # frozen: 1.19.0
     hooks:
       - id: yamlfix
         args:

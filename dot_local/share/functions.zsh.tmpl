@@ -20,6 +20,48 @@ least() {
 }
 
 {{ if .machine.work -}}
+ado-repos() {
+    az devops project list --query 'value[].id' \
+        | jq -r '.[]' \
+        | xargs -rxn1 az repos list --query '[].{name: name, sshUrl: sshUrl, webUrl: webUrl}' -p \
+        | jq -r '.[] | "\(.name): \(.webUrl) (remote: \(.sshUrl))"'
+}
+
+argocd-sync-all-utility() {
+    if [[ $# -lt 2 ]]; then
+      echo >&2 'Usage: argocd-sync-all <argocd-context> <resources...>'
+      return
+    fi
+
+    local argocd_context
+    argocd_context="$1"
+    shift
+
+    local resources
+    resources=($@)
+
+    echo >&2 "Listing apps in ${argocd_context}"
+    apps=($(
+        argocd --grpc-web --argocd-context "${argocd_context}" app list -ojson -N utility -p utility | \
+        jq -r '
+          .[] |
+            select(
+              .status.sync.status == "OutOfSync" and
+              (.spec.syncPolicy.automated?.selfHeal | not)
+            ) |
+            .metadata.name
+        '
+    ))
+    echo >&2 "Listed ${#apps} apps in ${argocd_context}"
+
+    for app in ${apps[@]}; do
+        echo >&2 "Syncing ${#resources} resource(s) in ${argocd_context}/${app}"
+        argocd --grpc-web --argocd-context "$argocd_context" app sync "$app" -N utility --project utility \
+            $(for resource in ${resources[@]}; do echo "--resource=${resource}"; done) \
+            --async --prune
+    done
+}
+
 clickhouse-client() {
     docker run -it --rm \
         --entrypoint clickhouse-client \
@@ -28,11 +70,9 @@ clickhouse-client() {
         clickhouse/clickhouse-server:24.3 --host host.docker.internal "$@"
 }
 
-ado-repos() {
-    az devops project list --query 'value[].id' \
-        | jq -r '.[]' \
-        | xargs -rxn1 az repos list --query '[].{name: name, sshUrl: sshUrl, webUrl: webUrl}' -p \
-        | jq -r '.[] | "\(.name): \(.webUrl) (remote: \(.sshUrl))"'
+exe() {
+    echo "\$ ${@/eval/}"
+    "$@"
 }
 
 ssh-iap() {
@@ -49,6 +89,6 @@ ssh-iap() {
     instance_name="$1"
     shift
 
-    gcloud compute ssh --tunnel-through-iap --project="${gcp_project_id}" "${instance_name}" -- -oControlMaster=no -oSetEnv=TERM=xterm-256color "$@"
+    exe gcloud compute ssh --tunnel-through-iap --project="${gcp_project_id}" "${instance_name}" -- -oControlMaster=no -oSetEnv=TERM=xterm-256color "$@"
 }
 {{ end -}}

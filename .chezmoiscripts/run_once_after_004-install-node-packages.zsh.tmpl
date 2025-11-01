@@ -3,9 +3,7 @@ set -e
 # set -x
 
 # global node version hash: {{ output "mise" "ls" "-gp" "node" | sha256sum }}
-# ~/.default-pnpm-packages hash: {{ include "dot_default-pnpm-packages" | sha256sum }}
 for version in $(mise ls -g --json node | jq -r '.[].version'); do
   mise -C "$HOME" exec node@${version} -- corepack enable
   mise -C "$HOME" exec node@${version} -- corepack install -g {npm,pnpm,yarn}@'*'
-  mise -C "$HOME" exec node@${version} -- xargs -r pnpm add -g <~/.default-pnpm-packages
 done
