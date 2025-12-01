@@ -20,13 +20,13 @@ repos:
         exclude: \.gitignore
 
   - repo: https://github.com/ComPWA/taplo-pre-commit
-    rev: 23eab0f0eedcbedebff420f5fdfb284744adc7b3  # frozen: v0.9.3
+    rev: ade0f95ddcf661c697d4670d2cfcbe95d0048a0a  # frozen: v0.9.3
     hooks:
       - id: taplo-format
       - id: taplo-lint
 
   - repo: https://github.com/lyz-code/yamlfix
-    rev: 4193c8de6dbd35819d3404925f7aee6b79368591  # frozen: 1.19.0
+    rev: f857ca370af3db7e5e181373d45c06a148fac3f8  # frozen: 1.19.1
     hooks:
       - id: yamlfix
         args:
