@@ -37,7 +37,7 @@ return {
         'mdx-analyzer',
         'nginx-language-server',
         'nickel-lang-lsp',
-        'postgrestools',
+        'postgres-language-server',
         'prosemd-lsp',
         'protols',
         'pyright',
