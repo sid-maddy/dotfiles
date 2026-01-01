@@ -1,4 +1,6 @@
 # vim: ft=ruby.chezmoitmpl
+cask_args greedy: true
+
 tap 'cue-lang/tap'
 tap 'hashicorp/tap'
 tap 'stefanprodan/tap'
@@ -19,6 +21,8 @@ brew 'grizzly'
 brew 'gum'
 brew 'hadolint'
 brew 'helm'
+brew 'helm@3'
+brew 'helmfile'
 brew 'jj'
 brew 'jjui'
 brew 'jq'
@@ -28,7 +32,6 @@ brew 'mise'
 brew 'mongosh'
 brew 'openapi-generator'
 brew 'operator-sdk'
-brew 'prek'
 brew 'qpdf'
 brew 'ripgrep'
 brew 'sad'
@@ -65,6 +68,15 @@ brew 'miller'
 brew 'prettyping'
 brew 'sops'
 brew 'yq'
+
+flatpak 'com.discordapp.Discord'                           # Discord
+flatpak 'com.dropbox.Client'                               # Dropbox
+flatpak 'net.lutris.Lutris'                                # Lutris
+flatpak 'org.prismlauncher.PrismLauncher'                  # Prism Launcher
+flatpak 'com.slack.Slack'                                  # Slack
+flatpak 'com.valvesoftware.Steam'                          # Steam
+flatpak 'org.mozilla.Thunderbird'                          # Thunderbird
+flatpak 'io.github.ungoogled_software.ungoogled_chromium'  # Ungoogled Chromium
 {{ end -}}
 
 {{ if .machine.macos -}}
@@ -143,8 +155,8 @@ brew 'openjdk'  # Required by coursier
 cask 'chatgpt'
 cask 'cursor'
 cask 'gcloud-cli'
-cask 'granola'
 cask 'google-drive'
+cask 'granola'
 cask 'postman'
 cask 'redis-insight'
 cask 'slack'

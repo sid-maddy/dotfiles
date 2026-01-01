@@ -1,8 +1,15 @@
+# Config version for compatibility and deprecations
+# Fallback value (if you omit the key): config-version = 1
+config-version = 2
+
 # You can use it to add commands that run after login to macOS user session.
 # 'start-at-login' needs to be 'true' for 'after-login-command' to work.
 # Available commands:
 # https://nikitabobko.github.io/AeroSpace/commands
 after-login-command = []
+
+# Start AeroSpace at login.
+start-at-login = true
 
 # You can use it to add commands that run after AeroSpace startup.
 # 'after-startup-command' is run after 'after-login-command'.
@@ -19,8 +26,8 @@ exec-on-workspace-change = [
   'sketchybar --trigger aerospace_workspace_change FOCUSED_WORKSPACE=$AEROSPACE_FOCUSED_WORKSPACE PREV_WORKSPACE=$AEROSPACE_PREV_WORKSPACE',
 ]
 
-# Start AeroSpace at login.
-start-at-login = true
+# In i3, all workspaces are phantom.
+persistent-workspaces = []
 
 # Normalizations. See: https://nikitabobko.github.io/AeroSpace/guide#normalization
 enable-normalization-flatten-containers                         = true
@@ -32,7 +39,7 @@ enable-normalization-opposite-orientation-for-nested-containers = true
 accordion-padding = 30
 
 # Possible values: tiles|accordion
-default-root-container-layout = 'tiles'
+default-root-container-layout = 'accordion'
 
 # Possible values: horizontal|vertical|auto
 # 'auto' means: wide monitor (anything wider than high) gets horizontal orientation,
@@ -106,10 +113,10 @@ outer.right      = 0
 # '''
 
 # i3 wraps focus by default
-cmd-ctrl-j         = 'exec-and-forget aerospace focus --boundaries-action fail left || aerospace workspace --wrap-around prev'
-cmd-ctrl-k         = 'focus --boundaries-action fail down'
-cmd-ctrl-l         = 'focus --boundaries-action fail up'
-cmd-ctrl-semicolon = 'exec-and-forget aerospace focus --boundaries-action fail right || aerospace workspace --wrap-around next'
+cmd-ctrl-j         = 'exec-and-forget aerospace focus --boundaries all-monitors-outer-frame --boundaries-action fail left || aerospace trigger-binding --mode main cmd-ctrl-shift-tab'
+cmd-ctrl-k         = 'focus --boundaries all-monitors-outer-frame down'
+cmd-ctrl-l         = 'focus --boundaries all-monitors-outer-frame up'
+cmd-ctrl-semicolon = 'exec-and-forget aerospace focus --boundaries all-monitors-outer-frame --boundaries-action fail right || aerospace trigger-binding --mode main cmd-ctrl-tab'
 
 cmd-ctrl-shift-j         = 'move left'
 cmd-ctrl-shift-k         = 'move down'

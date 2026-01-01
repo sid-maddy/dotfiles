@@ -57,17 +57,17 @@ rebar = 'latest'
 'npm:renovate'                        = 'latest'
 
 # Python
-'pipx:iredis'       = 'latest'
-'pipx:jupyter-core' = {version = 'latest', uvx_args = '--with notebook --with jupyterlab-lsp --with basedpyright'}
-'pipx:memray'       = 'latest'
-'pipx:mycli'        = 'latest'
-'pipx:pdm'          = 'latest'
-'pipx:pgcli'        = {version = 'latest', uvx_args = '--with psycopg[binary]'}
-'pipx:pip-tools'    = 'latest'
-'pipx:poetry'       = {version = 'latest', uvx_args = '--with poetry-plugin-export'}
-'pipx:prek'         = 'latest'
-'pipx:pyupgrade'    = 'latest'
-'pipx:virtualenv'   = 'latest'
+'pipx:iredis'     = 'latest'
+'pipx:marimo'     = {version = 'latest', extras = 'recommended,lsp'}
+'pipx:memray'     = 'latest'
+'pipx:mycli'      = 'latest'
+'pipx:pdm'        = 'latest'
+'pipx:pgcli'      = {version = 'latest', uvx_args = '--with psycopg[binary]'}
+'pipx:pip-tools'  = 'latest'
+'pipx:poetry'     = {version = 'latest', uvx_args = '--with poetry-plugin-export'}
+'pipx:prek'       = 'latest'
+'pipx:pyupgrade'  = 'latest'
+'pipx:virtualenv' = 'latest'
 
 # Rust
 'cargo:cargo-edit'     = 'latest'
