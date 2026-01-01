@@ -1,0 +1,22 @@
+[completion]
+signature_hint_on_typing = true
+
+[display]
+default_width = "full"
+theme         = "system"
+
+[formatting]
+line_length = 120
+
+[save]
+format_on_save = true
+
+[language_servers.pylsp]
+enable_mypy = false
+enabled     = true
+
+[language_servers.ty]
+enabled = true
+
+[diagnostics]
+enabled = true
