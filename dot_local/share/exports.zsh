@@ -33,6 +33,9 @@ export JJ_CONFIG="${HOME}/.config/jj/config.toml"
 # k9s
 export K9S_CONFIG_DIR="${HOME}/.config/k9s"
 
+# Kubectl
+export KUBECTL_EXTERNAL_DIFF='difft --exit-code --skip-unchanged --sort-paths'
+
 # mise-en-place
 export MISE_LIST_ALL_VERSIONS=0
 export MISE_NODE_COREPACK=1

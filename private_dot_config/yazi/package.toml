@@ -1,12 +1,12 @@
 [[plugin.deps]]
 use  = "yazi-rs/plugins:chmod"
-rev  = "398796d"
+rev  = "557684b"
 hash = "8da0b15a97b5dfd13941d1ecc617ac7c"
 
 [[plugin.deps]]
 use  = "yazi-rs/plugins:git"
-rev  = "398796d"
-hash = "73788c7dc5827ef4677c502c3ea8fa19"
+rev  = "557684b"
+hash = "270915fa8282a19908449530ff66f7e2"
 
 [[plugin.deps]]
 use  = "Reledia/glow"
@@ -20,5 +20,5 @@ hash = "9628b660afb192d32f2ea5f6634d3e72"
 
 [[flavor.deps]]
 use  = "BennyOe/tokyo-night"
-rev  = "5f56364"
-hash = "ea25e1f0f25b0521ef78fd4e9698ff52"
+rev  = "8e6296f"
+hash = "d9da921c3bd37ba32ee27a8a7a40461f"

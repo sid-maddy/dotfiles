@@ -1,4 +1,9 @@
 #!/usr/bin/env zsh
+exe() {
+    echo "\$ ${@/eval/}"
+    "$@"
+}
+
 fm() {
     local cwd_file
     cwd_file="$(mktemp -t "yazi-cwd.XXXXXX")"
@@ -63,16 +68,11 @@ argocd-sync-all-utility() {
 }
 
 clickhouse-client() {
-    docker run -it --rm \
+    exe docker run -it --rm \
         --entrypoint clickhouse-client \
         --env TERM=xterm-256color \
         --volume "${HOME}/.clickhouse-client-history":/root/.clickhouse-client-history \
         clickhouse/clickhouse-server:24.3 --host host.docker.internal "$@"
-}
-
-exe() {
-    echo "\$ ${@/eval/}"
-    "$@"
 }
 
 ssh-iap() {

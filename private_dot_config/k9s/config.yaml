@@ -1,40 +1,47 @@
 ---
 # yaml-language-server: $schema=https://github.com/derailed/k9s/raw/master/internal/config/json/schemas/k9s.json
+
 k9s:
-  # Enable periodic refresh of resource browser windows
+  # Enable periodic refresh of resource browser windows.
   liveViewAutoRefresh: true
 
-  # UI settings
+  # This setting allows users to specify the default view.
+  defaultView: dp
+
   ui:
-    # Enable mouse support
+    # Enable mouse support.
     enableMouse: true
 
-    # Hide the k9s header
+    # Hide the k9s header.
     headless: true
 
-    # Hide the k9s logo
+    # Hide the k9s logo.
     logoless: true
+
+    # Disable the splash screen on startup.
+    splashless: true
+
+    # Enable reactive UI.
+    reactive: true
 
     # This assumes the file `skins/<skin>.yaml` is present in the `$XDG_DATA_HOME/k9s/skins` directory
     skin: transparent
 
-    # Default to fullscreen mode for the following modes: yaml, helm history, describe, value_extender, details, logs)
+    # Enable fullscreen on views like logs, yaml, details.
     defaultsToFullScreen: true
 
-  # Disable check for the latest revision
-  skipLatestRevCheck: true
+    # Display full GVR (group/version/resource) in views title.
+    useFullGVRTitle: true
 
-  # Logs configuration
-  logger:
-    # Enable log line timestamp info
-    showTime: true
+  # Disable check for the latest revision.
+  skipLatestRevCheck: true
 
   # Provide shell pod customization, when `nodeShell` feature gate is enabled!
   shellPod:
-    # The shell pod image to use
+    # The shell pod image to use.
     image: alpine:latest
 
-    # The namespace to launch to shell pod into
+    # The namespace to launch to shell pod into.
     namespace: utility
 
     # The resource limit to set on the shell pod
@@ -42,5 +49,10 @@ k9s:
       cpu: 100m
       memory: 100Mi
 
-    # Enable TTY
+    # Enable TTY.
     tty: true
+
+  # Logs configuration.
+  logger:
+    # Enable log line timestamp info.
+    showTime: true
