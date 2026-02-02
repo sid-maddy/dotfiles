@@ -1,4 +1,4 @@
-"$schema" = "https://jj-vcs.github.io/jj/latest/config-schema.json"
+#:schema https://docs.jj-vcs.dev/latest/config-schema.json
 
 [user]
 email = '{{ .email }}'
@@ -11,9 +11,11 @@ backend = 'watchman'
   register-snapshot-trigger = true
 
 [git]
-auto-local-bookmark         = false
 private-commits             = 'description(glob:"stash:*") | description(glob:"wip:*")'
 templates.git_push_bookmark = '"sid/push-" ++ change_id.short()'
+
+[remotes.origin]
+auto-track-bookmarks = "sid/*"
 
 [signing]
 backend  = 'gpg'
@@ -25,7 +27,7 @@ default-command = 'log'
 diff-editor     = ':builtin'
 diff-formatter  = ['difft', '--color=always', '--sort-paths', '$left', '$right']
 merge-editor    = ':builtin'
-pager           = ':builtin'
+pager           = ["sh", "-c", "exec ${PAGER:-less -FRX}"]
 
 [merge-tools.vimdiff]
 diff-invocation-mode = 'file-by-file'
