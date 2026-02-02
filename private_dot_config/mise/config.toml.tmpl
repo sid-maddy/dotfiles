@@ -17,21 +17,21 @@ trusted_config_paths                = ['~/.config/mise']
   # uv_venv_auto = true
 
 [tools]
-bun                         = 'latest'
-deno                        = 'latest'
-elixir                      = 'latest'
-erlang                      = 'latest'
-go                          = 'latest'
-kubectl                     = ['latest', '1.33', '1.31']
-node                        = 'lts'
-python                      = ['latest', 'sub-0.1:latest', 'sub-0.2:latest', 'sub-0.3:latest', 'sub-0.4:latest', '3.8']
-ruby                        = 'latest'
-rust                        = '1.91'
-stylua                      = 'latest'
-uv                          = 'latest'
+bun     = 'latest'
+deno    = 'latest'
+elixir  = 'latest'
+erlang  = 'latest'
+go      = 'latest'
+kubectl = ['latest', '1.33', '1.31']
+node    = 'lts'
+python  = ['latest', 'sub-0.1:latest', 'sub-0.2:latest', 'sub-0.3:latest', 'sub-0.4:latest']
+ruby    = 'latest'
+rust    = 'latest'
+stylua  = 'latest'
+uv      = 'latest'
 {{- if .machine.work }}
-java                        = 'graalvm-community-21'
-scala                       = 'latest'
+java    = 'graalvm-community-25'
+scala   = 'latest'
 {{- end }}
 
 # Erlang
