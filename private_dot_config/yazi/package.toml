@@ -1,12 +1,12 @@
 [[plugin.deps]]
 use  = "yazi-rs/plugins:chmod"
-rev  = "557684b"
-hash = "8da0b15a97b5dfd13941d1ecc617ac7c"
+rev  = "1962818"
+hash = "f0c8c378184d5f8abd1b095a443d336d"
 
 [[plugin.deps]]
 use  = "yazi-rs/plugins:git"
-rev  = "557684b"
-hash = "270915fa8282a19908449530ff66f7e2"
+rev  = "1962818"
+hash = "26db011a778f261d730d4f5f8bf24b3f"
 
 [[plugin.deps]]
 use  = "Reledia/glow"

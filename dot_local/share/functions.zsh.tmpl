@@ -67,6 +67,15 @@ argocd-sync-all-utility() {
     done
 }
 
+claude-code() {
+    claude \
+      --betas code-execution-2025-08-25 \
+      --betas computer-use-2025-11-24 \
+      --betas computer-use-2025-01-24 \
+      --betas context-management-2025-06-27 \
+      --betas web-fetch-2025-09-10
+}
+
 clickhouse-client() {
     exe docker run -it --rm \
         --entrypoint clickhouse-client \

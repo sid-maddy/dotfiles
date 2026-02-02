@@ -1,0 +1,9 @@
+[ui.theme]
+light = 'base24-ayu-light'
+dark  = 'base24-ayu-dark'
+
+[ui.colors]
+revset    = {bg = 'transparent'}
+revisions = {bg = 'transparent'}
+status    = {bg = 'transparent'}
+evolog    = {bg = 'transparent'}
