@@ -8,7 +8,6 @@ brew 'bat'
 brew 'chezmoi'
 brew 'cloudflared'
 brew 'cue-lang/tap/cue'
-brew 'd2'
 brew 'difftastic'
 brew 'duf'
 brew 'dust'
@@ -17,7 +16,6 @@ brew 'fzf'
 brew 'gh'
 brew 'git-extras'
 brew 'glab'
-brew 'grizzly'
 brew 'gum'
 brew 'hadolint'
 brew 'helm'
@@ -33,7 +31,6 @@ brew 'mise'
 brew 'mongosh'
 brew 'openapi-generator'
 brew 'operator-sdk'
-brew 'qpdf'
 brew 'ripgrep'
 brew 'sad'
 brew 'sk'
@@ -47,40 +44,10 @@ brew 'stefanprodan/tap/timoni'
 brew 'tree-sitter-cli'
 brew 'typst'
 brew 'watchexec'
-brew 'weechat'
 brew 'xh'
 brew 'zoxide'
 
-{{ if not .machine.macos -}}
-brew 'age'
-brew 'crane'
-brew 'dive'
-brew 'earthly'
-brew 'gitui'
-brew 'ipcalc'
-brew 'just'
-brew 'kubeshark'
-brew 'lnav'
-brew 'miller'
-brew 'prettyping'
-brew 'sops'
-brew 'yq'
-
-flatpak 'com.discordapp.Discord'                           # Discord
-flatpak 'com.dropbox.Client'                               # Dropbox
-flatpak 'net.lutris.Lutris'                                # Lutris
-flatpak 'org.prismlauncher.PrismLauncher'                  # Prism Launcher
-flatpak 'com.slack.Slack'                                  # Slack
-flatpak 'com.valvesoftware.Steam'                          # Steam
-flatpak 'org.mozilla.Thunderbird'                          # Thunderbird
-flatpak 'io.github.ungoogled_software.ungoogled_chromium'  # Ungoogled Chromium
-{{ end -}}
-
 {{ if .machine.macos -}}
-tap 'FelixKratz/formulae'
-tap 'nikitabobko/tap'
-tap 'slp/krunkit'
-
 brew 'bash'
 brew 'cmake'
 brew 'colima'
@@ -99,16 +66,15 @@ brew 'gnu-tar'
 brew 'gnupg'
 brew 'graphviz'
 brew 'htop'
-brew 'slp/krunkit/krunkit'
 brew 'mas'
 brew 'moreutils'
 brew 'mtr'
 brew 'ncdu'
 brew 'neovim'
+brew 'opencode'
 brew 'pinentry-mac'
 brew 'postgresql@15'
 brew 'rename'
-brew 'FelixKratz/formulae/sketchybar'
 brew 'tcptraceroute'
 brew 'tmux'
 brew 'watch'
@@ -117,12 +83,7 @@ brew 'yara'
 brew 'zellij'
 brew 'zsh'
 
-cask 'nikitabobko/tap/aerospace', args: { no_quarantine: true }
-cask 'alacritty'
-cask 'arc'
-cask 'betterdisplay'
 cask 'cap'
-cask 'discord'
 cask 'firefox@nightly'
 cask 'flameshot'
 cask 'font-sketchybar-app-font'
@@ -132,7 +93,7 @@ cask 'ghostty'
 cask 'gimp'
 cask 'jetbrains-toolbox'
 cask 'languagetool-desktop'
-cask 'middleclick', args: { no_quarantine: true }
+cask 'middleclick'
 cask 'nomachine'
 cask 'notion'
 cask 'notion-calendar'
@@ -141,7 +102,6 @@ cask 'thunderbird@daily'
 cask 'ungoogled-chromium'
 cask 'utm'
 cask 'visual-studio-code'
-cask 'zed'
 cask 'zen'
 
 {{    if .machine.work -}}
@@ -158,12 +118,43 @@ cask 'claude-code'
 cask 'cursor'
 cask 'gcloud-cli'
 cask 'google-drive'
-cask 'granola'
 cask 'postman'
 cask 'redis-insight'
 cask 'slack'
 cask 'wireshark-app'
 {{    else -}}
+tap 'FelixKratz/formulae'
+tap 'nikitabobko/tap'
+
+cask 'nikitabobko/tap/aerospace', args: { no_quarantine: true }
+cask 'betterdisplay'
+cask 'discord'
 cask 'karabiner-elements'
+brew 'FelixKratz/formulae/sketchybar'
 {{    end -}}
+{{ else -}}
+brew 'age'
+brew 'crane'
+brew 'dive'
+brew 'earthly'
+brew 'gitui'
+brew 'ipcalc'
+brew 'just'
+brew 'kubeshark'
+brew 'lnav'
+brew 'miller'
+brew 'prettyping'
+brew 'qpdf'
+brew 'sops'
+brew 'weechat'
+brew 'yq'
+
+flatpak 'com.discordapp.Discord'                           # Discord
+flatpak 'com.dropbox.Client'                               # Dropbox
+flatpak 'net.lutris.Lutris'                                # Lutris
+flatpak 'org.prismlauncher.PrismLauncher'                  # Prism Launcher
+flatpak 'com.slack.Slack'                                  # Slack
+flatpak 'com.valvesoftware.Steam'                          # Steam
+flatpak 'org.mozilla.Thunderbird'                          # Thunderbird
+flatpak 'io.github.ungoogled_software.ungoogled_chromium'  # Ungoogled Chromium
 {{ end -}}

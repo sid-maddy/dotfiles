@@ -1,3 +1,6 @@
+[preview]
+position = 'auto'
+
 [ui.theme]
 light = 'base24-ayu-light'
 dark  = 'base24-ayu-dark'
