@@ -1,6 +1,14 @@
-#!/usr/bin/env bash
+#!/bin/bash
 
-# The $NAME variable is passed from sketchybar and holds the name of the item invoking this script:
-# https://felixkratz.github.io/SketchyBar/config/events#events-and-scripting
-
-sketchybar --set "$NAME" icon= label="$(date '+%a %b %d %H:%M')"
+case "$SENDER" in
+    mouse.entered)
+        sketchybar --set clock popup.drawing=on
+        ;;
+    mouse.exited|mouse.exited.global)
+        sketchybar --set clock popup.drawing=off
+        ;;
+    *)
+        sketchybar --set clock label="$(date '+%H:%M')"
+        sketchybar --set clock.date label="$(date '+%A, %d %B %Y') · Week $(date '+%V')"
+        ;;
+esac

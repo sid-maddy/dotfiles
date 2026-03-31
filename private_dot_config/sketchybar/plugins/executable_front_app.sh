@@ -1,21 +1,25 @@
 #!/usr/bin/env bash
 
-# shellcheck source=./executable_colors.sh
-source "$CONFIG_DIR/plugins/colors.sh"
-
-# Some events send additional information specific to the event in the $INFO variable.
-# E.g. the front_app_switched event sends the name of the newly focused application in the $INFO variable:
-# https://felixkratz.github.io/SketchyBar/config/events#events-and-scripting
-
 if [ "$SENDER" = "front_app_switched" ]; then
-	front_app=(
-		icon.background.color="$TRANSPARENT"
-		icon.background.drawing=on
-		icon.background.image="app.$(osascript -e "get id of app \"$INFO\"")"
-		icon.background.image.scale=0.75
-		icon.padding_right=15
+	WINDOW_TITLE=$(osascript -e "tell application \"System Events\" to tell process \"$INFO\" to get name of front window" 2>/dev/null)
+	if [ -n "$WINDOW_TITLE" ]; then
+		LABEL="$INFO · $WINDOW_TITLE"
+	else
+		LABEL="$INFO"
+	fi
+	sketchybar --set "$NAME" icon.background.image="app.$INFO" label="$LABEL"
 
-		label="$INFO"
-	)
-	sketchybar --set "$NAME" "${front_app[@]}"
+	CONFIG_DIR="${CONFIG_DIR:-$HOME/.config/sketchybar}"
+	AEROSPACE_BIN="${AEROSPACE_BIN:-$(command -v aerospace 2>/dev/null || true)}"
+	[ -z "$AEROSPACE_BIN" ] && exit 0
+
+	FOCUSED_WS="$("$AEROSPACE_BIN" list-workspaces --focused 2>/dev/null | head -1)"
+	[ -z "$FOCUSED_WS" ] && exit 0
+
+	APP_COLOR="$("$CONFIG_DIR/helpers/app_color.sh" "$INFO")"
+	DIM_COLOR="0x20${APP_COLOR:4}"
+	sketchybar --animate tanh 20 \
+		--set "space.$FOCUSED_WS" \
+		background.border_color="$APP_COLOR" \
+		background.color="$DIM_COLOR"
 fi

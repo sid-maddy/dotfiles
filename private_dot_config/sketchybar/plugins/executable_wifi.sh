@@ -1,16 +1,39 @@
-#!/usr/bin/env bash
+#!/bin/bash
 
-if [ "$SENDER" = "wifi_change" ] || [ "$SENDER" = "forced" ]; then
-	priv_ipaddr="$(networksetup -getinfo Wi-Fi | grep "IP address" | head -n 1 | awk -F ':' '{print $2}')" # 0.0.0.0 | none | -empty-
-	ssid="$(ipconfig getsummary "$(networksetup -listallhardwareports | awk '/Hardware Port: Wi-Fi/{getline; print $2}')" | awk -F ' SSID : ' '/ SSID : / {print $2}')"
+source "$CONFIG_DIR/icons.sh"
+source "$CONFIG_DIR/colors.sh"
 
-	icon=""
-	if [ -n "$priv_ipaddr" ] && [ "$priv_ipaddr" != " none" ]; then
-		icon=""
+case "$SENDER" in
+mouse.entered)
+	sketchybar --set wifi popup.drawing=on
+	;;
+mouse.exited | mouse.exited.global)
+	sketchybar --set wifi popup.drawing=off
+	;;
+*)
+	SSID=$(get-ssid 2>/dev/null)
+
+	if [ -n "$SSID" ] && [ "$SSID" != "Unknown (not associated)" ]; then
+		ICON=$WIFI_CONNECTED
+		LABEL="$SSID"
+		COLOR=$WHITE
+		IP=$(ipconfig getifaddr en0 2>/dev/null || echo "N/A")
+		ROUTER=$(networksetup -getinfo Wi-Fi 2>/dev/null | grep "^Router" | awk -F': ' '{print $2}')
+		[ -z "$ROUTER" ] && ROUTER="N/A"
 	else
-		icon=""
-		ssid="-offline-"
+		ICON=$WIFI_DISCONNECTED
+		LABEL="Off"
+		COLOR=$RED
+		IP="N/A"
+		ROUTER="N/A"
 	fi
 
-	sketchybar --set wifi icon="$icon" label="$ssid"
-fi
+	sketchybar --set "$NAME" \
+		icon="$ICON" \
+		icon.color="$COLOR" \
+		label="$LABEL" \
+		label.color="$COLOR" \
+		--set wifi.ip label="IP: $IP" \
+		--set wifi.router label="Router: $ROUTER"
+	;;
+esac

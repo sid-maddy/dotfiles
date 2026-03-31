@@ -52,6 +52,6 @@
 	gpgSign = true
 
 {{ if .machine.work -}}
-[url "git@ssh.dev.azure.com:v3"]
-	insteadOf = https://dev.azure.com
+[includeIf "gitdir:~/Documents/work/"]
+	path = ~/Documents/work/.gitconfig
 {{ end -}}

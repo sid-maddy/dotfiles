@@ -10,7 +10,7 @@ disabled = true
 symbol   = ' '
 
 [azure]
-disabled = false
+disabled = true
 symbol   = " "
 
 [battery]
