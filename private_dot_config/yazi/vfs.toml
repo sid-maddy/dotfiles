@@ -1,0 +1,11 @@
+# SFTP remote file systems
+# Uncomment and configure a service to browse remote servers in Yazi.
+#
+# [services.my-server]
+# type = "sftp"
+# host = "example.com"
+# user = "root"
+# port = 22
+#
+# Optional: 1Password SSH agent
+# identity_agent = "~/Library/Group Containers/2BUA8C4S2C.com.1password/t/agent.sock"
