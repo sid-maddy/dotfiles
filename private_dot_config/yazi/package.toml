@@ -1,12 +1,22 @@
 [[plugin.deps]]
 use  = "yazi-rs/plugins:chmod"
-rev  = "ac82af3"
+rev  = "c2c16c8"
 hash = "f0c8c378184d5f8abd1b095a443d336d"
 
 [[plugin.deps]]
+use  = "XYenon/clipboard"
+rev  = "0ac0320"
+hash = "f80172438b4b5c31e94d6c891f734445"
+
+[[plugin.deps]]
+use  = "yazi-rs/plugins:diff"
+rev  = "c2c16c8"
+hash = "8b1af6b5a69797ee951f2a80ce570818"
+
+[[plugin.deps]]
 use  = "yazi-rs/plugins:git"
-rev  = "ac82af3"
-hash = "6849444b7c2df08eace83f3f86fb55a3"
+rev  = "c2c16c8"
+hash = "88e56a64b7ce7c4314427452343fef17"
 
 [[plugin.deps]]
 use  = "Reledia/glow"
@@ -14,11 +24,26 @@ rev  = "bd3eaa5"
 hash = "92b5c58159a51c567f82b618cee2b78"
 
 [[plugin.deps]]
+use  = "Adda0/jjui"
+rev  = "a41b2e1"
+hash = "39a4bc4632509e4a68e26b3eed3c3217"
+
+[[plugin.deps]]
+use  = "yazi-rs/plugins:smart-enter"
+rev  = "c2c16c8"
+hash = "187cc58ba7ac3befd49c342129e6f1b6"
+
+[[plugin.deps]]
 use  = "TD-Sky/sudo"
-rev  = "86205aa"
-hash = "9628b660afb192d32f2ea5f6634d3e72"
+rev  = "afd61ce"
+hash = "d390cd2d8b996939a695411b446f58d0"
+
+[[plugin.deps]]
+use  = "yazi-rs/plugins:toggle-pane"
+rev  = "c2c16c8"
+hash = "9c7987da2d2a2120dac33abb64132004"
 
 [[flavor.deps]]
-use  = "BennyOe/tokyo-night"
-rev  = "8e6296f"
-hash = "d9da921c3bd37ba32ee27a8a7a40461f"
+use  = "matt-dong-123/base16"
+rev  = "ed79352"
+hash = "94659ef90cd557d05dbda7076fbbb3f4"

@@ -13,6 +13,9 @@ alias gmm='git merge $(git_main_branch)'
 # NeoVim
 alias vimdiff='nvim -d'
 
+# OpenCode
+alias oc='opencode'
+
 # UV
 alias uvrun='uv run'
 alias uvred="uv run ${EDITOR}"

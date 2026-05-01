@@ -1,3 +1,61 @@
+# Smart enter (open file or enter dir)
+[[mgr.prepend_keymap]]
+on   = "l"
+run  = "plugin smart-enter"
+desc = "Enter dir or open file"
+
+[[mgr.prepend_keymap]]
+on   = "<Right>"
+run  = "plugin smart-enter"
+desc = "Enter dir or open file"
+
+# Shell
+[[mgr.prepend_keymap]]
+on   = "!"
+for  = "unix"
+run  = 'shell "$SHELL" --block'
+desc = "Open shell here"
+
+# jjui
+[[mgr.prepend_keymap]]
+on   = ["g", "j"]
+run  = "plugin jjui"
+desc = "Open jjui"
+
+# Git root
+[[mgr.prepend_keymap]]
+on   = ["g", "r"]
+run  = 'shell -- ya emit cd "$(git rev-parse --show-toplevel)"'
+desc = "Go to git root"
+
+# Clipboard
+[[mgr.prepend_keymap]]
+on   = "Y"
+run  = "plugin clipboard -- --action=copy"
+desc = "Copy files to clipboard"
+
+[[mgr.prepend_keymap]]
+on   = "<C-p>"
+run  = "plugin clipboard -- --action=paste"
+desc = "Paste files from clipboard"
+
+# Diff
+[[mgr.prepend_keymap]]
+on   = "<C-d>"
+run  = "plugin diff"
+desc = "Diff selected with hovered"
+
+# Toggle pane
+[[mgr.prepend_keymap]]
+on   = "T"
+run  = "plugin toggle-pane max-preview"
+desc = "Maximize or restore preview"
+
+[[mgr.prepend_keymap]]
+on   = "E"
+run  = "plugin toggle-pane min-preview"
+desc = "Hide or restore preview"
+
 # chmod
 [[mgr.prepend_keymap]]
 on   = ["c", "m"]
@@ -14,7 +72,7 @@ desc = "sudo paste"
 [[mgr.prepend_keymap]]
 on   = ["R", "P"]
 run  = "plugin sudo -- paste --force"
-desc = "sudo paste"
+desc = "sudo paste --force"
 
 # sudo mv
 [[mgr.prepend_keymap]]
@@ -32,7 +90,7 @@ desc = "sudo link"
 [[mgr.prepend_keymap]]
 on   = ["R", "p", "r"]
 run  = "plugin sudo -- link --relative"
-desc = "sudo link relative path"
+desc = "sudo link (relative)"
 
 # sudo ln
 [[mgr.prepend_keymap]]

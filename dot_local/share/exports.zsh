@@ -15,6 +15,9 @@ export COMPOSE_BAKE=true
 # Google Cloud
 export USE_GKE_GCLOUD_AUTH_PLUGIN=True
 
+# Hermes
+export HERMES_TUI=1
+
 # Homebrew
 export HOMEBREW_BAT=1
 export HOMEBREW_CLEANUP_PERIODIC_FULL_DAYS=1
@@ -39,6 +42,9 @@ export KUBECTL_EXTERNAL_DIFF='difft --exit-code --skip-unchanged --sort-paths'
 # mise-en-place
 export MISE_LIST_ALL_VERSIONS=0
 export MISE_NODE_COREPACK=1
+
+# OpenCode / oh-my-openagent
+export OMO_SEND_ANONYMOUS_TELEMETRY=0
 
 # Starship
 export STARSHIP_LOG=error

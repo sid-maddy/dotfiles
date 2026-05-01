@@ -1,12 +1,29 @@
+#:schema https://yazi-rs.github.io/schemas/yazi.json
+
+[mgr]
+sort_by        = "natural"
+sort_dir_first = true
+sort_translit  = true
+show_symlink   = true
+scrolloff      = 5
+
+[opener]
+edit = [{run = 'nvim %s', block = true, desc = "nvim", for = "unix"}]
+
+[open]
+prepend_rules = [
+  {mime = "text/*", use = "edit"},
+  {mime = "application/{json,ndjson,javascript}", use = "edit"},
+  {mime = "application/wine-extension-ini", use = "edit"},
+  {mime = "inode/empty", use = "edit"},
+]
+
+[preview]
+tab_size    = 2
+max_width   = 600
+max_height  = 900
+image_delay = 0
+
 [plugin]
+prepend_fetchers   = [{url = "*", run = "git", group = "git"}, {url = "*/", run = "git", group = "git"}]
 prepend_previewers = [{mime = "text/markdown", run = "glow"}, {mime = "text/csv", run = "miller"}]
-
-  [[plugin.prepend_fetchers]]
-  id   = "git"
-  name = "*"
-  run  = "git"
-
-  [[plugin.prepend_fetchers]]
-  id   = "git"
-  name = "*/"
-  run  = "git"
