@@ -1,6 +1,12 @@
 # Age
 key.txt.age
 
+# OpenCode
+.config/opencode/node_modules/
+.config/opencode/package.json
+.config/opencode/package-lock.json
+.config/opencode/*.lock
+
 # Zsh
 ## Zsh Word Compiled
 **/*.zwc
@@ -11,5 +17,4 @@ install.zsh
 
 {{ if not .machine.macos -}}
 .config/aerospace/
-.config/karabiner/
 {{ end -}}

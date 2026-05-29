@@ -1,0 +1,30 @@
+[theme]
+name = "ayu-dark"
+
+[colors]
+# Success indicators (exit code 0, duration of successful commands)
+AlertInfo = "#7fd962"
+
+# Warnings, match highlighting in search results
+AlertWarn = "#e6b450"
+
+# Errors, selected row highlight
+AlertError = "#d95757"
+
+# Secondary/supporting text
+Annotation = "#565b66"
+
+# Default foreground
+Base = "#bfbdb6"
+
+# Help bar, context hints
+Guidance = "#59c2ff"
+
+# Attention-drawing elements (auto-bold)
+Important = "#ff8f40"
+
+# Section/view titles
+Title = "#d2a6ff"
+
+# Low-contrast foreground
+Muted = "#565b66"

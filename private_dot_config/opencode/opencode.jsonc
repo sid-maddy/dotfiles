@@ -1,0 +1,169 @@
+{
+  "$schema": "https://opencode.ai/config.json",
+
+  // ─── General ───────────────────────────────────────────────
+  "model": "google-vertex-anthropic/claude-sonnet-4-6@default",
+  "small_model": "openai/gpt-5.4-mini",
+  "default_agent": "sisyphus",
+  "share": "disabled",
+  "autoupdate": false,
+  "snapshot": false,
+
+  // ─── Experimental ───────────────────────────────────────
+  "experimental": {
+    "disable_paste_summary": true
+  },
+
+  // ─── Providers ─────────────────────────────────────────────
+  "provider": {
+    "google-vertex-anthropic": {
+      "models": {
+        "claude-opus-4-6@default": {
+          "limit": { "context": 1000000, "output": 128000 }
+        },
+        "claude-sonnet-4-6@default": {
+          "limit": { "context": 1000000, "output": 128000 }
+        }
+      },
+      "options": {
+        "setCacheKey": true,
+        "timeout": 600000,
+        "chunkTimeout": 30000
+      }
+    }
+  },
+  "enabled_providers": ["google-vertex-anthropic", "openai"],
+
+  // ─── Permissions ───────────────────────────────────────────
+  "permission": {
+    "*": "allow",
+    "bash": "ask",
+    "read": {
+      "*": "allow",
+      "*.env": "deny",
+      "*.env.*": "deny",
+      "*.env.example": "allow"
+    },
+    "edit": {
+      "*": "allow",
+      "*.env": "deny",
+      "*.env.*": "deny",
+      "*.env.example": "allow"
+    },
+    "write": {
+      "*": "allow",
+      "*.env": "deny",
+      "*.env.*": "deny",
+      "*.env.example": "allow"
+    },
+    "grep": {
+      "*": "allow",
+      "*.env": "deny",
+      "*.env.*": "deny",
+      "*.env.example": "allow"
+    },
+    "external_directory": {
+      "~/.config/opencode/**": "allow",
+      "~/.agents/**": "allow"
+    }
+  },
+
+  // ─── Compaction ────────────────────────────────────────────
+  "compaction": {
+    "auto": true,
+    "prune": true,
+    "reserved": 10000
+  },
+
+  // ─── Agent Overrides ──────────────────────────────────────
+  "agent": {
+    "compaction": {
+      "model": "openai/gpt-5.4-mini"
+    }
+  },
+
+  // ─── Plugins ───────────────────────────────────────────────
+  "plugin": [
+    "oh-my-openagent@latest",
+    "opencode-antigravity-auth@latest"
+  ],
+
+  // ─── Formatters ────────────────────────────────────────────
+  "formatter": {
+    "prettier": { "disabled": true }
+  },
+
+  // ─── LSP ───────────────────────────────────────────────────
+  "lsp": {
+    "ty": {
+      "command": ["ty", "server"],
+      "extensions": [".py"]
+    },
+    "typescript": {
+      "command": ["typescript-language-server", "--stdio"],
+      "extensions": [".ts", ".tsx", ".js", ".jsx"]
+    },
+    "gopls": {
+      "command": ["gopls"],
+      "extensions": [".go"]
+    },
+    "yaml": {
+      "command": ["yaml-language-server", "--stdio"],
+      "extensions": [".yaml", ".yml"]
+    },
+    "bash": {
+      "command": ["bash-language-server", "start"],
+      "extensions": [".sh", ".bash", ".zsh", ".ksh"]
+    },
+    "json": {
+      "command": ["vscode-json-language-server", "--stdio"],
+      "extensions": [".json", ".jsonc"]
+    },
+    "ruff": {
+      "command": ["ruff", "server"],
+      "extensions": [".py"]
+    }
+  },
+
+  // ─── Attachments ───────────────────────────────────────────
+  "attachment": {
+    "image": {
+      "auto_resize": true,
+      "max_width": 2000,
+      "max_height": 2000,
+      "max_base64_bytes": 5242880
+    }
+  },
+
+  // ─── Server ────────────────────────────────────────────────
+  "server": {
+    "hostname": "127.0.0.1",
+    "port": 4096
+  },
+
+  // ─── Watcher ───────────────────────────────────────────────
+  "watcher": {
+    "ignore": [
+      "**/.git/**",
+      "**/.jj/**",
+      "**/.pytest_cache/**",
+      "**/.ruff_cache/**",
+      "**/.mypy_cache/**",
+      "**/.venv/**",
+      "**/__pycache__/**",
+      "**/build/**",
+      "**/dist/**",
+      "**/node_modules/**",
+      "**/.next/**",
+      "**/.nuxt/**",
+      "**/coverage/**",
+      "**/.terraform/**",
+      "**/*.egg-info/**",
+      "**/.ty_cache/**",
+      "**/target/**",
+      "**/.tox/**",
+      "**/.omo/**",
+      "**/.opencode/**"
+    ]
+  }
+}

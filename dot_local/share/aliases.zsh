@@ -18,4 +18,4 @@ alias oc='opencode'
 
 # UV
 alias uvrun='uv run'
-alias uvred="uv run ${EDITOR}"
+alias uvred='uv run ${EDITOR}'

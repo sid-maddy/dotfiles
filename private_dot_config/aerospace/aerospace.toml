@@ -174,16 +174,6 @@ l     = 'resize width +50'
 if.app-id = 'com.mitchellh.ghostty'
 run       = 'move-node-to-workspace 1'
 
-# Cursor
-[[on-window-detected]]
-if.app-id = 'com.todesktop.230313mzl4w4u92'
-run       = 'move-node-to-workspace 1'
-
-# Zed
-[[on-window-detected]]
-if.app-id = 'dev.zed.Zed'
-run       = 'move-node-to-workspace 1'
-
 # Zen
 [[on-window-detected]]
 if.app-id = 'app.zen-browser.zen'
@@ -194,6 +184,11 @@ run       = 'move-node-to-workspace 2'
 if.app-id = 'notion.id'
 run       = 'move-node-to-workspace 3'
 
+# Calendar
+[[on-window-detected]]
+if.app-id = 'com.apple.iCal'
+run       = 'move-node-to-workspace 3'
+
 # Notion Calendar
 [[on-window-detected]]
 if.app-id = 'com.cron.electron'
@@ -202,6 +197,11 @@ run       = 'move-node-to-workspace 3'
 # Slack
 [[on-window-detected]]
 if.app-id = 'com.tinyspeck.slackmacgap'
+run       = 'move-node-to-workspace 3'
+
+# Mail
+[[on-window-detected]]
+if.app-id = 'com.apple.mail'
 run       = 'move-node-to-workspace 3'
 
 # Thunderbird

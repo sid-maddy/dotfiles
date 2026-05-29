@@ -8,13 +8,7 @@ task_run_auto_install               = false
 trusted_config_paths                = ['~/.config/mise']
 
   [settings.npm]
-  bun = true
-
-  [settings.pipx]
-  uvx = true
-
-  # [settings.python]
-  # uv_venv_auto = true
+  package_manager = 'bun'
 
 [tools]
 bun     = 'latest'
@@ -42,7 +36,7 @@ rebar = 'latest'
 'go:github.com/charmbracelet/glow'                          = 'latest'
 'go:github.com/go-delve/delve/cmd/dlv'                      = 'latest'
 'go:github.com/golangci/golangci-lint/v2/cmd/golangci-lint' = 'latest'
-'go:github.com/goreleaser/goreleaser'                       = 'latest'
+'go:github.com/goreleaser/goreleaser/v2'                    = 'latest'
 'go:github.com/grafana/dashboard-linter'                    = 'latest'
 'go:github.com/grafana/grafanactl/cmd/grafanactl'           = 'latest'
 'go:github.com/nats-io/natscli/nats'                        = 'latest'
@@ -53,11 +47,11 @@ rebar = 'latest'
 'go:sigs.k8s.io/kubectl-validate'                           = 'latest'
 
 # Node.js
-'npm:@openai/codex'      = 'latest'
-'npm:renovate'           = 'latest'
+'npm:@earendil-works/pi-coding-agent' = 'latest'
+'npm:@openai/codex'                   = 'latest'
+'npm:renovate'                        = 'latest'
 
 # Python
-'pipx:code-review-graph' = {version = 'latest', extras = 'all'}
 'pipx:iredis'            = 'latest'
 'pipx:marimo'            = {version = 'latest', extras = 'recommended,lsp'}
 'pipx:memray'            = 'latest'
@@ -71,6 +65,7 @@ rebar = 'latest'
 'pipx:virtualenv'        = 'latest'
 
 # Rust
+'cargo:cargo-binstall' = 'latest'
 'cargo:cargo-edit'     = 'latest'
 'cargo:cargo-generate' = 'latest'
 'cargo:cargo-outdated' = 'latest'

@@ -1,0 +1,6 @@
+# vim: ft=yaml
+default_context:
+  full_name: "Siddhesh Mhadnak"
+  email: "siddhesh.mhadnak@outlook.com"
+  github_username: "sid-maddy"
+cookiecutters_dir: "~/.cookiecutters/"
