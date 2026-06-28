@@ -1,21 +1,21 @@
 [[plugin.deps]]
 use  = "yazi-rs/plugins:chmod"
-rev  = "38efe09"
-hash = "f0c8c378184d5f8abd1b095a443d336d"
+rev  = "bb758e2"
+hash = "5b1c276b75cae91cbbdbe7863f39a540"
 
 [[plugin.deps]]
 use  = "XYenon/clipboard"
-rev  = "0ac0320"
-hash = "f80172438b4b5c31e94d6c891f734445"
+rev  = "4533c7f"
+hash = "ba2b9be01c1aea7e23a51cad55ec68e5"
 
 [[plugin.deps]]
 use  = "yazi-rs/plugins:diff"
-rev  = "38efe09"
-hash = "8b1af6b5a69797ee951f2a80ce570818"
+rev  = "bb758e2"
+hash = "39ce0924dfe3989dc89d7caa1473c77c"
 
 [[plugin.deps]]
 use  = "yazi-rs/plugins:git"
-rev  = "38efe09"
+rev  = "bb758e2"
 hash = "88e56a64b7ce7c4314427452343fef17"
 
 [[plugin.deps]]
@@ -30,7 +30,7 @@ hash = "39a4bc4632509e4a68e26b3eed3c3217"
 
 [[plugin.deps]]
 use  = "yazi-rs/plugins:smart-enter"
-rev  = "38efe09"
+rev  = "bb758e2"
 hash = "187cc58ba7ac3befd49c342129e6f1b6"
 
 [[plugin.deps]]
@@ -40,8 +40,8 @@ hash = "d390cd2d8b996939a695411b446f58d0"
 
 [[plugin.deps]]
 use  = "yazi-rs/plugins:toggle-pane"
-rev  = "38efe09"
-hash = "9c7987da2d2a2120dac33abb64132004"
+rev  = "bb758e2"
+hash = "15e5b67a241172cbb86b8fbf9e63692"
 
 [[flavor.deps]]
 use  = "matt-dong-123/base16"

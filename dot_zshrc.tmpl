@@ -88,7 +88,7 @@ zstyle ':completion:*:*:docker:*' option-stacking yes
 zstyle ':completion:*:*:docker-*:*' option-stacking yes
 
 # Path to the completion cache file
-ZSH_COMPDUMP="${ZSH_CACHE_DIR:-$HOME/.cache}/.zcompdump"
+ZSH_COMPDUMP="${ZSH_CACHE_DIR:-$HOME/.cache}/.zcompdump-${ZSH_VERSION}"
 
 export ZSH_DISABLE_COMPFIX=true
 source "$ZSH/oh-my-zsh.sh"
