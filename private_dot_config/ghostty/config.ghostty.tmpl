@@ -46,7 +46,31 @@
 # this within config files if you want to clear previously set values in
 # configuration files or on the CLI if you want to clear values set on the
 # CLI.
-font-family = VictorMono Nerd Font
+font-family = VictorMono NFM
+
+# Apply a font feature. To enable multiple font features you can repeat
+# this multiple times or use a comma-separated list of feature settings.
+#
+# The syntax for feature settings is as follows, where `feat` is a feature:
+#
+#   * Enable features with e.g. `feat`, `+feat`, `feat on`, `feat=1`.
+#   * Disabled features with e.g. `-feat`, `feat off`, `feat=0`.
+#   * Set a feature value with e.g. `feat=2`, `feat = 3`, `feat 4`.
+#   * Feature names may be wrapped in quotes, meaning this config should be
+#     syntactically compatible with the `font-feature-settings` CSS property.
+#
+# The syntax is fairly loose, but invalid settings will be silently ignored.
+#
+# The font feature will apply to all fonts rendered by Ghostty. A future
+# enhancement will allow targeting specific faces.
+#
+# To disable programming ligatures, use `-calt` since this is the typical
+# feature name for programming ligatures. To look into what font features
+# your font has and what they do, use a font inspection tool such as
+# [fontdrop.info](https://fontdrop.info).
+#
+# To generally disable most ligatures, use `-calt, -liga, -dlig`.
+font-feature = calt, liga, ss01, ss02, ss03, ss04, ss05, ss06, ss07, ss08, ss09, ss10
 
 # Font size in points. This value can be a non-integer and the nearest integer
 # pixel size will be selected. If you have a high dpi display where 1pt = 2px
@@ -165,6 +189,15 @@ background-opacity = 0.8
 #     reasonable for a good looking blur. Higher blur intensities may
 #     cause strange rendering and performance issues.
 #
+# On macOS 26.0 and later, there are additional special values that
+# can be set to use the native macOS glass effects:
+#
+#   * `macos-glass-regular` - Standard glass effect with some opacity
+#   * `macos-glass-clear` - Highly transparent glass effect
+#
+# If the macOS values are set, then this implies `background-blur = true`
+# on non-macOS platforms.
+#
 # Supported on macOS and on some Linux desktop environments, including:
 #
 #   * KDE Plasma (Wayland and X11)
@@ -186,7 +219,34 @@ background-opacity = 0.8
 # need to set environment-specific settings and/or install third-party plugins
 # in order to support background blur, as there isn't a unified interface for
 # doing so.
-background-blur = 20
+background-blur = macos-glass-regular
+
+# The opacity level (opposite of transparency) of an unfocused split.
+# Unfocused splits by default are slightly faded out to make it easier to see
+# which split is focused. To disable this feature, set this value to 1.
+#
+# A value of 1 is fully opaque and a value of 0 is fully transparent. Because
+# "0" is not useful (it makes the window look very weird), the minimum value
+# is 0.15. This value still looks weird but you can at least see what's going
+# on. A value outside of the range 0.15 to 1 will be clamped to the nearest
+# valid value.
+unfocused-split-opacity = 0.2
+
+# Control when Ghostty preserves a zoomed split. Under normal circumstances,
+# any operation that changes focus or layout of the split tree in a window
+# will unzoom any zoomed split. This configuration allows you to control
+# this behavior.
+#
+# This can be set to `navigation` to preserve the zoomed split state
+# when navigating to another split (e.g. via `goto_split`). This will
+# change the zoomed split to the newly focused split instead of unzooming.
+#
+# Any options can also be prefixed with `no-` to disable that option.
+#
+# Example: `split-preserve-zoom = navigation`
+#
+# Available since: 1.3.0
+split-preserve-zoom = navigation
 
 # The command to run, usually a shell. If this is not an absolute path, it'll
 # be looked up in the `PATH`. If this is not set, a default will be looked up
@@ -273,6 +333,13 @@ notify-on-command-finish-action = bell,notify
 # This can be changed at runtime but will only affect new terminal surfaces.
 scrollback-limit = 18446744073709551615
 
+# Whether to start the window in a maximized state. This setting applies
+# to new windows and does not apply to tabs, splits, etc. However, this setting
+# will apply to all new windows, not just the first one.
+#
+# Available since: 1.1.0
+maximize = true
+
 # Key bindings. The format is `trigger=action`. Duplicate triggers will
 # overwrite previously set values. The list of actions is available in
 # the documentation or using the `ghostty +list-actions` command.
@@ -321,6 +388,13 @@ scrollback-limit = 18446744073709551615
 # so if you specify both `a` and `KeyA`, the physical key will always be used
 # regardless of what order they are configured.
 #
+# The special key `catch_all` can be used to match any key that is not
+# otherwise bound. This can be combined with modifiers, for example
+# `ctrl+catch_all` will match any key pressed with `ctrl` that is not
+# otherwise bound. When looking up a binding, Ghostty first tries to match
+# `catch_all` with modifiers. If no match is found and the event has
+# modifiers, it falls back to `catch_all` without modifiers.
+#
 # Valid modifiers are `shift`, `ctrl` (alias: `control`), `alt` (alias: `opt`,
 # `option`), and `super` (alias: `cmd`, `command`). You may use the modifier
 # or the alias. When debugging keybinds, the non-aliased modifier will always
@@ -357,6 +431,11 @@ scrollback-limit = 18446744073709551615
 #     force the output of a prefix key is to assign another keybind to
 #     specifically output that key (e.g. `ctrl+a>ctrl+a=text:foo`) or
 #     press an unbound key which will send both keys to the program.
+#
+#   * If an unbound key is pressed during a sequence and a `catch_all`
+#     binding exists that would `ignore` the input, the entire sequence
+#     is dropped and nothing happens. Otherwise, the entire sequence is
+#     encoded and sent to the running program as if no keybind existed.
 #
 #   * If a prefix in a sequence is previously bound, the sequence will
 #     override the previous binding. For example, if `ctrl+a` is bound to
@@ -503,37 +582,109 @@ scrollback-limit = 18446744073709551615
 #
 #  - Notably, global shortcuts have not been implemented on wlroots-based
 #    compositors like Sway (see [upstream issue](https://github.com/emersion/xdg-desktop-portal-wlr/issues/240)).
+#
+# ## Chained Actions
+#
+# A keybind can have multiple actions by using the `chain` keyword for
+# subsequent actions. When a keybind is activated, all chained actions are
+# executed in order. The syntax is:
+#
+# ```ini
+# keybind = ctrl+a=new_window
+# keybind = chain=goto_split:left
+# ```
+#
+# This binds `ctrl+a` to first open a new window, then move focus to the
+# left split. Each `chain` entry appends an action to the most recently
+# defined keybind. You can chain as many actions as you want:
+#
+# ```ini
+# keybind = ctrl+a=new_window
+# keybind = chain=goto_split:left
+# keybind = chain=toggle_fullscreen
+# ```
+#
+# Chained actions cannot have prefixes like `global:` or `unconsumed:`.
+# The flags from the original keybind apply to the entire chain.
+#
+# Chained actions work with key sequences as well. For example:
+#
+# ```ini
+# keybind = ctrl+a>n=new_window
+# keybind = chain=goto_split:left
+# ````
+#
+# Chains with key sequences apply to the most recent binding in the
+# sequence.
+#
+# Chained keybinds are available since Ghostty 1.3.0.
+#
+# ## Key Tables
+#
+# You may also create a named set of keybindings known as a "key table."
+# A key table must be explicitly activated for the bindings to become
+# available. This can be used to implement features such as a
+# "copy mode", "vim mode", etc. Generically, this can implement modal
+# keyboard input.
+#
+# Key tables are defined using the syntax `<table>/<binding>`. The
+# `<binding>` value is everything documented above for keybinds. The
+# `<table>` value is the name of the key table. Table names can contain
+# anything except `/`, `=`, `+`, and `>`. The characters `+` and `>` are
+# reserved for keybind syntax (modifier combinations and key sequences).
+# For example `foo/ctrl+a=new_window` defines a binding within a table
+# named `foo`.
+#
+# Tables are activated and deactivated using the binding actions
+# `activate_key_table:<name>` and `deactivate_key_table`. Other table
+# related binding actions also exist; see the documentation for a full list.
+# These are the primary way to interact with key tables.
+#
+# Binding lookup proceeds from the innermost table outward, so keybinds in
+# the default table remain available unless explicitly unbound in an inner
+# table.
+#
+# A key table has some special syntax and handling:
+#
+#   * `<name>/` (with no binding) defines and clears a table, resetting all
+#     of its keybinds and settings.
+#
+#   * You cannot activate a table that is already the innermost table; such
+#     attempts are ignored. However, the same table can appear multiple times
+#     in the stack as long as it is not innermost (e.g., `A -> B -> A -> B`
+#     is valid, but `A -> B -> B` is not).
+#
+#   * A table can be activated in one-shot mode using
+#     `activate_key_table_once:<name>`. A one-shot table is automatically
+#     deactivated when any non-catch-all binding is invoked.
+#
+#   * Key sequences work within tables: `foo/ctrl+a>ctrl+b=new_window`.
+#     If an invalid key is pressed, the sequence ends but the table remains
+#     active.
+#
+#   * Chain actions work within tables, the `chain` keyword applies to
+#     the most recently defined binding in the table. e.g. if you set
+#     `table/ctrl+a=new_window` you can chain by using `chain=text:hello`.
+#     Important: chain itself doesn't get prefixed with the table name,
+#     since it applies to the most recent binding in any table.
+#
+#   * Prefixes like `global:` work within tables:
+#     `foo/global:ctrl+a=new_window`.
+#
+# Key tables are available since Ghostty 1.3.0.
 keybind = global:ctrl+grave_accent=toggle_quick_terminal
 
-# The initial window size. This size is in terminal grid cells by default.
-# Both values must be set to take effect. If only one value is set, it is
-# ignored.
+# The color space to use when interpreting terminal colors. "Terminal colors"
+# refers to colors specified in your configuration and colors produced by
+# direct-color SGR sequences.
 #
-# We don't currently support specifying a size in pixels but a future change
-# can enable that. If this isn't specified, the app runtime will determine
-# some default size.
+# Valid values:
 #
-# Note that the window manager may put limits on the size or override the
-# size. For example, a tiling window manager may force the window to be a
-# certain size to fit within the grid. There is nothing Ghostty will do about
-# this, but it will make an effort.
+#   * `srgb` - Interpret colors in the sRGB color space. This is the default.
+#   * `display-p3` - Interpret colors in the Display P3 color space.
 #
-# Sizes larger than the screen size will be clamped to the screen size.
-# This can be used to create a maximized-by-default window size.
-#
-# This will not affect new tabs, splits, or other nested terminal elements.
-# This only affects the initial window size of any new window. Changing this
-# value will not affect the size of the window after it has been created. This
-# is only used for the initial size.
-#
-# BUG: On Linux with GTK, the calculated window size will not properly take
-# into account window decorations. As a result, the grid dimensions will not
-# exactly match this configuration. If window decorations are disabled (see
-# `window-decoration`), then this will work as expected.
-#
-# Windows smaller than 10 wide by 4 high are not allowed.
-window-height = 9999
-window-width = 9999
+# This setting is currently only supported on macOS.
+window-colorspace = display-p3
 
 # Whether to automatically copy selected text to the clipboard. `true`
 # will prefer to copy to the selection clipboard, otherwise it will copy to
@@ -575,7 +726,18 @@ copy-on-select = clipboard
 # If "foo" contains `a = 2`, the final value of `a` will be 2, because
 # `foo` is loaded after the configuration file that configures the
 # nested `config-file` value.
-config-file = "{{ .chezmoi.os }}"
+config-file = "{{ .chezmoi.os }}.ghostty"
+
+# Whether or not to quit after the last surface is closed.
+#
+# This defaults to `false` on macOS since that is standard behavior for
+# a macOS application. On Linux, this defaults to `true` since that is
+# generally expected behavior.
+#
+# On Linux, if this is `true`, Ghostty can delay quitting fully until a
+# configurable amount of time has passed after the last window is closed.
+# See the documentation of `quit-after-last-window-closed-delay`.
+quit-after-last-window-closed = false
 
 # Shell integration features to enable. These require our shell integration
 # to be loaded, either automatically via shell-integration or manually.
@@ -589,7 +751,7 @@ config-file = "{{ .chezmoi.os }}"
 #
 # Available features:
 #
-#   * `cursor` - Set the cursor to a blinking bar at the prompt.
+#   * `cursor` - Set the cursor to a bar at the prompt.
 #
 #   * `sudo` - Set sudo wrapper to preserve terminfo.
 #
@@ -620,7 +782,7 @@ config-file = "{{ .chezmoi.os }}"
 # when both `ssh-env` and `ssh-terminfo` are enabled, Ghostty will install its
 # terminfo on remote hosts and use `xterm-ghostty` as TERM, falling back to
 # `xterm-256color` with environment variables if terminfo installation fails.
-shell-integration-features = no-cursor,sudo,ssh-env
+shell-integration-features = no-cursor,sudo,title,ssh-env,ssh-terminfo
 
 # Custom shaders to run after the default shaders. This is a file path
 # to a GLSL-syntax shader for all platforms.
@@ -677,11 +839,59 @@ shell-integration-features = no-cursor,sudo,ssh-env
 #
 #  * `vec4 iPreviousCursorColor` - Color of the previous terminal cursor.
 #
+#  * `vec4 iCurrentCursorStyle` - Style of the terminal cursor
+#
+#    Macros simplified use are defined for the various cursor styles:
+#
+#    - `CURSORSTYLE_BLOCK` or `0`
+#    - `CURSORSTYLE_BLOCK_HOLLOW` or `1`
+#    - `CURSORSTYLE_BAR` or `2`
+#    - `CURSORSTYLE_UNDERLINE` or `3`
+#    - `CURSORSTYLE_LOCK` or `4`
+#
+#  * `vec4 iPreviousCursorStyle` - Style of the previous terminal cursor
+#
+#  * `vec4 iCursorVisible` - Visibility of the terminal cursor.
+#
 #  * `float iTimeCursorChange` - Timestamp of terminal cursor change.
 #
 #    When the terminal cursor changes position or color, this is set to
 #    the same time as the `iTime` uniform, allowing you to compute the
 #    time since the change by subtracting this from `iTime`.
+#
+#  * `float iTimeFocus` - Timestamp when the surface last gained iFocus.
+#
+#    When the surface gains focus, this is set to the current value of
+#    `iTime`, similar to how `iTimeCursorChange` works. This allows you
+#    to compute the time since focus was gained or lost by calculating
+#    `iTime - iTimeFocus`. Use this to create animations that restart
+#    when the terminal regains focus.
+#
+#  * `int iFocus` - Current focus state of the surface.
+#
+#    Set to 1.0 when the surface is focused, 0.0 when unfocused. This
+#    allows shaders to detect unfocused state and avoid animation artifacts
+#    from large time deltas caused by infrequent "deceptive frames"
+#    (e.g., modifier key presses, link hover events in unfocused split panes).
+#    Check `iFocus > 0` to determine if the surface is currently focused.
+#
+#  * `vec3 iPalette[256]` - The 256-color terminal palette.
+#
+#    RGB values for all 256 colors in the terminal palette, normalized
+#    to [0.0, 1.0]. Index 0-15 are the ANSI colors, 16-231 are the 6x6x6
+#    color cube, and 232-255 are the grayscale colors.
+#
+#  * `vec3 iBackgroundColor` - Terminal background color (RGB).
+#
+#  * `vec3 iForegroundColor` - Terminal foreground color (RGB).
+#
+#  * `vec3 iCursorColor` - Terminal cursor color (RGB).
+#
+#  * `vec3 iCursorText` - Terminal cursor text color (RGB).
+#
+#  * `vec3 iSelectionBackgroundColor` - Selection background color (RGB).
+#
+#  * `vec3 iSelectionForegroundColor` - Selection foreground color (RGB).
 #
 # If the shader fails to compile, the shader will be ignored. Any errors
 # related to shader compilation will not show up as configuration errors
@@ -694,6 +904,7 @@ shell-integration-features = no-cursor,sudo,ssh-env
 #
 # This can be changed at runtime and will affect all open terminals.
 custom-shader = ~/.config/ghostty/shaders/cursor_blaze.glsl
+custom-shader = ~/.config/ghostty/shaders/cursor_lightning.glsl
 
 # If `true` (default), the focused terminal surface will run an animation
 # loop when custom shaders are used. This uses slightly more CPU (generally

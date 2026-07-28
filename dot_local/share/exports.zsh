@@ -15,9 +15,6 @@ export COMPOSE_BAKE=true
 # Google Cloud
 export USE_GKE_GCLOUD_AUTH_PLUGIN=True
 
-# Hermes
-export HERMES_TUI=1
-
 # Homebrew
 export HOMEBREW_BAT=1
 export HOMEBREW_CLEANUP_PERIODIC_FULL_DAYS=1

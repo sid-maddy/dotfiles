@@ -8,6 +8,7 @@ return {
         -- 'basedpyright',
         'biome',
         'buf',
+        'cobol-language-support',
         'css-lsp',
         'css-variables-language-server',
         'cssmodules-language-server',
