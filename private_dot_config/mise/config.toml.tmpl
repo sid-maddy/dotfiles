@@ -4,7 +4,6 @@ exec_auto_install                   = false
 experimental                        = true
 idiomatic_version_file_enable_tools = ['rust']
 not_found_auto_install              = false
-task_run_auto_install               = false
 trusted_config_paths                = ['~/.config/mise']
 
   [settings.cargo]
@@ -13,6 +12,9 @@ trusted_config_paths                = ['~/.config/mise']
 
   [settings.npm]
   package_manager = 'bun'
+
+  [settings.task]
+  run_auto_install = false
 
 [tools]
 aube    = 'latest'
