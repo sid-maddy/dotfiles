@@ -1,22 +1,22 @@
 [[plugin.deps]]
 use  = "yazi-rs/plugins:chmod"
-rev  = "58c4f4e"
+rev  = "9166202"
 hash = "87472b05a8c420100f6a2b9cde1e7746"
 
 [[plugin.deps]]
 use  = "XYenon/clipboard"
-rev  = "b25ec96"
-hash = "9f07d7de37a430833ef33b92c0bcf8cb"
+rev  = "4b4b6c5"
+hash = "cdcc9c84c9757d585af78c87b012f38b"
 
 [[plugin.deps]]
 use  = "yazi-rs/plugins:diff"
-rev  = "58c4f4e"
+rev  = "9166202"
 hash = "14558d2829c0aa05e99c57de8f74d199"
 
 [[plugin.deps]]
 use  = "yazi-rs/plugins:git"
-rev  = "58c4f4e"
-hash = "5bb0bfab901d3601c370eafdd66edd31"
+rev  = "9166202"
+hash = "347cc6b190eb0c2fd60513cc7ae37412"
 
 [[plugin.deps]]
 use  = "Reledia/glow"
@@ -30,7 +30,7 @@ hash = "39a4bc4632509e4a68e26b3eed3c3217"
 
 [[plugin.deps]]
 use  = "yazi-rs/plugins:smart-enter"
-rev  = "58c4f4e"
+rev  = "9166202"
 hash = "187cc58ba7ac3befd49c342129e6f1b6"
 
 [[plugin.deps]]
@@ -40,7 +40,7 @@ hash = "74129f78c811cfe7c694d86c3f634c26"
 
 [[plugin.deps]]
 use  = "yazi-rs/plugins:toggle-pane"
-rev  = "58c4f4e"
+rev  = "9166202"
 hash = "5b2fbef7d1513ce38ff72623a071a5e"
 
 [[flavor.deps]]
