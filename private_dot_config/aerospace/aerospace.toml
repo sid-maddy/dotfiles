@@ -174,9 +174,24 @@ l     = 'resize width +50'
 if.app-id = 'com.mitchellh.ghostty'
 run       = 'move-node-to-workspace 1'
 
+# Rex
+[[on-window-detected]]
+if.app-id = 'com.superlogical.rex'
+run       = 'move-node-to-workspace 1'
+
 # ChatGPT
 [[on-window-detected]]
 if.app-id = 'com.openai.codex'
+run       = 'move-node-to-workspace 1'
+
+# Claude
+[[on-window-detected]]
+if.app-id = 'com.anthropic.claudefordesktop'
+run       = 'move-node-to-workspace 1'
+
+# Gemini
+[[on-window-detected]]
+if.app-id = 'com.google.GeminiMacOS'
 run       = 'move-node-to-workspace 1'
 
 # Zen
